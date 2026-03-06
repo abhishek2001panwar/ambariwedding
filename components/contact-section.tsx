@@ -3,6 +3,7 @@
 import { ArrowUpRight, MapPin, Mail, Phone } from "lucide-react"
 import { useScrollReveal } from "@/hooks/use-scroll-reveal"
 import { useState } from "react"
+import { supabase } from "@/lib/supabase"
 
 export function ContactSection() {
   const { ref: headRef, isVisible: headVisible } = useScrollReveal(0.15)
@@ -15,9 +16,49 @@ export function ContactSection() {
     message: "",
   })
   const [focused, setFocused] = useState<string | null>(null)
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle")
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value })
+  }
+
+  const handleSubmit = async () => {
+    // Validation
+    if (!formData.name || !formData.email || !formData.phone || !formData.message) {
+      setSubmitStatus("error")
+      setTimeout(() => setSubmitStatus("idle"), 3000)
+      return
+    }
+
+    setIsSubmitting(true)
+    setSubmitStatus("idle")
+
+    try {
+      const { error } = await supabase
+        .from('contact')
+        .insert([
+          {
+            name: formData.name,
+            email: formData.email,
+            phone: formData.phone,
+            message: formData.message,
+          }
+        ])
+
+      if (error) throw error
+
+      // Success
+      setSubmitStatus("success")
+      setFormData({ name: "", email: "", phone: "", message: "" })
+      setTimeout(() => setSubmitStatus("idle"), 5000)
+    } catch (error) {
+      console.error('Error submitting form:', error)
+      setSubmitStatus("error")
+      setTimeout(() => setSubmitStatus("idle"), 3000)
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   return (
@@ -215,9 +256,11 @@ export function ContactSection() {
             <div className="flex justify-end pt-2">
               <button
                 type="button"
-                className="group relative inline-flex items-center gap-3 text-sm tracking-widest uppercase text-foreground/60 hover:text-foreground transition-colors duration-500"
+                onClick={handleSubmit}
+                disabled={isSubmitting}
+                className="group relative inline-flex items-center gap-3 text-sm tracking-widest uppercase text-foreground/60 hover:text-foreground transition-colors duration-500 disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                <span>Send</span>
+                <span>{isSubmitting ? "Sending..." : "Send"}</span>
                 <span className="relative flex h-9 w-9 items-center justify-center rounded-full border border-foreground/20 group-hover:border-foreground/60 transition-colors duration-500">
                   <ArrowUpRight className="h-3.5 w-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300" />
                 </span>
@@ -225,6 +268,18 @@ export function ContactSection() {
                 <span className="absolute bottom-0 left-0 h-px w-0 bg-foreground/30 group-hover:w-[calc(100%-3rem)] transition-all duration-500" />
               </button>
             </div>
+
+            {/* Status Messages */}
+            {submitStatus === "success" && (
+              <div className="mt-4 p-4 rounded-lg bg-green-500/10 border border-green-500/20">
+                <p className="text-sm text-green-600 dark:text-green-400">Message sent successfully! We'll get back to you soon.</p>
+              </div>
+            )}
+            {submitStatus === "error" && (
+              <div className="mt-4 p-4 rounded-lg bg-red-500/10 border border-red-500/20">
+                <p className="text-sm text-red-600 dark:text-red-400">Please fill in all fields and try again.</p>
+              </div>
+            )}
           </div>
         </div>
 

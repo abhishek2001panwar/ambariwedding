@@ -140,7 +140,7 @@ export function JournalSection() {
   const { ref: headRef, isVisible: headVisible } = useScrollReveal(0.1)
 
   return (
-    <section id="journal" className="px-6 py-28 md:px-12 lg:px-20 md:py-1 overflow-hidden">
+    <section id="process" className="px-6 py-28 md:px-12 lg:px-20 md:py-1 overflow-hidden">
 
       {/* Header */}
       <div

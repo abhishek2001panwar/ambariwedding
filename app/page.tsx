@@ -11,7 +11,7 @@ import { Footer } from "@/components/footer"
 export default function Page() {
   return (
     <main>
-      <Navigation />
+     
       <Hero />
       <ProjectsSection />
       <EditorialBreak />
@@ -19,7 +19,7 @@ export default function Page() {
       <ApproachSection />
       <JournalSection />
       <ContactSection />
-      <Footer />
+     
     </main>
   )
 }

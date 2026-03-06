@@ -3,12 +3,14 @@ import type { Metadata, Viewport } from 'next'
 import { Inter } from 'next/font/google'
 
 import './globals.css'
+import { Navigation } from "@/components/navigation"
+import { Footer } from "@/components/footer"
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' })
 
 export const metadata: Metadata = {
-  title: 'Voss Architects — Contemporary Architecture & Design',
-  description: 'Award-winning architecture studio specializing in residential, cultural, and commercial projects. Shaping spaces that define how we live.',
+  title: 'Ambari Weddings - Crafting Timeless Wedding Experiences in Bengaluru and Beyond',
+  description: 'Ambari Weddings is a premier wedding planning service based in Bengaluru, India. We specialize in creating personalized, elegant, and unforgettable wedding experiences for couples. Our team of expert planners works closely with you to bring your vision to life, ensuring every detail is perfect. From intimate ceremonies to grand celebrations, we are dedicated to making your special day truly magical.',
 }
 
 export const viewport: Viewport = {
@@ -22,7 +24,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={inter.variable}>
+      <Navigation />
       <body className="font-sans antialiased">{children}</body>
+      <Footer />
     </html>
   )
 }

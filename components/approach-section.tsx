@@ -72,7 +72,7 @@ export function ApproachSection() {
   const { ref, isVisible } = useScrollReveal(0.05)
 
   return (
-    <section id="approach" className="px-6 py-28 md:px-12 lg:px-20 md:py-36">
+    <section id="service" className="px-6 py-28 md:px-12 lg:px-20 md:py-36">
       <div
         ref={ref}
         className={`mb-20 pb-6 border-b border-border transition-all duration-700 ${
@@ -83,7 +83,7 @@ export function ApproachSection() {
           Our Services
         </p>
         <h2 className="text-3xl md:text-[2.75rem] font-extralight tracking-tight text-foreground">
-          Approach
+         
        
         </h2>
       </div>

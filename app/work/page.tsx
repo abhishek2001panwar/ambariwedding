@@ -1,12 +1,765 @@
 "use client";
-import { Hero } from "@/components/hero";
 import { Navigation } from "@/components/navigation";
-
-
 import React, { useEffect, useRef, useState, useCallback } from "react";
 
+// ─────────────────────────────────────────────────────────────────────────────
+// SHARED PRIMITIVES
+// ─────────────────────────────────────────────────────────────────────────────
 
-function page() {
+const PlayIcon = () => (
+  <svg viewBox="0 0 24 24" fill="white" width="12" height="12">
+    <polygon points="6,3 20,12 6,21" />
+  </svg>
+);
+const PauseIcon = () => (
+  <svg viewBox="0 0 24 24" fill="white" width="12" height="12">
+    <rect x="5" y="3" width="4" height="18" />
+    <rect x="15" y="3" width="4" height="18" />
+  </svg>
+);
+
+export function PhotoCell({ src, alt, style = {}, delay = 0 }) {
+  const ref = useRef(null);
+  const [vis, setVis] = useState(false);
+  const [hov, setHov] = useState(false);
+
+  useEffect(() => {
+    const io = new IntersectionObserver(
+      ([e]) => {
+        if (e.isIntersecting) setVis(true);
+      },
+      { threshold: 0.1 },
+    );
+    io.observe(ref.current);
+    return () => io.disconnect();
+  }, []);
+
+  return (
+    <div
+      ref={ref}
+      onMouseEnter={() => setHov(true)}
+      onMouseLeave={() => setHov(false)}
+      style={{
+        borderRadius: "6px",
+        overflow: "hidden",
+        position: "relative",
+        background: "#e8e2da",
+        opacity: vis ? 1 : 0,
+        transform: vis ? "translateY(0)" : "translateY(16px)",
+        transition: `opacity 0.7s ${delay}s ease, transform 0.7s ${delay}s ease, box-shadow 0.4s ease`,
+        boxShadow: hov
+          ? "0 20px 52px rgba(26,20,16,0.14)"
+          : "0 2px 14px rgba(26,20,16,0.06)",
+        ...style,
+      }}
+    >
+      <img
+        src={src}
+        alt={alt}
+        style={{
+          width: "100%",
+          height: "100%",
+          objectFit: "cover",
+          display: "block",
+          transform: hov ? "scale(1.04)" : "scale(1)",
+          transition: "transform 0.7s ease",
+        }}
+      />
+      <div
+        style={{
+          position: "absolute",
+          inset: 0,
+          background:
+            "linear-gradient(135deg, transparent 55%, rgba(201,169,110,0.13) 100%)",
+          opacity: hov ? 1 : 0,
+          transition: "opacity 0.4s",
+          pointerEvents: "none",
+        }}
+      />
+    </div>
+  );
+}
+
+export function VideoCell({
+  src,
+  label,
+  accent = "#c9a96e",
+  objectPosition = "center center",
+  style = {},
+  delay = 0,
+}) {
+  const videoRef = useRef(null);
+  const wrapRef = useRef(null);
+  const [playing, setPlaying] = useState(false);
+  const [progress, setProgress] = useState(0);
+  const [vis, setVis] = useState(false);
+
+  useEffect(() => {
+    const io = new IntersectionObserver(
+      ([e]) => {
+        if (e.isIntersecting) {
+          setVis(true);
+          videoRef.current?.play().catch(() => {});
+          setPlaying(true);
+        } else {
+          videoRef.current?.pause();
+          setPlaying(false);
+        }
+      },
+      { threshold: 0.15 },
+    );
+    io.observe(wrapRef.current);
+    return () => io.disconnect();
+  }, []);
+
+  const toggle = useCallback(() => {
+    const v = videoRef.current;
+    if (!v) return;
+    if (v.paused) {
+      v.play();
+      setPlaying(true);
+    } else {
+      v.pause();
+      setPlaying(false);
+    }
+  }, []);
+
+  return (
+    <div
+      ref={wrapRef}
+      style={{
+        borderRadius: "6px",
+        overflow: "hidden",
+        position: "relative",
+        background: "#111",
+        opacity: vis ? 1 : 0,
+        transform: vis ? "translateY(0)" : "translateY(16px)",
+        transition: `opacity 0.7s ${delay}s ease, transform 0.7s ${delay}s ease`,
+        ...style,
+      }}
+    >
+      <video
+        ref={videoRef}
+        src={src}
+        muted
+        playsInline
+        loop
+        onTimeUpdate={() => {
+          const v = videoRef.current;
+          if (v?.duration) setProgress((v.currentTime / v.duration) * 100);
+        }}
+        style={{
+          width: "100%",
+          height: "100%",
+          objectFit: "cover",
+          objectPosition,
+          display: "block",
+        }}
+      />
+      <div
+        style={{
+          position: "absolute",
+          inset: 0,
+          background:
+            "linear-gradient(to top, rgba(12,8,4,0.65) 0%, transparent 55%)",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "flex-end",
+          padding: "13px 15px",
+        }}
+      >
+        <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+          <button
+            onClick={toggle}
+            style={{
+              width: "28px",
+              height: "28px",
+              borderRadius: "50%",
+              border: "1px solid rgba(255,255,255,0.5)",
+              background: "rgba(255,255,255,0.08)",
+              backdropFilter: "blur(12px)",
+              cursor: "pointer",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              flexShrink: 0,
+            }}
+          >
+            {playing ? <PauseIcon /> : <PlayIcon />}
+          </button>
+          {label && (
+            <span
+              style={{
+                fontSize: "8.5px",
+                letterSpacing: "0.32em",
+                textTransform: "uppercase",
+                color: "rgba(255,255,255,0.45)",
+                fontWeight: 300,
+              }}
+            >
+              {label}
+            </span>
+          )}
+          <div
+            style={{
+              flex: 1,
+              height: "1px",
+              background: "rgba(255,255,255,0.15)",
+              borderRadius: "1px",
+              overflow: "hidden",
+            }}
+          >
+            <div
+              style={{
+                height: "100%",
+                width: `${progress}%`,
+                background: accent,
+                transition: "width 0.2s linear",
+              }}
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// Accent filler cell — sits in the bottom-center of the bento top row
+// Label text removed as requested
+function AccentFiller({ num, accent }) {
+  const ref = useRef(null);
+  const [vis, setVis] = useState(false);
+  useEffect(() => {
+    const io = new IntersectionObserver(
+      ([e]) => {
+        if (e.isIntersecting) setVis(true);
+      },
+      { threshold: 0.1 },
+    );
+    io.observe(ref.current);
+    return () => io.disconnect();
+  }, []);
+  return (
+    <div
+      ref={ref}
+      style={{
+        gridArea: "filler",
+        borderRadius: "6px",
+        background: "#f5f0e8",
+        border: "1px solid rgba(201,169,110,0.18)",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        gap: "7px",
+        opacity: vis ? 1 : 0,
+        transform: vis ? "translateY(0)" : "translateY(16px)",
+        transition: "opacity 0.7s 0.25s ease, transform 0.7s 0.25s ease",
+      }}
+    >
+      <span
+        style={{
+          fontSize: "30px",
+          letterSpacing: "0em",
+          color: accent,
+          fontWeight: 300,
+        }}
+      >
+        {num}
+      </span>
+    </div>
+  );
+}
+
+// Chapter header — number label removed, center event name is bigger
+function ChapterHeader({ num, label, accent }) {
+  const ref = useRef(null);
+  const [vis, setVis] = useState(false);
+  useEffect(() => {
+    const io = new IntersectionObserver(
+      ([e]) => {
+        if (e.isIntersecting) setVis(true);
+      },
+      { threshold: 0.4 },
+    );
+    io.observe(ref.current);
+    return () => io.disconnect();
+  }, []);
+  const words = label.split(" ");
+  return (
+    <div
+      ref={ref}
+      style={{
+        display: "flex",
+        alignItems: "center",
+        gap: "20px",
+        marginBottom: "18px",
+        opacity: vis ? 1 : 0,
+        transform: vis ? "translateY(0)" : "translateY(14px)",
+        transition: "opacity 0.8s ease, transform 0.8s ease",
+      }}
+    >
+      <div
+        style={{ flex: 1, height: "1px", background: "rgba(201,169,110,0.2)" }}
+      />
+      {/* Bigger center event name — removed the num label */}
+      <h3
+        style={{
+          fontSize: "25px",
+          fontWeight: 400,
+          color: "#1a1410",
+          letterSpacing: "-0.025em",
+          lineHeight: 1,
+          flexShrink: 0,
+        }}
+      >
+        {words[0]}{" "}
+        <em style={{ color: accent, fontStyle: "" }}>
+          {words.slice(1).join(" ")}
+        </em>
+      </h3>
+      <div
+        style={{ flex: 1, height: "1px", background: "rgba(201,169,110,0.2)" }}
+      />
+    </div>
+  );
+}
+
+// ─── Responsive BentoTop ────────────────────────────────────────────────────
+// On mobile (≤600px): stacks vertically, full width
+// On tablet (601–900px): 2-col grid, filler hidden
+// On desktop (901px+): original 3-col layout, taller cells
+function BentoTop({ left, center, right, accent, num, label, className = "" }) {
+  const [cols, setCols] = useState("desktop");
+
+  useEffect(() => {
+    const check = () => {
+      const w = window.innerWidth;
+      setCols(w <= 600 ? "mobile" : w <= 900 ? "tablet" : "desktop");
+    };
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
+
+  const renderCell = (item, gridArea, delay, extraStyle = {}) => {
+    if (!item || !item.src) return null;
+    const style = { gridArea, ...extraStyle };
+    return item.type === "photo" ? (
+      <PhotoCell
+        key={gridArea}
+        src={item.src}
+        alt={item.alt || ""}
+        style={style}
+        delay={delay}
+      />
+    ) : (
+      <VideoCell
+        key={gridArea}
+        src={item.src}
+        label={item.label}
+        accent={accent}
+        objectPosition={item.objectPosition}
+        style={style}
+        delay={delay}
+      />
+    );
+  };
+
+  // ── MOBILE: vertical stack ──────────────────────────────────────────────
+  if (cols === "mobile") {
+    return (
+      <div
+        className={className}
+        style={{ display: "flex", flexDirection: "column", gap: "8px" }}
+      >
+        {renderCell(left, "left", 0, { height: "260px" })}
+        {renderCell(center, "center", 0.1, { height: "320px" })}
+        {renderCell(right, "right", 0.2, { height: "260px" })}
+      </div>
+    );
+  }
+
+  // ── TABLET: 2-col, center spans full width top, left+right below ────────
+  if (cols === "tablet") {
+    return (
+      <div
+        className={className}
+        style={{
+          display: "grid",
+          gridTemplateColumns: "1fr 1fr",
+          gridTemplateRows: "360px 300px",
+          gridTemplateAreas: `"center center" "left right"`,
+          gap: "8px",
+        }}
+      >
+        {renderCell(center, "center", 0)}
+        {renderCell(left, "left", 0.1)}
+        {renderCell(right, "right", 0.2)}
+      </div>
+    );
+  }
+
+  // ── DESKTOP: original 3-col + filler, taller rows ──────────────────────
+  return (
+    <div
+      className={className}
+      style={{
+        display: "grid",
+        gridTemplateColumns: "0.85fr 1.3fr 0.85fr",
+        gridTemplateRows: "420px 90px", // ← taller than before (was 320px / 80px)
+        gridTemplateAreas: `"left center right" "left filler right"`,
+        gap: "8px",
+      }}
+    >
+      {renderCell(left, "left", 0)}
+      {renderCell(center, "center", 0.1)}
+      {renderCell(right, "right", 0.2)}
+      <AccentFiller num={num} accent={accent} />
+    </div>
+  );
+}
+
+// ── Responsive ExtraVideosRow ───────────────────────────────────────────────
+function ExtraVideosRow({ videos, accent }) {
+  const [cols, setCols] = useState("desktop");
+  useEffect(() => {
+    const check = () =>
+      setCols(window.innerWidth <= 600 ? "mobile" : "desktop");
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
+
+  return (
+    <div
+      style={{
+        display: "grid",
+        gridTemplateColumns: cols === "mobile" ? "1fr" : "1fr 1fr",
+        gap: "8px",
+        marginTop: "8px",
+      }}
+    >
+      {videos.map((v, i) => (
+        <VideoCell
+          key={i}
+          src={v.src}
+          label={v.label}
+          accent={accent}
+          objectPosition={v.objectPosition || "center center"}
+          style={{ height: cols === "mobile" ? "240px" : "320px" }} // ← taller on desktop
+          delay={i * 0.1}
+        />
+      ))}
+    </div>
+  );
+}
+
+function Divider() {
+  return (
+    <div style={{ textAlign: "center", padding: "44px 0 0", opacity: 0.18 }}>
+      <svg viewBox="0 0 200 16" style={{ width: "130px" }} fill="none">
+        <line x1="0" y1="8" x2="76" y2="8" stroke="#c9a96e" strokeWidth="0.6" />
+        <circle cx="92" cy="8" r="3" fill="#c9a96e" />
+        <circle cx="82" cy="8" r="1.5" fill="#c9a96e" opacity="0.5" />
+        <circle cx="102" cy="8" r="1.5" fill="#c9a96e" opacity="0.5" />
+        <line
+          x1="108"
+          y1="8"
+          x2="200"
+          y2="8"
+          stroke="#c9a96e"
+          strokeWidth="0.6"
+        />
+      </svg>
+    </div>
+  );
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// CHAPTER COMPONENTS
+// ─────────────────────────────────────────────────────────────────────────────
+
+function SangeetChapter() {
+  const ACCENT = "#c9a96e";
+  return (
+    <section id="chapter-sangeet" style={{ marginBottom: "88px" }}>
+      <ChapterHeader num="04" label="The Sangeet" accent={ACCENT} />
+      <BentoTop
+        accent={ACCENT}
+        num="04"
+        label="The Sangeet"
+        left={{
+          type: "photo",
+          src: "/sangeet/AmbariWeddingsPosts.jpg",
+          alt: "Sangeet 1",
+        }}
+        center={{
+          type: "video",
+          src: "/sangeet/awreel14.mp4",
+          label: "Opening Night",
+        }}
+        right={{ type: "video", src: "/sangeet/video 4.mp4", alt: "Sangeet 2" }}
+      />
+      <ExtraVideosRow
+        accent={ACCENT}
+        videos={[
+          {
+            src: "https://ambariweddings.com/wp-content/uploads/2026/02/CONCEPT-MOOD-13.mp4",
+            label: "Dance Floor",
+          },
+          { src: "/sangeet/video2.mp4", label: "Highlights" },
+        ]}
+      />
+      <Divider />
+    </section>
+  );
+}
+
+function ReceptionChapter() {
+  const ACCENT = "#8aab9e";
+  return (
+    <section id="chapter-reception" style={{ marginBottom: "88px" }}>
+      <ChapterHeader num="02" label="The Reception" accent={ACCENT} />
+      <BentoTop
+        accent={ACCENT}
+        num="02"
+        label="The Reception"
+        left={{
+          type: "video",
+          src: "/reception/purpleReception.mp4",
+          label: "Grand Entrance",
+        }}
+        center={{
+          type: "video",
+          src: "/reception/video.mp4",
+          alt: "Reception",
+        }}
+        right={{
+          type: "video",
+          src: "/reception/Video5.mp4",
+          label: "First Dance",
+        }}
+      />
+      <BentoTop
+        className="mt-3"
+        accent={ACCENT}
+        num=""
+        label=""
+        left={{ type: "photo", src: "/reception/image1.png" }}
+        center={{
+          type: "photo",
+          src: "/reception/image2.png",
+          alt: "Reception",
+        }}
+        right={{ type: "photo", src: "/reception/image3.png" }}
+      />
+      <Divider />
+    </section>
+  );
+}
+
+function HaldiChapter() {
+  const ACCENT = "#c9a96e";
+  return (
+    <section id="chapter-haldi" style={{ marginBottom: "88px" }}>
+      <ChapterHeader num="03" label="The Haldi" accent={ACCENT} />
+      <BentoTop
+        accent={ACCENT}
+        num="03"
+        label="The Haldi"
+        left={{ type: "photo", src: "/haldi/image.png", alt: "Haldi 1" }}
+        center={{
+          type: "video",
+          src: "/haldi/awreel.mp4",
+          label: "Golden Ritual",
+        }}
+        right={{
+          type: "photo",
+          src: "https://ambariweddings.com/wp-content/uploads/2026/02/CONCEPT-MOOD-7.jpg",
+          alt: "Haldi 2",
+        }}
+      />
+      <ExtraVideosRow
+        accent={ACCENT}
+        videos={[
+          { src: "/haldi/AW_gulabi.mp4", label: "Joy" },
+          { src: "/haldi/videohaldi.mp4", label: "Ritual" },
+        ]}
+      />
+      <Divider />
+    </section>
+  );
+}
+
+function WeddingChapter() {
+  const ACCENT = "#c9a96e";
+  return (
+    <section id="chapter-wedding" style={{ marginBottom: "88px" }}>
+      <ChapterHeader num="01" label="The Wedding" accent={ACCENT} />
+      <BentoTop
+        accent={ACCENT}
+        num="01"
+        label="The Wedding"
+        left={{ type: "video", src: "/wedding/Mantapa.mp4", alt: "Wedding 1" }}
+        center={{
+          type: "video",
+          src: "/wedding/vid2.mp4",
+          label: "The Ceremony",
+        }}
+        right={{ type: "video", src: "/wedding/vid5.mp4", alt: "Wedding 2" }}
+      />
+      <ExtraVideosRow
+        accent={ACCENT}
+        videos={[
+          { src: "/wedding/vid3.mp4", label: "Sacred Vows" },
+          { src: "/wedding/videowed.mp4", label: "Together" },
+        ]}
+      />
+      <BentoTop
+        className="mt-4"
+        accent={ACCENT}
+        num=""
+        label=""
+        left={{
+          type: "video",
+          src: "/wedding/Traditional decor.mp4",
+          alt: "Wedding 1",
+        }}
+        center={{
+          type: "photo",
+          src: "/wedding/ambariwedding.png",
+          label: "The Ceremony",
+        }}
+        right={{ type: "video", src: "/wedding/vid4.mp4", alt: "Wedding 2" }}
+      />
+      <Divider />
+    </section>
+  );
+}
+
+function CarnivalChapter() {
+  const ACCENT = "#b8908a";
+  return (
+    <section id="chapter-carnival" style={{ marginBottom: "60px" }}>
+      <ChapterHeader num="05" label="The Carnival" accent={ACCENT} />
+      <BentoTop
+        accent={ACCENT}
+        num="05"
+        label="The Carnival"
+        left={{
+          type: "video",
+          src: "/carnival/Video 8.mp4",
+          alt: "Carnival 1",
+        }}
+        center={{
+          type: "video",
+          src: "/carnival/AW_reel9.mp4",
+          label: "Revelry",
+        }}
+        right={{
+          type: "video",
+          src: "/carnival/Ambari Wedding reel.mp4",
+          alt: "Carnival 2",
+        }}
+      />
+      <ExtraVideosRow
+        accent={ACCENT}
+        videos={[
+          { src: "/carnival/Ambari weddings Posts.mp4", label: "Sacred Vows" },
+          { src: "/carnival/videolst.mp4", label: "Together" },
+        ]}
+      />
+    </section>
+  );
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// NAV DOTS
+// ─────────────────────────────────────────────────────────────────────────────
+const NAV = [
+  { id: "chapter-sangeet", label: "Sangeet" },
+  { id: "chapter-reception", label: "Reception" },
+  { id: "chapter-haldi", label: "Haldi" },
+  { id: "chapter-wedding", label: "Wedding" },
+  { id: "chapter-carnival", label: "Carnival" },
+];
+
+function NavDots({ active }) {
+  return (
+    <div
+      style={{
+        position: "fixed",
+        right: "20px",
+        top: "50%",
+        transform: "translateY(-50%)",
+        display: "flex",
+        flexDirection: "column",
+        gap: "10px",
+        zIndex: 100,
+      }}
+    >
+      {NAV.map(({ id, label }, i) => (
+        <button
+          key={id}
+          title={label}
+          onClick={() =>
+            document.getElementById(id)?.scrollIntoView({ behavior: "smooth" })
+          }
+          style={{
+            width: "6px",
+            height: "6px",
+            borderRadius: "50%",
+            padding: 0,
+            background: active === i ? "#c9a96e" : "rgba(201,169,110,0.28)",
+            border: active === i ? "none" : "1px solid rgba(201,169,110,0.4)",
+            cursor: "pointer",
+            transform: active === i ? "scale(1.6)" : "scale(1)",
+            transition: "all 0.3s",
+          }}
+        />
+      ))}
+    </div>
+  );
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// ROOT
+// ─────────────────────────────────────────────────────────────────────────────
+export default function WorkSection() {
+  const [activeDot, setActiveDot] = useState(0);
+  const introRef = useRef(null);
+  const [introVis, setIntroVis] = useState(false);
+
+  useEffect(() => {
+    const io = new IntersectionObserver(
+      ([e]) => {
+        if (e.isIntersecting) setIntroVis(true);
+      },
+      { threshold: 0.3 },
+    );
+    if (introRef.current) {
+      io.observe(introRef.current);
+    }
+    return () => io.disconnect();
+  }, []);
+
+  useEffect(() => {
+    const onScroll = () => {
+      NAV.forEach(({ id }, i) => {
+        const el = document.getElementById(id);
+        if (!el) return;
+        const { top, bottom } = el.getBoundingClientRect();
+        if (
+          top <= window.innerHeight * 0.5 &&
+          bottom >= window.innerHeight * 0.5
+        )
+          setActiveDot(i);
+      });
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
   const [visible, setVisible] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
 
@@ -14,8 +767,10 @@ function page() {
     const timer = setTimeout(() => setVisible(true), 200);
     return () => clearTimeout(timer);
   }, []);
+
   return (
-    <div>
+    <>
+      <NavDots active={activeDot} />
       <Navigation />
       <section
         ref={ref}
@@ -23,30 +778,31 @@ function page() {
       >
         {/* Background */}
         <div className="absolute inset-0 z-0">
-          {/* <video
-          src="https://ambariweddings.com/wp-content/uploads/2026/02/CONCEPT-MOOD-12.mp4"
-          autoPlay
-          loop
-          muted
-          className={`w-full h-full object-cover transition-transform duration-[2s] ease-out ${
-            visible ? "scale-100" : "scale-100"
-          }`}
-        /> */}
+          <video
+            src="/work.mp4"
+            autoPlay
+            loop
+            muted
+            className={`w-full h-full object-cover transition-transform duration-[2s] ease-out ${
+              visible ? "scale-100" : "scale-100"
+            }`}
+          />
           <div className="absolute inset-0 bg-foreground/50" />
         </div>
 
         {/* Content */}
+
         <div className="relative z-10 px-6 pb-16 md:px-12 lg:px-20 md:pb-20">
           <div className="max-w-5xl">
             <div
-              className={`overflow-hidden mb-6 transition-all duration-1000 delay-500 ${
+              className={`overflow-hidden mb-5 transition-all duration-1000 delay-500 ${
                 visible
                   ? "opacity-100 translate-y-0"
                   : "opacity-0 translate-y-4"
               }`}
             >
-              <p className="text-[11px] tracking-[0.3em] uppercase text-background/50">
-                Our Work{" "}
+              <p className="text-[10px] md:text-[11px] tracking-[0.3em] uppercase text-background/50">
+                Our Work
               </p>
             </div>
 
@@ -57,450 +813,77 @@ function page() {
                   : "opacity-0 translate-y-8"
               }`}
             >
-              <h1 className="text-5xl  font-light leading-[1.05] tracking-[-0.03em] text-background text-balance">
-                Every celebration tells a story.
+              <h1 className="text-[clamp(2rem,6vw,4.5rem)] font-light leading-[1.05] tracking-[-0.03em] text-background">
+                Traditions we honor.
                 <br className="hidden md:block" />
-                Every detail becomes a memory.
+                Dreams we design.
                 <br className="hidden md:block" />
-                This is the world of Ambari.{" "}
+                <em style={{ color: "#c9a96e", fontStyle: "italic" }}>
+                  {" "}
+                  Moments we celebrate .
+                </em>
               </h1>
+            </div>
+
+            <div
+              className={`mt-7 transition-all duration-1000 delay-900 ${
+                visible
+                  ? "opacity-100 translate-y-0"
+                  : "opacity-0 translate-y-4"
+              }`}
+            >
+              <div
+                style={{
+                  display: "inline-flex",
+                  gap: "16px",
+                  alignItems: "center",
+                  padding: "8px 18px",
+                  border: "1px solid rgba(255,255,255,0.12)",
+                  borderRadius: "40px",
+                  backdropFilter: "blur(8px)",
+                  background: "rgba(255,255,255,0.04)",
+                }}
+              >
+                <span
+                  style={{
+                    fontSize: "clamp(7px, 1.5vw, 8px)",
+                    letterSpacing: "0.35em",
+                    textTransform: "uppercase",
+                    color: "rgba(201,169,110,0.7)",
+                  }}
+                >
+                  Celebrations · Rituals · Decor · Moments{" "}
+                </span>
+              </div>
             </div>
           </div>
 
           <div
-            className={`mt-16 md:mt-20 flex items-center gap-6 transition-all duration-1000 delay-1000 ${
+            className={`mt-12 md:mt-16 flex items-center gap-6 transition-all duration-1000 delay-1000 ${
               visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
             }`}
           >
-            <div className="w-12 h-px bg-background/30" />
-            <span className="text-[11px] tracking-[0.2em] uppercase text-background/40">
+            <div className="w-10 md:w-12 h-px bg-background/30" />
+            <span className="text-[10px] md:text-[11px] tracking-[0.2em] uppercase text-background/40">
               Scroll to explore
             </span>
           </div>
         </div>
       </section>
-      <WorkSection />
-      
-    </div>
-  );
-}
-
-export default page;
-
-
-
-
-// ── DATA ──────────────────────────────────────────────────────────────────────
-const chapters = [
-  {
-    id: "sangeet",
-    num: "01",
-    label: "The Sangeet",
-    accent: "#c9a96e",
-    items: [
-      { type: "photo",  aspect: "portrait",  src: "https://ambariweddings.com/wp-content/uploads/2026/02/Ambari-Weddings-Posts-46.png", alt: "Sangeet 1" },
-      { type: "video",  aspect: "portrait",  src: "https://ambariweddings.com/wp-content/uploads/2026/02/Ambari-Weddings-Posts-9.mp4",  label: "Opening Night" },
-      { type: "photo",  aspect: "landscape", src: "https://ambariweddings.com/wp-content/uploads/2026/02/Ambari-Weddings-Posts-47.png", alt: "Sangeet 2" },
-      { type: "video",  aspect: "landscape", src: "https://ambariweddings.com/wp-content/uploads/2026/02/CONCEPT-MOOD-13.mp4",           label: "Dance Floor" },
-      { type: "photo",  aspect: "portrait",  src: "https://ambariweddings.com/wp-content/uploads/2026/02/Ambari-Weddings-Posts-33.jpg",  alt: "Sangeet 3" },
-    ],
-  },
-  {
-    id: "reception",
-    num: "02",
-    label: "The Reception",
-    accent: "#8aab9e",
-    items: [
-      { type: "video",  aspect: "landscape", src: "https://ambariweddings.com/wp-content/uploads/2026/02/Ambari-Weddings-Posts-23.mp4",       label: "Grand Entrance" },
-      { type: "photo",  aspect: "portrait",  src: "https://ambariweddings.com/wp-content/uploads/2026/02/IMG_20260125_181955777-1-scaled.jpg", alt: "Reception 1" },
-      { type: "video",  aspect: "portrait",  src: "https://ambariweddings.com/wp-content/uploads/2026/02/Ambari-Weddings-Posts-35.mp4",        label: "First Dance" },
-      { type: "photo",  aspect: "landscape", src: "https://ambariweddings.com/wp-content/uploads/2026/02/Ambari-Weddings-Posts-25.jpg",        alt: "Reception 2" },
-      { type: "video",  aspect: "portrait",  src: "https://ambariweddings.com/wp-content/uploads/2026/02/Ambari-Weddings-Posts-34.mp4",        label: "Celebrations" },
-    ],
-  },
-  {
-    id: "haldi",
-    num: "03",
-    label: "The Haldi",
-    accent: "#c9a96e",
-    items: [
-      { type: "photo",  aspect: "portrait",  src: "https://ambariweddings.com/wp-content/uploads/2026/02/CONCEPT-MOOD-13.jpg",  alt: "Haldi 1" },
-      { type: "video",  aspect: "landscape", src: "https://ambariweddings.com/wp-content/uploads/2026/02/CONCEPT-MOOD-11.mp4",  label: "Golden Ritual" },
-      { type: "photo",  aspect: "landscape", src: "https://ambariweddings.com/wp-content/uploads/2026/02/CONCEPT-MOOD-7.jpg",   alt: "Haldi 2" },
-      { type: "video",  aspect: "portrait",  src: "https://ambariweddings.com/wp-content/uploads/2026/02/CONCEPT-MOOD-10.mp4", label: "Joy" },
-      { type: "photo",  aspect: "portrait",  src: "https://ambariweddings.com/wp-content/uploads/2026/02/CONCEPT-MOOD-3.jpg",   alt: "Haldi 3" },
-    ],
-  },
-  {
-    id: "wedding",
-    num: "04",
-    label: "The Wedding",
-    accent: "#c9a96e",
-    items: [
-      { type: "video",  aspect: "portrait",  src: "https://ambariweddings.com/wp-content/uploads/2026/02/CONCEPT-MOOD-12.mp4",          label: "The Ceremony" },
-      { type: "photo",  aspect: "landscape", src: "https://ambariweddings.com/wp-content/uploads/2026/02/Ambari-Weddings-Posts-44.png", alt: "Wedding 1" },
-      { type: "video",  aspect: "landscape", src: "https://ambariweddings.com/wp-content/uploads/2026/02/Ambari-Weddings-Posts-36.mp4", label: "Sacred Vows" },
-      { type: "photo",  aspect: "portrait",  src: "https://ambariweddings.com/wp-content/uploads/2026/02/Ambari-Weddings-Posts-30.jpg", alt: "Wedding 2" },
-      { type: "photo",  aspect: "portrait",  src: "https://ambariweddings.com/wp-content/uploads/2026/02/Ambari-Weddings-Posts-31.jpg", alt: "Wedding 3" },
-    ],
-  },
-  {
-    id: "carnival",
-    num: "05",
-    label: "The Carnival",
-    accent: "#b8908a",
-    items: [
-      { type: "photo",  aspect: "landscape", src: "https://ambariweddings.com/wp-content/uploads/2026/02/Ambari-Weddings-Posts-39.png",  alt: "Carnival 1" },
-      { type: "video",  aspect: "portrait",  src: "https://ambariweddings.com/wp-content/uploads/2026/02/Ambari-Weddings-Posts-15.mp4", label: "The Carnival" },
-      { type: "photo",  aspect: "portrait",  src: "https://ambariweddings.com/wp-content/uploads/2026/02/Ambari-Weddings-Posts-40.png",  alt: "Carnival 2" },
-      { type: "video",  aspect: "landscape", src: "https://ambariweddings.com/wp-content/uploads/2026/02/Ambari-Weddings-Posts-37.mp4", label: "Revelry" },
-      { type: "video",  aspect: "portrait",  src: "https://ambariweddings.com/wp-content/uploads/2026/02/Ambari-Weddings-Posts-17.mp4", label: "Magic" },
-    ],
-  },
-];
-
-// ── ICONS ─────────────────────────────────────────────────────────────────────
-const PlayIcon  = () => <svg viewBox="0 0 24 24" fill="white" width="14" height="14"><polygon points="6,3 20,12 6,21"/></svg>;
-const PauseIcon = () => <svg viewBox="0 0 24 24" fill="white" width="14" height="14"><rect x="5" y="3" width="4" height="18"/><rect x="15" y="3" width="4" height="18"/></svg>;
-
-// ── MEDIA ITEM ────────────────────────────────────────────────────────────────
-function MediaItem({ item, accent, index }) {
-  const videoRef = useRef(null);
-  const wrapRef  = useRef(null);
-  const [playing,  setPlaying]  = useState(false);
-  const [progress, setProgress] = useState(0);
-  const [visible,  setVisible]  = useState(false);
-  const [hovered,  setHovered]  = useState(false);
-
-  const isPortrait = item.aspect === "portrait";
-
-  useEffect(() => {
-    const el = wrapRef.current;
-    if (!el) return;
-    const io = new IntersectionObserver(([entry]) => {
-      if (entry.isIntersecting) {
-        setVisible(true);
-        if (item.type === "video" && videoRef.current) {
-          videoRef.current.play().catch(() => {});
-          setPlaying(true);
-        }
-      } else {
-        if (item.type === "video" && videoRef.current) {
-          videoRef.current.pause();
-          setPlaying(false);
-        }
-      }
-    }, { threshold: 0.25 });
-    io.observe(el);
-    return () => io.disconnect();
-  }, [item.type]);
-
-  const togglePlay = useCallback(() => {
-    const v = videoRef.current;
-    if (!v) return;
-    if (v.paused) { v.play(); setPlaying(true); }
-    else          { v.pause(); setPlaying(false); }
-  }, []);
-
-  const onTimeUpdate = useCallback(() => {
-    const v = videoRef.current;
-    if (v && v.duration) setProgress((v.currentTime / v.duration) * 100);
-  }, []);
-
-  const delay = `${index * 0.08}s`;
-
-  return (
-    <div
-      ref={wrapRef}
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-      style={{
-        opacity:    visible ? 1 : 0,
-        transform:  visible ? "translateY(0) scale(1)" : "translateY(28px) scale(0.97)",
-        transition: `opacity 0.75s ${delay} ease, transform 0.75s ${delay} ease, box-shadow 0.4s ease`,
-        borderRadius: "3px",
-        overflow: "hidden",
-        position: "relative",
-        background: "#ede8e2",
-        gridRow: isPortrait ? "span 2" : "span 1",
-        boxShadow: hovered
-          ? "0 20px 52px rgba(26,20,16,0.13)"
-          : "0 2px 14px rgba(26,20,16,0.07)",
-      }}
-    >
-      {item.type === "photo" ? (
-        <>
-          <img
-            src={item.src}
-            alt={item.alt}
-            style={{
-              width: "100%", height: "100%",
-              objectFit: "cover", display: "block",
-              transform: hovered ? "scale(1.05)" : "scale(1)",
-              transition: "transform 0.7s ease",
-            }}
-          />
-          {/* warm gold wash on hover */}
-          <div style={{
-            position: "absolute", inset: 0,
-            background: "linear-gradient(to top, rgba(201,169,110,0.2) 0%, transparent 55%)",
-            opacity: hovered ? 1 : 0,
-            transition: "opacity 0.4s",
-            pointerEvents: "none",
-          }}/>
-        </>
-      ) : (
-        <>
-          <video
-            ref={videoRef}
-            src={item.src}
-            muted playsInline loop
-            onTimeUpdate={onTimeUpdate}
-            style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
-          />
-          <div style={{
-            position: "absolute", inset: 0,
-            background: "linear-gradient(to top, rgba(20,14,10,0.6) 0%, transparent 50%)",
-            display: "flex", flexDirection: "column", justifyContent: "flex-end",
-            padding: "12px 14px",
-          }}>
-            <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-              <button
-                onClick={togglePlay}
-                style={{
-                  width: "32px", height: "32px", borderRadius: "50%",
-                  border: "1.5px solid rgba(255,255,255,0.6)",
-                  background: "rgba(255,255,255,0.1)",
-                  backdropFilter: "blur(8px)",
-                  cursor: "pointer", display: "flex",
-                  alignItems: "center", justifyContent: "center",
-                  flexShrink: 0, transition: "all 0.2s",
-                }}
-              >
-                {playing ? <PauseIcon /> : <PlayIcon />}
-              </button>
-              <span style={{
-                fontSize: "9px", letterSpacing: "0.28em",
-                textTransform: "uppercase",
-                color: "rgba(255,255,255,0.55)",
-                fontWeight: 300,
-              }}>
-                {item.label}
-              </span>
-              <div style={{
-                flex: 1, height: "1.5px",
-                background: "rgba(255,255,255,0.2)",
-                borderRadius: "1px", overflow: "hidden",
-              }}>
-                <div style={{
-                  height: "100%", width: `${progress}%`,
-                  background: accent, borderRadius: "1px",
-                  transition: "width 0.2s linear",
-                }}/>
-              </div>
-            </div>
-          </div>
-        </>
-      )}
-    </div>
-  );
-}
-
-// ── CHAPTER ───────────────────────────────────────────────────────────────────
-function Chapter({ chapter, chapterIndex }) {
-  const headerRef = useRef(null);
-  const [headerVisible, setHeaderVisible] = useState(false);
-
-  useEffect(() => {
-    const el = headerRef.current;
-    if (!el) return;
-    const io = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) setHeaderVisible(true); },
-      { threshold: 0.3 }
-    );
-    io.observe(el);
-    return () => io.disconnect();
-  }, []);
-
-  return (
-    <section style={{ marginBottom: "110px", position: "relative" }}>
-
-      {/* Header */}
-      <div
-        ref={headerRef}
-        style={{
-          display: "flex", alignItems: "center", gap: "24px",
-          marginBottom: "40px",
-          opacity:    headerVisible ? 1 : 0,
-          transform:  headerVisible ? "translateY(0)" : "translateY(18px)",
-          transition: "opacity 0.85s ease, transform 0.85s ease",
-        }}
-      >
-        <span style={{
-          fontSize: "10px", letterSpacing: "0.42em",
-          color: chapter.accent, fontWeight: 300, flexShrink: 0,
-        }}>
-          {chapter.num}
-        </span>
-
-        <div style={{ flex: 1, height: "1px", background: "rgba(201,169,110,0.3)" }}/>
-
-        <h2 style={{
-          fontSize: "clamp(26px, 3.5vw, 48px)",
-          fontWeight: 300, color: "#1a1410",
-          letterSpacing: "-0.02em", lineHeight: 1,
-          flexShrink: 0,
-        }}>
-          {chapter.label.split(" ")[0]}{" "}
-          <em style={{ color: chapter.accent, fontStyle: "" }}>
-            {chapter.label.split(" ").slice(1).join(" ")}
-          </em>
-        </h2>
-
-        <div style={{ flex: 1, height: "1px", background: "rgba(201,169,110,0.3)" }}/>
-      </div>
-
-      {/* 5-col × 2-row grid  —  portrait items span both rows */}
-      <div style={{
-        display: "grid",
-        gridTemplateColumns: "repeat(5, 1fr)",
-        gridTemplateRows: "repeat(2, 248px)",
-        gap: "8px",
-      }}>
-        {chapter.items.map((item, i) => (
-          <MediaItem
-            key={i}
-            item={item}
-            accent={chapter.accent}
-            index={i + chapterIndex * 5}
-          />
-        ))}
-      </div>
-
-      {/* Divider */}
-      <div style={{ textAlign: "center", paddingTop: "56px", opacity: 0.22 }}>
-        <svg viewBox="0 0 240 20" style={{ width: "160px" }} fill="none">
-          <line x1="0"   y1="10" x2="90"  y2="10" stroke="#c9a96e" strokeWidth="0.7"/>
-          <circle cx="110" cy="10" r="3.5" fill="#c9a96e"/>
-          <circle cx="98"  cy="10" r="2"   fill="#c9a96e" opacity="0.5"/>
-          <circle cx="122" cy="10" r="2"   fill="#c9a96e" opacity="0.5"/>
-          <line x1="130" y1="10" x2="240" y2="10" stroke="#c9a96e" strokeWidth="0.7"/>
-        </svg>
-      </div>
-    </section>
-  );
-}
-
-// ── NAV DOTS ──────────────────────────────────────────────────────────────────
-function NavDots({ active, onNav }) {
-  return (
-    <div style={{
-      position: "fixed", right: "24px", top: "50%",
-      transform: "translateY(-50%)",
-      display: "flex", flexDirection: "column", gap: "12px",
-      zIndex: 100,
-    }}>
-      {chapters.map((ch, i) => (
-        <button
-          key={ch.id}
-          onClick={() => onNav(ch.id)}
-          title={ch.label}
+      <div style={{ background: "#fdf9f4" }}>
+        {/* Wider max-width + reduced side padding on mobile */}
+        <div
           style={{
-            width: "7px", height: "7px", borderRadius: "50%",
-            background: active === i ? "#c9a96e" : "rgba(201,169,110,0.35)",
-            border: active === i ? "none" : "1px solid rgba(201,169,110,0.45)",
-            cursor: "pointer", padding: 0,
-            transform: active === i ? "scale(1.5)" : "scale(1)",
-            transition: "all 0.3s",
+            maxWidth: "1400px", // ← wider than before (was 1200px)
+            margin: "0 auto",
+            padding: "96px clamp(16px, 4vw, 60px) 80px", // ← responsive horizontal padding
           }}
-        />
-      ))}
-    </div>
-  );
-}
-
-// ── ROOT ──────────────────────────────────────────────────────────────────────
-function WorkSection() {
-  const [activeDot, setActiveDot] = useState(0);
-  const introRef = useRef(null);
-  const [introVisible, setIntroVisible] = useState(false);
-
-  useEffect(() => {
-    const el = introRef.current;
-    if (!el) return;
-    const io = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) setIntroVisible(true); },
-      { threshold: 0.3 }
-    );
-    io.observe(el);
-    return () => io.disconnect();
-  }, []);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      chapters.forEach((ch, i) => {
-        const el = document.getElementById(`chapter-${ch.id}`);
-        if (!el) return;
-        const rect = el.getBoundingClientRect();
-        if (rect.top <= window.innerHeight * 0.5 && rect.bottom >= window.innerHeight * 0.5) {
-          setActiveDot(i);
-        }
-      });
-    };
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  const scrollTo = (id) =>
-    document.getElementById(`chapter-${id}`)?.scrollIntoView({ behavior: "smooth" });
-
-  return (
-    <>
-      <NavDots active={activeDot} onNav={scrollTo} />
-
-      <div style={{ background: "#fdf9f4", minHeight: "100vh" }}>
-        <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "100px 48px 60px" }}>
-
-          {/* Section intro */}
-          <div
-            ref={introRef}
-            style={{
-              textAlign: "center", marginBottom: "96px",
-              opacity:    introVisible ? 1 : 0,
-              transform:  introVisible ? "translateY(0)" : "translateY(24px)",
-              transition: "opacity 1s ease, transform 1s ease",
-            }}
-          >
-            <p style={{
-              fontSize: "10px", letterSpacing: "0.48em",
-              textTransform: "uppercase", color: "#c9a96e",
-              fontWeight: 300, marginBottom: "20px",
-            }}>
-              Our Portfolio
-            </p>
-            <h2 style={{
-              fontSize: "clamp(38px, 5.5vw, 72px)",
-              fontWeight: 300, color: "#1a1410",
-              lineHeight: 0.95, letterSpacing: "-0.03em",
-            }}>
-              Crafted{" "}
-              <em style={{ color: "#c9a96e", fontStyle: "italic" }}>memories,</em>
-              <br />
-              frame by frame.
-            </h2>
-            <div style={{
-              width: "1px", height: "56px",
-              background: "linear-gradient(to bottom, rgba(201,169,110,0.6), transparent)",
-              margin: "28px auto 0",
-            }}/>
-          </div>
-
-          {/* Chapters */}
-          {chapters.map((chapter, i) => (
-            <div key={chapter.id} id={`chapter-${chapter.id}`}>
-              <Chapter chapter={chapter} chapterIndex={i} />
-            </div>
-          ))}
+        >
+          <WeddingChapter />
+          <ReceptionChapter />
+          <HaldiChapter />
+          <SangeetChapter />
+          <CarnivalChapter />
         </div>
       </div>
     </>

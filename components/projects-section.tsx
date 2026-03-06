@@ -4,6 +4,7 @@ import { useState } from "react"
 import { ArrowUpRight } from "lucide-react"
 import { useScrollReveal } from "@/hooks/use-scroll-reveal"
 import { Button } from "./button"
+import { useRouter } from "next/navigation"
 
 const projects = [
   {
@@ -11,42 +12,42 @@ const projects = [
     category: "Residential",
     year: "2024",
     location: "Oslo, Norway",
-    image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1200&q=80",
+    image: "/wedding/vid2.mp4",
   },
   {
     title: "Artisanal Excellence",
     category: "Cultural",
     year: "2023",
     location: "Lund, Sweden",
-    image: "https://images.unsplash.com/photo-1545558014-8692077e9b5c?w=1200&q=80",
+    image: "/haldi/awreel.mp4",
   },
   {
     title: "Personalized Storytelling",
     category: "Commercial",
     year: "2023",
     location: "Helsinki, Finland",
-    image: "https://images.unsplash.com/photo-1486325212027-8081e485255e?w=1200&q=80",
+    image: "/sangeet/awreel14.mp4",
   },
   {
     title: "Seamless Orchestration",
     category: "Cultural",
     year: "2022",
     location: "Copenhagen, Denmark",
-    image: "https://images.unsplash.com/photo-1511818966892-d7d671e672a2?w=1200&q=80",
+    image: "/carnival/AW_reel9.mp4",
   },
   {
     title: "Cultural Authenticity",
     category: "Commercial",
     year: "2023",
     location: "Helsinki, Finland",
-    image: "https://images.unsplash.com/photo-1486325212027-8081e485255e?w=1200&q=80",
+    image: "/wedding/videowed.mp4",
   },
   {
     title: "Complete In-House Production",
     category: "Cultural",
     year: "2022",
     location: "Copenhagen, Denmark",
-    image: "https://images.unsplash.com/photo-1511818966892-d7d671e672a2?w=1200&q=80",
+    image: "/haldi/AW_gulabi.mp4",
   },
 ]
 
@@ -65,12 +66,15 @@ function ProjectCard({ project, index }: { project: typeof projects[0]; index: n
       onMouseLeave={() => setHovered(false)}
     >
       <div className="overflow-hidden">
-        <img
+        <video
           src={project.image || "/placeholder.svg"}
-          alt={`${project.title} - ${project.category} project in ${project.location}`}
           className={`w-full aspect-[4/3] object-cover transition-all duration-[800ms] ease-out ${
             hovered ? "scale-[1.04]" : "scale-100"
           }`}
+          autoPlay
+          muted
+          playsInline
+          loop
         />
       </div>
       <div className="p-6 md:p-8 flex items-start justify-between">
@@ -99,6 +103,8 @@ function ProjectCard({ project, index }: { project: typeof projects[0]; index: n
 
 export function ProjectsSection() {
   const { ref, isVisible } = useScrollReveal(0.05)
+    const router = useRouter()
+
 
   return (
     <section id="projects" className="px-6 py-28 md:px-12 lg:px-20 md:py-36">
@@ -113,12 +119,9 @@ export function ProjectsSection() {
             Selected Work
           </p>
           <h2 className="text-3xl md:text-[2.75rem] font-extralight tracking-tight text-foreground">
-            Projects
           </h2>
         </div>
-        <span className="text-[11px] tracking-[0.15em] text-muted-foreground/50 mt-4 md:mt-0">
-          ({String(projects.length).padStart(2, "0")}) Projects
-        </span>
+        
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-border">
@@ -126,7 +129,7 @@ export function ProjectsSection() {
           <ProjectCard key={project.title} project={project} index={index} />
         ))}
       </div>
-      <Button variant="outline" className="flex items-center gap-2 mt-12 mx-auto">
+      <Button onClick={()=> router.push('/#contact')} variant="outline" className="flex items-center gap-2 mt-12 mx-auto">
        get in touch
       </Button>
     </section>

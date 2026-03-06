@@ -13,7 +13,7 @@ export function StudioSection() {
   const { ref: bodyRef, isVisible: bodyVisible } = useScrollReveal(0.1)
 
   return (
-    <section id="studio" className="px-6 py-28 md:px-12 lg:px-20 md:py-36 bg-foreground text-background">
+    <section id="about" className="px-6 py-28 md:px-12 lg:px-20 md:py-36 bg-foreground text-background">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-28">
         <div
           ref={headRef}
@@ -46,7 +46,7 @@ Weddings are not events, they are celebrations of love that deserve to be crafte
             </p>
           </div>
 
-          <div className="grid grid-cols-3 gap-8 pt-10 border-t border-background/10">
+          {/* <div className="grid grid-cols-3 gap-8 pt-10 border-t border-background/10">
             {stats.map((stat) => (
               <div key={stat.label}>
                 <p className="text-3xl md:text-4xl font-extralight text-background tracking-tight">
@@ -57,7 +57,7 @@ Weddings are not events, they are celebrations of love that deserve to be crafte
                 </p>
               </div>
             ))}
-          </div>
+          </div> */}
         </div>
       </div>
     </section>

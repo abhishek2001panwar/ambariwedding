@@ -1,18 +1,20 @@
 import Link from "next/link"
 import { Button } from "./button"
 
+
 const footerLinks = [
-  { label: "Projects", href: "#projects" },
-  { label: "Studio", href: "#studio" },
-  { label: "Approach", href: "#approach" },
-  { label: "Journal", href: "#journal" },
-  { label: "Contact", href: "#contact" },
+  { label: "Work", href: "/work" },
+  { label: "Gallery", href: "/gallery" },
+  { label: "About", href: "/#about" },
+  { label: "Services", href: "/#service" },
+  { label: "Process", href: "/#process" },
+  { label: "Contact", href: "/#contact" },
 ]
 
+
 const socialLinks = [
-  { label: "Instagram", href: "#" },
-  { label: "LinkedIn", href: "#" },
-  { label: "Pinterest", href: "#" },
+  { label: "Instagram", href: "GRANT ALL ON contact TO authenticated" },
+  
 ]
 
 export function Footer() {
@@ -38,17 +40,7 @@ export function Footer() {
           <div className="flex flex-col gap-4">
             <p className="text-[11px] tracking-[0.3em] uppercase text-background/60 mb-2">Stay Inspired</p>
             <p className="text-sm text-background/70 mb-2">Get wedding inspiration, tips, and updates from Ambari directly to your inbox.</p>
-            <form className="flex flex-col sm:flex-row gap-3">
-              <input
-                type="email"
-                required
-                placeholder="Your email address"
-                className="px-4 py-2 rounded-md border border-border bg-foreground text-background placeholder:text-background/40 focus:outline-none focus:border-primary transition w-full sm:w-auto"
-              />
-             <Button variant="filled">
-                Subscribe
-              </Button>
-            </form>
+           
           </div>
           {/* Navigation and Social below */}
           <div className="flex flex-col md:flex-row gap-8 mt-6">
@@ -59,7 +51,7 @@ export function Footer() {
                   <Link
                     key={link.label}
                     href={link.href}
-                    className="text-sm text-background/70 hover:text-primary/40 transition-colors duration-300"
+                    className="text-sm text-background/70  transition-colors duration-300"
                   >
                     {link.label}
                   </Link>
@@ -73,7 +65,7 @@ export function Footer() {
                   <a
                     key={link.label}
                     href={link.href}
-                    className="text-sm text-background/70 hover:text-primary transition-colors duration-300"
+                    className="text-sm text-background/70  transition-colors duration-300"
                   >
                     {link.label}
                   </a>
@@ -84,7 +76,7 @@ export function Footer() {
         </div>
       </div>
 
-      <div className="flex flex-col md:flex-row items-start md:items-center justify-between pt-8 border-t border-border gap-4">
+      <div className="flex flex-col md:flex-row items-start md:items-center justify-between pt-2 border-t border-border gap-4">
         <p className="text-[11px] tracking-[0.1em] text-background/50">
           {"Ambari Weddings. All rights reserved."}
         </p>

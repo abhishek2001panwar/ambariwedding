@@ -5,13 +5,12 @@ import Link from "next/link"
 import { Menu, X } from "lucide-react"
 
 const navLinks = [
-  { label: "Projects", href: "#projects" },
   { label: "Work", href: "/work" },
   { label: "Gallery", href: "/gallery" },
-  { label: "Studio", href: "#studio" },
-  { label: "Approach", href: "#approach" },
-  { label: "Journal", href: "#journal" },
-  { label: "Contact", href: "#contact" },
+  { label: "About", href: "/#about" },
+  { label: "Services", href: "/#service" },
+  { label: "Process", href: "/#process" },
+  { label: "Contact", href: "/#contact" },
 ]
 
 export function Navigation() {

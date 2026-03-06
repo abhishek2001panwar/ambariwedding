@@ -2,10 +2,13 @@
 
 import { useScrollReveal } from "@/hooks/use-scroll-reveal"
 import { Button } from "./button"
+import { useRouter } from "next/navigation"
 
 export function EditorialBreak() {
+  const router = useRouter()
   const { ref: imgRef, isVisible: imgVisible } = useScrollReveal(0.15)
   const { ref: quoteRef, isVisible: quoteVisible } = useScrollReveal(0.2)
+
 
   return (
     <section className="px-6 md:px-12 lg:px-20 py-16 md:py-24">
@@ -16,10 +19,13 @@ export function EditorialBreak() {
             imgVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
           }`}
         >
-          <img
-            src="https://images.unsplash.com/photo-1431576901776-e539bd916ba2?w=1400&q=80"
-            alt="Architectural detail of modern building with dramatic light and shadow"
-            className="w-full aspect-[16/10] object-cover grayscale hover:grayscale-0 transition-all duration-1000"
+          <video
+            src="/aboutvideo.MP4"
+            className="w-full aspect-[16/10] object-cover  transition-all duration-1000"
+            muted
+            playsInline
+            loop
+            autoPlay
           />
         </div>
         <div
@@ -36,7 +42,7 @@ export function EditorialBreak() {
             From Dreams to Dynasty
 
           </p>
-          <Button variant="outline" className="mt-2 md:mt-5">
+          <Button onClick={()=>router.push('/gallery')} variant="outline" className="mt-2 md:mt-5">
             Explore More
           </Button>
         </div>
