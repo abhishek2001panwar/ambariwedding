@@ -86,9 +86,9 @@ function ProjectCard({ project, index }: { project: typeof projects[0]; index: n
             <h3 className="text-lg md:text-xl font-light tracking-tight text-foreground mb-1.5">
               {project.title}
             </h3>
-            <p className="text-[11px] tracking-[0.1em] uppercase text-muted-foreground">
+            {/* <p className="text-[11px] tracking-[0.1em] uppercase text-muted-foreground">
               {project.category} / {project.location} / {project.year}
-            </p>
+            </p> */}
           </div>
         </div>
         <ArrowUpRight

@@ -20,7 +20,7 @@ export function EditorialBreak() {
           }`}
         >
           <video
-            src="/aboutvideo.MP4"
+            src="https://res.cloudinary.com/dxxvbrgie/video/upload/v1772786096/aboutvideo_mktthw.mp4"
             className="w-full aspect-[16/10] object-cover  transition-all duration-1000"
             muted
             playsInline

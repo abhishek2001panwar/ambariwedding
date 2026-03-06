@@ -491,24 +491,24 @@ function SangeetChapter() {
         label="The Sangeet"
         left={{
           type: "photo",
-          src: "/sangeet/AmbariWeddingsPosts.jpg",
+          src: "https://res.cloudinary.com/dxxvbrgie/image/upload/v1772784315/AmbariWeddingsPosts_szqcjn.jpg",
           alt: "Sangeet 1",
         }}
         center={{
           type: "video",
-          src: "/sangeet/awreel14.mp4",
+          src: "https://res.cloudinary.com/dxxvbrgie/video/upload/v1772784320/awreel14_nekfkm.mp4",
           label: "Opening Night",
         }}
-        right={{ type: "video", src: "/sangeet/video 4.mp4", alt: "Sangeet 2" }}
+        right={{ type: "video", src: "https://res.cloudinary.com/dxxvbrgie/video/upload/v1772784322/Video_4_fodf7i.mp4", alt: "Sangeet 2" }}
       />
       <ExtraVideosRow
         accent={ACCENT}
         videos={[
           {
-            src: "https://ambariweddings.com/wp-content/uploads/2026/02/CONCEPT-MOOD-13.mp4",
+            src: "https://res.cloudinary.com/dxxvbrgie/video/upload/v1772784820/sangeet_gqvxzu.mp4",
             label: "Dance Floor",
           },
-          { src: "/sangeet/video2.mp4", label: "Highlights" },
+          { src: "https://res.cloudinary.com/dxxvbrgie/video/upload/v1772784316/video2_rzediw.mp4", label: "Highlights" },
         ]}
       />
       <Divider />
@@ -527,17 +527,17 @@ function ReceptionChapter() {
         label="The Reception"
         left={{
           type: "video",
-          src: "/reception/purpleReception.mp4",
+          src: "https://res.cloudinary.com/dxxvbrgie/video/upload/v1772784960/purpleReception_fiysts.mp4",
           label: "Grand Entrance",
         }}
         center={{
           type: "video",
-          src: "/reception/video.mp4",
+          src: "https://res.cloudinary.com/dxxvbrgie/video/upload/v1772784958/video_g9s2df.mp4",
           alt: "Reception",
         }}
         right={{
           type: "video",
-          src: "/reception/Video5.mp4",
+          src: "https://res.cloudinary.com/dxxvbrgie/video/upload/v1772786581/Video5_1_hpq4gb.mp4",
           label: "First Dance",
         }}
       />
@@ -546,13 +546,13 @@ function ReceptionChapter() {
         accent={ACCENT}
         num=""
         label=""
-        left={{ type: "photo", src: "/reception/image1.png" }}
+        left={{ type: "photo", src: "https://res.cloudinary.com/dxxvbrgie/image/upload/v1772784958/image2_cy9pgm.png" }}
         center={{
           type: "photo",
-          src: "/reception/image2.png",
+          src: "https://res.cloudinary.com/dxxvbrgie/image/upload/v1772784964/image1_yoap23.png",
           alt: "Reception",
         }}
-        right={{ type: "photo", src: "/reception/image3.png" }}
+        right={{ type: "photo", src: "https://res.cloudinary.com/dxxvbrgie/image/upload/v1772784958/image3_mukrii.png" }}
       />
       <Divider />
     </section>
@@ -568,23 +568,23 @@ function HaldiChapter() {
         accent={ACCENT}
         num="03"
         label="The Haldi"
-        left={{ type: "photo", src: "/haldi/image.png", alt: "Haldi 1" }}
+        left={{ type: "photo", src: "https://res.cloudinary.com/dxxvbrgie/image/upload/v1772785297/image_oepn2o.png", alt: "Haldi 1" }}
         center={{
           type: "video",
-          src: "/haldi/awreel.mp4",
+          src: "https://res.cloudinary.com/dxxvbrgie/video/upload/v1772785320/awreel_ycjjug.mp4",
           label: "Golden Ritual",
         }}
         right={{
           type: "photo",
-          src: "https://ambariweddings.com/wp-content/uploads/2026/02/CONCEPT-MOOD-7.jpg",
+          src: "https://res.cloudinary.com/dxxvbrgie/image/upload/v1772785522/CONCEPT-MOOD-7_zhbzjr.jpg",
           alt: "Haldi 2",
         }}
       />
       <ExtraVideosRow
         accent={ACCENT}
         videos={[
-          { src: "/haldi/AW_gulabi.mp4", label: "Joy" },
-          { src: "/haldi/videohaldi.mp4", label: "Ritual" },
+          { src: "https://res.cloudinary.com/dxxvbrgie/video/upload/v1772785314/AW_gulabi_p2ceqn.mp4", label: "Joy" },
+          { src: "https://res.cloudinary.com/dxxvbrgie/video/upload/v1772785297/videohaldi_oumfvv.mp4", label: "Ritual" },
         ]}
       />
       <Divider />
@@ -601,19 +601,19 @@ function WeddingChapter() {
         accent={ACCENT}
         num="01"
         label="The Wedding"
-        left={{ type: "video", src: "/wedding/Mantapa.mp4", alt: "Wedding 1" }}
+        left={{ type: "video", src: "https://res.cloudinary.com/dxxvbrgie/video/upload/v1772785635/Mantapa_ocuzuk.mp4", alt: "Wedding 1" }}
         center={{
           type: "video",
-          src: "/wedding/vid2.mp4",
+          src: "https://res.cloudinary.com/dxxvbrgie/video/upload/v1772785628/vid2_rhxsyc.mp4",
           label: "The Ceremony",
         }}
-        right={{ type: "video", src: "/wedding/vid5.mp4", alt: "Wedding 2" }}
+        right={{ type: "video", src: "https://res.cloudinary.com/dxxvbrgie/video/upload/v1772785612/vid5_cw9wrh.mp4", alt: "Wedding 2" }}
       />
       <ExtraVideosRow
         accent={ACCENT}
         videos={[
-          { src: "/wedding/vid3.mp4", label: "Sacred Vows" },
-          { src: "/wedding/videowed.mp4", label: "Together" },
+          { src: "https://res.cloudinary.com/dxxvbrgie/video/upload/v1772785599/vid3_yoapir.mp4", label: "Sacred Vows" },
+          { src: "https://res.cloudinary.com/dxxvbrgie/video/upload/v1772785577/videowed_k6yfx5.mp4", label: "Together" },
         ]}
       />
       <BentoTop
@@ -623,15 +623,15 @@ function WeddingChapter() {
         label=""
         left={{
           type: "video",
-          src: "/wedding/Traditionaldecor.mp4",
+          src: "https://res.cloudinary.com/dxxvbrgie/video/upload/v1772785621/Traditionaldecor_bq2g3n.mp4",
           alt: "Wedding 1",
         }}
         center={{
           type: "photo",
-          src: "/wedding/ambariwedding.png",
+          src: "https://res.cloudinary.com/dxxvbrgie/image/upload/v1772785576/Ambariwedding_x35xqo.png",
           label: "The Ceremony",
         }}
-        right={{ type: "video", src: "/wedding/vid4.mp4", alt: "Wedding 2" }}
+        right={{ type: "video", src: "https://res.cloudinary.com/dxxvbrgie/video/upload/v1772785588/vid4_z0t1go.mp4", alt: "Wedding 2" }}
       />
       <Divider />
     </section>
@@ -649,25 +649,25 @@ function CarnivalChapter() {
         label="The Carnival"
         left={{
           type: "video",
-          src: "/carnival/Video 8.mp4",
+          src: "https://res.cloudinary.com/dxxvbrgie/video/upload/v1772785867/Video8_k0nl1e.mp4",
           alt: "Carnival 1",
         }}
         center={{
           type: "video",
-          src: "/carnival/AW_reel9.mp4",
+          src: "https://res.cloudinary.com/dxxvbrgie/video/upload/v1772785849/AW_reel9_n8lbkj.mp4",
           label: "Revelry",
         }}
         right={{
           type: "video",
-          src: "/carnival/AmbariWeddingreel.mp4",
+          src: "https://res.cloudinary.com/dxxvbrgie/video/upload/v1772785883/AMBARIWEDDINGreel_ilmtmt.mp4",
           alt: "Carnival 2",
         }}
       />
       <ExtraVideosRow
         accent={ACCENT}
         videos={[
-          { src: "/carnival/AmbariWeddingsPosts.mp4", label: "Sacred Vows" },
-          { src: "/carnival/videolst.mp4", label: "Together" },
+          { src: "https://res.cloudinary.com/dxxvbrgie/video/upload/v1772785846/AmbariWeddingsPosts_j3sznq.mp4", label: "Sacred Vows" },
+          { src: "https://res.cloudinary.com/dxxvbrgie/video/upload/v1772785852/videolst_innjx5.mp4", label: "Together" },
         ]}
       />
     </section>
@@ -779,7 +779,7 @@ export default function WorkSection() {
         {/* Background */}
         <div className="absolute inset-0 z-0">
           <video
-            src="/work.mp4"
+            src="https://res.cloudinary.com/dxxvbrgie/video/upload/v1772786085/work_k5sfuc.mp4"
             autoPlay
             loop
             muted

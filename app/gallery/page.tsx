@@ -361,7 +361,7 @@ function HeroSection() {
     <section className="relative h-screen flex flex-col justify-end overflow-hidden">
      <div className="absolute inset-0 z-0">
         <video
-          src="/gallery.mp4"
+          src="https://res.cloudinary.com/dxxvbrgie/video/upload/v1772786084/gallery_anmzec.mp4"
           autoPlay
           loop
           muted
