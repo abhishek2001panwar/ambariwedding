@@ -24,9 +24,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={inter.variable}>
-      <Navigation />
-      <body className="font-sans antialiased">{children}</body>
-      <Footer />
+    
+      <body className="font-sans antialiased">
+          <Navigation />
+        {children}
+        <Footer />
+        
+        </body>
+      
     </html>
   )
 }

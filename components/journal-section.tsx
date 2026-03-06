@@ -59,10 +59,10 @@ function StepCard({ entry, index }: { entry: typeof entries[0]; index: number })
     <div ref={ref} className="flex items-center w-full gap-0">
 
       {/* ── LEFT SLOT (desktop) ── */}
-      <div className="hidden md:flex flex-1 justify-end pr-12">
+      <div className="hidden md:flex flex-1 justify-end pr-12 ">
         {isLeftContent ? (
           <div
-            className={`text-right max-w-[300px] lg:max-w-[340px] transition-all duration-700 ${
+            className={`text-right max-w-[300px] lg:max-w-[340px] border border-foreground/10 rounded-md p-6 bg-background/50 backdrop-blur-sm transition-all duration-700 hover:border-foreground/20 hover:shadow-md ${
               isActive ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-6"
             }`}
             style={{ transitionDelay: "120ms" }}
@@ -100,7 +100,7 @@ function StepCard({ entry, index }: { entry: typeof entries[0]; index: number })
       <div className="hidden md:flex flex-1 justify-start pl-12">
         {!isLeftContent ? (
           <div
-            className={`text-left max-w-[300px] lg:max-w-[340px] transition-all duration-700 ${
+            className={`text-left max-w-[300px] lg:max-w-[340px] border border-foreground/10 rounded-md p-6 bg-background/50 backdrop-blur-sm transition-all duration-700 hover:border-foreground/20 hover:shadow-md ${
               isActive ? "opacity-100 translate-x-0" : "opacity-0 translate-x-6"
             }`}
             style={{ transitionDelay: "120ms" }}
@@ -122,7 +122,7 @@ function StepCard({ entry, index }: { entry: typeof entries[0]; index: number })
         }`}
         style={{ transitionDelay: "100ms" }}
       >
-        <div>
+        <div className="border border-foreground/10 rounded-md p-5 bg-background/50 backdrop-blur-sm">
           <p className="text-[10px] tracking-[0.3em] uppercase text-foreground/30 mb-2">
             {entry.title}
           </p>

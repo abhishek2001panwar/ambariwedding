@@ -187,19 +187,6 @@ export function VideoCell({
           >
             {playing ? <PauseIcon /> : <PlayIcon />}
           </button>
-          {label && (
-            <span
-              style={{
-                fontSize: "8.5px",
-                letterSpacing: "0.32em",
-                textTransform: "uppercase",
-                color: "rgba(255,255,255,0.45)",
-                fontWeight: 300,
-              }}
-            >
-              {label}
-            </span>
-          )}
           <div
             style={{
               flex: 1,
@@ -506,7 +493,7 @@ function SangeetChapter() {
         videos={[
           {
             src: "https://res.cloudinary.com/dxxvbrgie/video/upload/v1772784820/sangeet_gqvxzu.mp4",
-            label: "Dance Floor",
+            label: "",
           },
           { src: "https://res.cloudinary.com/dxxvbrgie/video/upload/v1772784316/video2_rzediw.mp4", label: "Highlights" },
         ]}
@@ -533,7 +520,7 @@ function ReceptionChapter() {
         center={{
           type: "video",
           src: "https://res.cloudinary.com/dxxvbrgie/video/upload/v1772784958/video_g9s2df.mp4",
-          alt: "Reception",
+          alt: "",
         }}
         right={{
           type: "video",
@@ -874,9 +861,9 @@ export default function WorkSection() {
         {/* Wider max-width + reduced side padding on mobile */}
         <div
           style={{
-            maxWidth: "1400px", // ← wider than before (was 1200px)
+            maxWidth: "1400px",
             margin: "0 auto",
-            padding: "96px clamp(16px, 4vw, 60px) 80px", // ← responsive horizontal padding
+            padding: "clamp(40px, 12vw, 96px) clamp(16px, 4vw, 60px) 80px",
           }}
         >
           <WeddingChapter />

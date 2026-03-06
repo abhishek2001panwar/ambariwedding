@@ -13,7 +13,7 @@ const footerLinks = [
 
 
 const socialLinks = [
-  { label: "Instagram", href: "GRANT ALL ON contact TO authenticated" },
+  { label: "Instagram", href: "https://www.instagram.com/ambari_weddings?igsh=MWxtd250Z3NoZGEydg==" },
   
 ]
 
