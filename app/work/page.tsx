@@ -623,7 +623,7 @@ function WeddingChapter() {
         label=""
         left={{
           type: "video",
-          src: "/wedding/Traditional decor.mp4",
+          src: "/wedding/Traditionaldecor.mp4",
           alt: "Wedding 1",
         }}
         center={{
@@ -659,14 +659,14 @@ function CarnivalChapter() {
         }}
         right={{
           type: "video",
-          src: "/carnival/Ambari Wedding reel.mp4",
+          src: "/carnival/AmbariWeddingreel.mp4",
           alt: "Carnival 2",
         }}
       />
       <ExtraVideosRow
         accent={ACCENT}
         videos={[
-          { src: "/carnival/Ambari weddings Posts.mp4", label: "Sacred Vows" },
+          { src: "/carnival/AmbariWeddingsPosts.mp4", label: "Sacred Vows" },
           { src: "/carnival/videolst.mp4", label: "Together" },
         ]}
       />
