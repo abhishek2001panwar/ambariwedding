@@ -20,7 +20,7 @@ export function EditorialBreak() {
           }`}
         >
           <video
-            src="https://res.cloudinary.com/dxxvbrgie/video/upload/v1772786096/aboutvideo_mktthw.mp4"
+            src="https://res.cloudinary.com/dxxvbrgie/video/upload/v1772820287/brand_ipduie.mp4"
             className="w-full aspect-[16/10] object-cover  transition-all duration-1000"
             muted
             playsInline
@@ -34,19 +34,27 @@ export function EditorialBreak() {
             quoteVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
           }`}
         >
+          <h1
+            className="text-3xl md:text-[2.75rem] font-extralight tracking-tight text-foreground mb-3"
+          
+          >Brand Promise</h1>
           <div className="w-10 h-px bg-foreground/20 mb-8" />
           <blockquote className="text-xl md:text-2xl lg:text-[1.65rem] font-extralight leading-[1.35] tracking-tight text-foreground text-balance">
             {'"'}At Ambari, we believe every couple deserves their moment of true celebration.{'"'}
           </blockquote>
-          <p className="text-[11px] tracking-[0.3em] uppercase text-muted-foreground mt-8">
-            From Dreams to Dynasty
-
-          </p>
-          <Button onClick={()=>router.push('/gallery')} variant="outline" className="mt-2 md:mt-5">
-            Explore More
+          <p className="text-sm md:text-base font-light leading-[1.8] text-foreground/70 mt-6">
+Drawing from 
+ancient traditions of hospitality and joy, we create weddings that honor the past while embracing 
+your future together. 
+Your love story becomes unforgettable - and we make sure it feels that way too. 
+            </p>
+          <Button onClick={()=>router.push('/about')} variant="outline" className="mt-8">
+            Learn More
           </Button>
         </div>
       </div>
     </section>
   )
 }
+         
+ 

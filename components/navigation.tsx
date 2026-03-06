@@ -4,12 +4,12 @@ import { useState, useEffect } from "react"
 import Link from "next/link"
 
 const navLinks = [
-  { label: "Work", href: "/work" },
-  { label: "Gallery", href: "/gallery" },
   { label: "About", href: "/#about" },
-  { label: "Services", href: "/#service" },
+  { label: "Services", href: "/#services" },
   { label: "Process", href: "/#process" },
+  { label: "Portfolio", href: "/portfolio" },
   { label: "Contact", href: "/#contact" },
+  
 ]
 
 // Custom hamburger icon with smooth animation

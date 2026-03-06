@@ -1,22 +1,25 @@
-"use client"
+"use client";
 
-import { useEffect, useRef, useState } from "react"
+import { useEffect, useRef, useState } from "react";
 
 export function Hero() {
-  const [visible, setVisible] = useState(false)
-  const ref = useRef<HTMLDivElement>(null)
+  const [visible, setVisible] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const timer = setTimeout(() => setVisible(true), 200)
-    return () => clearTimeout(timer)
-  }, [])
+    const timer = setTimeout(() => setVisible(true), 200);
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
-    <section ref={ref} className="relative h-screen flex flex-col justify-end overflow-hidden">
+    <section
+      ref={ref}
+      className="relative h-screen flex flex-col justify-end overflow-hidden"
+    >
       {/* Background */}
       <div className="absolute inset-0 z-0">
         <video
-          src="https://res.cloudinary.com/dxxvbrgie/video/upload/v1772786085/herovideo_aqhlug.mp4"
+          src="https://res.cloudinary.com/dxxvbrgie/video/upload/v1772823965/jayamahal_madap_sr0ll9.mp4"
           autoPlay
           loop
           muted
@@ -46,7 +49,7 @@ export function Hero() {
               visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
             }`}
           >
-            <p className="text-[10px] md:text-[11px] tracking-[0.3em] uppercase text-background/50">
+            <p className="text-[10px] md:text-[17px] font-bold tracking-[0.3em] uppercase text-background">
               Your Ambari Awaits
             </p>
           </div>
@@ -63,9 +66,15 @@ export function Hero() {
               Dreams take beautiful form.
               <br className="hidden md:block" />
               <em style={{ color: "#c9a96e", fontStyle: "italic" }}>
-                {" "}Every celebration deserves its moment.
+                {" "}
+                Every celebration deserves its moment.
               </em>
             </h1>
+            <p className="text-background mt-3 font-light">
+              We don't just plan weddings - we craft experiences where your
+              intentions meet grandeur, and every detail carries the weight of
+              tradition while telling your unique story.{" "}
+            </p>
           </div>
 
           <div
@@ -93,7 +102,7 @@ export function Hero() {
                   color: "rgba(201,169,110,0.7)",
                 }}
               >
-                Weddings · Rituals · Decor · Moments
+              Event Planning . Decor . Photography . Cattering
               </span>
             </div>
           </div>
@@ -111,5 +120,5 @@ export function Hero() {
         </div>
       </div>
     </section>
-  )
+  );
 }

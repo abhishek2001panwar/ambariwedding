@@ -18,19 +18,19 @@ const GALLERY_ITEMS: MediaItem[] = [
   // Row 1 — Wedding × Reception × Haldi
   {
     type: "video",
-    src: "https://res.cloudinary.com/dxxvbrgie/video/upload/v1772785628/vid2_rhxsyc.mp4",
+    src: "https://res.cloudinary.com/dxxvbrgie/video/upload/v1772832667/Video_16_iveleu.mp4",
     label: "The Wedding",
     orientation: "portrait",
   },
   {
     type: "video",
-    src: "https://res.cloudinary.com/dxxvbrgie/video/upload/v1772784958/video_g9s2df.mp4",
+    src: "https://res.cloudinary.com/dxxvbrgie/video/upload/v1772832669/Video_15_uf3gsl.mp4",
     label: "Reception",
     orientation: "landscape",
   },
   {
     type: "video",
-    src: "https://res.cloudinary.com/dxxvbrgie/video/upload/v1772785320/awreel_ycjjug.mp4",
+    src: "https://res.cloudinary.com/dxxvbrgie/video/upload/v1772832676/Video_13_qj0tfk.mp4",
     label: "Haldi",
     orientation: "portrait",
   },
@@ -38,19 +38,19 @@ const GALLERY_ITEMS: MediaItem[] = [
   // Row 2 — Sangeet × Wedding × Carnival
   {
     type: "video",
-    src: "https://res.cloudinary.com/dxxvbrgie/video/upload/v1772784320/awreel14_nekfkm.mp4",
+    src: "https://res.cloudinary.com/dxxvbrgie/video/upload/v1772832676/Video_17_t3rxqn.mp4",
     label: "Sangeet",
     orientation: "landscape",
   },
   {
     type: "video",
-    src: "https://res.cloudinary.com/dxxvbrgie/video/upload/v1772785599/vid3_yoapir.mp4",
+    src: "https://res.cloudinary.com/dxxvbrgie/video/upload/v1772832675/Video_9_p7dbzl.mp4",
     label: "Sacred Vows",
     orientation: "portrait",
   },
   {
     type: "video",
-    src: "https://res.cloudinary.com/dxxvbrgie/video/upload/v1772785883/AMBARIWEDDINGreel_ilmtmt.mp4",
+    src: "https://res.cloudinary.com/dxxvbrgie/video/upload/v1772832676/AW_reel7_mikypz.mp4",
     label: "Carnival",
     orientation: "landscape",
   },
@@ -58,13 +58,13 @@ const GALLERY_ITEMS: MediaItem[] = [
   // Row 3 — Haldi × Carnival × Sangeet
   {
     type: "video",
-    src: "https://res.cloudinary.com/dxxvbrgie/video/upload/v1772785314/AW_gulabi_p2ceqn.mp4",
+    src: "https://res.cloudinary.com/dxxvbrgie/video/upload/v1772832687/Video_10_fscmcq.mp4",
     label: "Haldi Joy",
     orientation: "portrait",
   },
   {
     type: "video",
-    src: "https://res.cloudinary.com/dxxvbrgie/video/upload/v1772785849/AW_reel9_n8lbkj.mp4",
+    src: "https://res.cloudinary.com/dxxvbrgie/video/upload/v1772832691/REEL4_xtbdxq.mp4",
     label: "Carnival",
     orientation: "landscape",
   },
@@ -75,105 +75,7 @@ const GALLERY_ITEMS: MediaItem[] = [
     orientation: "portrait",
   },
 
-  // Row 4 — Reception × Wedding × Carnival
-  {
-    type: "video",
-    src: "https://res.cloudinary.com/dxxvbrgie/video/upload/v1772784960/purpleReception_fiysts.mp4",
-    label: "Grand Entrance",
-    orientation: "landscape",
-  },
-  {
-    type: "video",
-    src: "https://res.cloudinary.com/dxxvbrgie/video/upload/v1772785577/videowed_k6yfx5.mp4",
-    label: "Together",
-    orientation: "portrait",
-  },
-  {
-    type: "video",
-    src: "https://res.cloudinary.com/dxxvbrgie/video/upload/v1772785852/videolst_innjx5.mp4",
-    label: "Carnival",
-    orientation: "landscape",
-  },
-
-  // Row 5 — Wedding × Haldi × Reception
-  {
-    type: "video",
-    src: "https://res.cloudinary.com/dxxvbrgie/video/upload/v1772785635/Mantapa_ocuzuk.mp4",
-    label: "Mantapa",
-    orientation: "portrait",
-  },
-  {
-    type: "video",
-    src: "https://res.cloudinary.com/dxxvbrgie/video/upload/v1772785297/videohaldi_oumfvv.mp4",
-    label: "Haldi Ritual",
-    orientation: "landscape",
-  },
-  {
-    type: "video",
-    src: "https://res.cloudinary.com/dxxvbrgie/video/upload/v1772786581/Video5_1_hpq4gb.mp4",
-    label: "First Dance",
-    orientation: "portrait",
-  },
-
-  // Row 6 — Carnival × Wedding × Sangeet
-  {
-    type: "video",
-    src: "https://res.cloudinary.com/dxxvbrgie/video/upload/v1772785867/Video8_k0nl1e.mp4",
-    label: "Carnival",
-    orientation: "landscape",
-  },
-  {
-    type: "video",
-    src: "https://res.cloudinary.com/dxxvbrgie/video/upload/v1772785612/vid5_cw9wrh.mp4",
-    label: "The Wedding",
-    orientation: "portrait",
-  },
-  {
-    type: "video",
-    src: "https://res.cloudinary.com/dxxvbrgie/video/upload/v1772784820/sangeet_gqvxzu.mp4",
-    label: "Sangeet",
-    orientation: "landscape",
-  },
-
-  // Row 7 — Wedding × Carnival × Reception
-  {
-    type: "video",
-    src: "https://res.cloudinary.com/dxxvbrgie/video/upload/v1772785621/Traditionaldecor_bq2g3n.mp4",
-    label: "Decor",
-    orientation: "portrait",
-  },
-  {
-    type: "video",
-    src: "https://res.cloudinary.com/dxxvbrgie/video/upload/v1772785846/AmbariWeddingsPosts_j3sznq.mp4",
-    label: "Carnival",
-    orientation: "landscape",
-  },
-  {
-    type: "video",
-    src: "https://res.cloudinary.com/dxxvbrgie/video/upload/v1772784316/video2_rzediw.mp4",
-    label: "Sangeet Highlights",
-    orientation: "portrait",
-  },
-
-  // Row 8 — Wedding × Haldi
-  {
-    type: "video",
-    src: "https://res.cloudinary.com/dxxvbrgie/video/upload/v1772785588/vid4_z0t1go.mp4",
-    label: "The Wedding",
-    orientation: "landscape",
-  },
-  {
-    type: "video",
-    src: "https://res.cloudinary.com/dxxvbrgie/video/upload/v1772785314/AW_gulabi_p2ceqn.mp4",
-    label: "Haldi Bliss",
-    orientation: "portrait",
-  },
-  {
-    type: "video",
-    src: "https://res.cloudinary.com/dxxvbrgie/video/upload/v1772784960/purpleReception_fiysts.mp4",
-    label: "Reception",
-    orientation: "landscape",
-  },
+ 
 ]
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -588,7 +490,7 @@ function HeroSection() {
 export default function GalleryPage() {
   return (
     <>
-      <HeroSection />
+      
       <GallerySection />
     </>
   )

@@ -3,12 +3,12 @@ import { Button } from "./button"
 
 
 const footerLinks = [
-  { label: "Work", href: "/work" },
-  { label: "Gallery", href: "/gallery" },
   { label: "About", href: "/#about" },
-  { label: "Services", href: "/#service" },
+  { label: "Services", href: "/#services" },
   { label: "Process", href: "/#process" },
+  { label: "Portfolio", href: "/portfolio" },
   { label: "Contact", href: "/#contact" },
+  
 ]
 
 
@@ -29,6 +29,11 @@ export function Footer() {
           >
             Ambari Weddings
           </Link>
+          <p
+            className="text-sm leading-[1.75] text-background/70 mt-2 max-w-xs"
+          >
+            Every great love story deserves a beautiful beginning. Let's create yours together.
+          </p>
           <p className="text-sm leading-[1.75] text-background/70 mt-2 max-w-xs">
             Crafting timeless wedding experiences in Bengaluru and beyond. Personal, elegant, unforgettable.
           </p>
@@ -38,8 +43,9 @@ export function Footer() {
         <div className="md:col-span-7 md:col-start-6 flex flex-col gap-8">
           {/* Stay Inspired on top */}
           <div className="flex flex-col gap-4">
-            <p className="text-[11px] tracking-[0.3em] uppercase text-background/60 mb-2">Stay Inspired</p>
-            <p className="text-sm text-background/70 mb-2">Get wedding inspiration, tips, and updates from Ambari directly to your inbox.</p>
+            <p className="text-[11px] tracking-[0.3em] uppercase text-background/60 mb-2">Begin Your Journey</p>
+            <p className="text-sm text-background/70 mb-2">Schedule your consultation and discover how we transform dreams into unforgettable <br />
+celebrations that honor your story and touch your heart.</p>
            
           </div>
           {/* Navigation and Social below */}
