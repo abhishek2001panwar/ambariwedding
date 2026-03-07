@@ -70,30 +70,30 @@ export function OptimizedVideo({
     ? src.replace("/upload/", "/upload/q_auto,f_auto/")
     : src
 
+  // Auto-generate poster thumbnail from Cloudinary if not provided
+  const autoPoster = poster || (
+    src.includes("cloudinary.com")
+      ? src.replace("/upload/", "/upload/so_0,q_auto,f_auto/").replace(/\.(mp4|mov|webm)$/i, '.jpg')
+      : undefined
+  )
+
   return (
     <div ref={containerRef} className="relative w-full h-full">
       {shouldLoad ? (
-        <>
-          <video
-            ref={videoRef}
-            src={optimizedSrc}
-            poster={poster}
-            className={`${className} transition-opacity duration-500 ${
-              isLoaded ? "opacity-100" : "opacity-0"
-            }`}
-            style={style}
-            autoPlay={autoPlay}
-            loop={loop}
-            muted={muted}
-            playsInline={playsInline}
-            controls={controls}
-            preload={lazy ? "metadata" : "auto"}
-            onLoadedData={handleLoadedData}
-          />
-          {!isLoaded && (
-            <div className="absolute inset-0 bg-gradient-to-br from-foreground/5 to-foreground/10 animate-pulse" />
-          )}
-        </>
+        <video
+          ref={videoRef}
+          src={optimizedSrc}
+          poster={autoPoster}
+          className={className}
+          style={style}
+          autoPlay={autoPlay}
+          loop={loop}
+          muted={muted}
+          playsInline={playsInline}
+          controls={controls}
+          preload={lazy ? "metadata" : "auto"}
+          onLoadedData={handleLoadedData}
+        />
       ) : (
         <div className="absolute inset-0 bg-gradient-to-br from-foreground/5 to-foreground/10" />
       )}

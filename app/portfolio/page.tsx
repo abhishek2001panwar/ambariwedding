@@ -100,6 +100,15 @@ export function VideoCell({
   const [progress, setProgress] = useState(0);
   const [vis, setVis] = useState(false);
 
+  // Generate poster thumbnail from Cloudinary video URL
+  const getPosterUrl = (videoUrl) => {
+    if (!videoUrl.includes('cloudinary.com')) return '';
+    // Replace /upload/ with /upload/so_0/ and .mp4/.mov with .jpg to get first frame
+    return videoUrl
+      .replace('/upload/', '/upload/so_0,q_auto,f_auto/')
+      .replace(/\.(mp4|mov|webm)$/i, '.jpg');
+  };
+
   useEffect(() => {
     const io = new IntersectionObserver(
       ([e]) => {
@@ -137,7 +146,7 @@ export function VideoCell({
         borderRadius: "6px",
         overflow: "hidden",
         position: "relative",
-        background: "#111",
+        background: "#1a1410",
         opacity: vis ? 1 : 0,
         transform: vis ? "translateY(0)" : "translateY(16px)",
         transition: `opacity 0.7s ${delay}s ease, transform 0.7s ${delay}s ease`,
@@ -147,6 +156,7 @@ export function VideoCell({
       <video
         ref={videoRef}
         src={src}
+        poster={getPosterUrl(src)}
         autoPlay
         muted
         playsInline

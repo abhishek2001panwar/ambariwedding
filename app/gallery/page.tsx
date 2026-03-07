@@ -113,6 +113,14 @@ function VideoCell({ src, label, orientation }: { src: string; label?: string; o
   const [vis,      setVis]      = useState(false)
   const [hov,      setHov]      = useState(false)
 
+  // Generate poster thumbnail from Cloudinary video URL
+  const getPosterUrl = (videoUrl: string) => {
+    if (!videoUrl.includes('cloudinary.com')) return '';
+    return videoUrl
+      .replace('/upload/', '/upload/so_0,q_auto,f_auto/')
+      .replace(/\.(mp4|mov|webm)$/i, '.jpg');
+  };
+
   useEffect(() => {
     const io = new IntersectionObserver(([e]) => {
       if (e.isIntersecting) {
@@ -142,7 +150,7 @@ function VideoCell({ src, label, orientation }: { src: string; label?: string; o
       onMouseLeave={() => setHov(false)}
       style={{
         position: "relative", borderRadius: "4px", overflow: "hidden",
-        background: "#111", width: "100%", height: "100%",
+        background: "#1a1410", width: "100%", height: "100%",
         opacity: vis ? 1 : 0,
         transform: vis ? "translateY(0) scale(1)" : "translateY(20px) scale(0.98)",
         transition: "opacity 0.8s ease, transform 0.8s ease",
@@ -150,7 +158,8 @@ function VideoCell({ src, label, orientation }: { src: string; label?: string; o
     >
       <video
         ref={videoRef}
-        src={src} 
+        src={src}
+        poster={getPosterUrl(src)}
         autoPlay
         muted 
         playsInline 
