@@ -1,6 +1,7 @@
 "use client"
 
 import { useEffect, useState } from "react"
+import Image from "next/image"
 
 export function PageLoader() {
   const [progress, setProgress] = useState(0)
@@ -11,24 +12,24 @@ export function PageLoader() {
     // Set mounted to true on client side
     setIsMounted(true)
 
-    // Simulate loading progress
+    // Faster loading progress
     const interval = setInterval(() => {
       setProgress((prev) => {
         if (prev >= 100) {
           clearInterval(interval)
-          setTimeout(() => setIsLoaded(true), 300)
+          setTimeout(() => setIsLoaded(true), 200)
           return 100
         }
-        // Faster initial load, slower at the end for smoother feel
-        const increment = prev < 70 ? Math.random() * 15 + 10 : Math.random() * 5 + 2
+        // Much faster increment for quicker loading
+        const increment = prev < 70 ? Math.random() * 25 + 15 : Math.random() * 10 + 5
         return Math.min(prev + increment, 100)
       })
-    }, 150)
+    }, 80)
 
     // Check if page is actually loaded
     const handleLoad = () => {
       setProgress(100)
-      setTimeout(() => setIsLoaded(true), 300)
+      setTimeout(() => setIsLoaded(true), 200)
     }
 
     if (document.readyState === "complete") {
@@ -54,12 +55,15 @@ export function PageLoader() {
       style={{ opacity: progress >= 100 ? 0 : 1 }}
     >
       {/* Logo */}
-      <div className="relative mb-12 animate-fade-in">
+      <div className="relative mb-12 animate-fade-in w-24 h-24 md:w-32 md:h-32">
         <div className="absolute inset-0 blur-xl opacity-30 bg-[#c9a96e]/40 rounded-full" />
-        <img
+        <Image
           src="/logo.png"
           alt="Ambari Weddings"
-          className="relative h-24 w-24 md:h-32 md:w-32 object-contain filter drop-shadow-xl"
+          width={128}
+          height={128}
+          priority
+          className="relative object-contain filter drop-shadow-xl"
           style={{
             animation: "pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite",
           }}

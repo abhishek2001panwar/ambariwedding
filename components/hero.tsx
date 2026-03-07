@@ -25,7 +25,7 @@ export function Hero() {
           muted
           playsInline
           webkit-playsinline="true"
-          preload="auto"
+          preload="metadata"
           className="absolute w-full h-full object-cover"
           style={{
             objectPosition: "center center",

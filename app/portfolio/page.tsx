@@ -1,6 +1,7 @@
 "use client";
 import { Navigation } from "@/components/navigation";
 import React, { useEffect, useRef, useState, useCallback } from "react";
+import Image from "next/image";
 import GalleryPage from "../gallery/page";
 
 
@@ -55,18 +56,21 @@ export function PhotoCell({ src, alt, style = {}, delay = 0 }) {
         ...style,
       }}
     >
-      <img
-        src={src}
-        alt={alt}
-        style={{
-          width: "100%",
-          height: "80%",
-          objectFit: "cover",
-          display: "block",
-          transform: hov ? "scale(1.04)" : "scale(1)",
-          transition: "transform 0.7s ease",
-        }}
-      />
+      <div style={{ position: "relative", width: "100%", height: "80%" }}>
+        <Image
+          src={src}
+          alt={alt}
+          fill
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          className="object-cover"
+          quality={85}
+          loading="lazy"
+          style={{
+            transform: hov ? "scale(1.04)" : "scale(1)",
+            transition: "transform 0.7s ease",
+          }}
+        />
+      </div>
       <div
         style={{
           position: "absolute",
@@ -811,7 +815,7 @@ export default function Portfolio() {
             muted
             playsInline
             webkit-playsinline="true"
-            preload="auto"
+            preload="metadata"
             className={`w-full h-full object-cover transition-transform duration-[2s] ease-out ${
               visible ? "scale-100" : "scale-100"
             }`}

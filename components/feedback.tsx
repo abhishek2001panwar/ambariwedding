@@ -1,4 +1,5 @@
 import React from "react"
+import { OptimizedVideo } from "./optimized-video"
 
 const testimonials = [
   "They didn't just plan our wedding. They created our perfect day and made us feel like the most important people in the world.",
@@ -13,15 +14,14 @@ function Feedback() {
       <div className="max-w-8xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-12 items-center">
         {/* Left Video */}
         <div className="flex justify-center">
-          <video
+          <OptimizedVideo
             src="https://res.cloudinary.com/dxxvbrgie/video/upload/q_auto,f_auto/v1772823167/AW_testimonial_xjjdey.mp4"
             className="w-80 h-86 object-cover rounded-xl shadow-lg"
             muted
             playsInline
-            webkit-playsinline="true"
             loop
             autoPlay
-            preload="auto"
+            lazy
           />
         </div>
         {/* Center Content */}
@@ -45,15 +45,14 @@ function Feedback() {
         </div>
         {/* Right Video */}
         <div className="flex justify-center">
-          <video
+          <OptimizedVideo
             src="https://res.cloudinary.com/dxxvbrgie/video/upload/q_auto,f_auto/v1772785849/AW_reel9_n8lbkj.mp4"
             className="w-80 h-86 object-cover rounded-xl shadow-lg"
             muted
             playsInline
-            webkit-playsinline="true"
             loop
             autoPlay
-            preload="auto"
+            lazy
           />
         </div>
       </div>

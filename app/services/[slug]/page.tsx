@@ -106,7 +106,7 @@ const project = projects.find(p => p.slug === slug)
           muted
           playsInline
           webkit-playsinline="true"
-          preload="auto"
+          preload="metadata"
         />
       </div>
       <div className="max-w-2xl w-full mx-auto flex flex-col items-center">

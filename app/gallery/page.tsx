@@ -1,6 +1,7 @@
 "use client"
 
 import { useEffect, useRef, useState, useCallback } from "react"
+import Image from "next/image"
 
 // ─────────────────────────────────────────────────────────────────────────────
 // TYPES
@@ -229,16 +230,22 @@ function PhotoCell({ src, alt, orientation }: { src: string; alt?: string; orien
         boxShadow: hov ? "0 24px 56px rgba(26,20,16,0.16)" : "0 4px 16px rgba(26,20,16,0.06)",
       }}
     >
-      <img
-        src={src} alt={alt || ""}
-        style={{
-          width: "100%", height: "100%", objectFit: "cover",
-          objectPosition: orientation === "portrait" ? "center top" : "center center",
-          display: "block",
-          transform: hov ? "scale(1.05)" : "scale(1)",
-          transition: "transform 0.8s ease",
-        }}
-      />
+      <div style={{ position: "relative", width: "100%", height: "100%" }}>
+        <Image
+          src={src}
+          alt={alt || ""}
+          fill
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          className="object-cover"
+          quality={85}
+          loading="lazy"
+          style={{
+            objectPosition: orientation === "portrait" ? "center top" : "center center",
+            transform: hov ? "scale(1.05)" : "scale(1)",
+            transition: "transform 0.8s ease",
+          }}
+        />
+      </div>
       <div style={{
         position: "absolute", inset: 0,
         background: "linear-gradient(135deg, transparent 50%, rgba(201,169,110,0.12) 100%)",
@@ -418,7 +425,7 @@ function HeroSection() {
           muted
           playsInline
           webkit-playsinline="true"
-          preload="auto"
+          preload="metadata"
           className="absolute w-full h-full object-cover"
           style={{
             objectPosition: "center center",

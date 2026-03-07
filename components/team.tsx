@@ -1,5 +1,6 @@
 'use client';
 import React, { useRef, useState, useEffect } from "react";
+import Image from "next/image";
 
 const teamMembers = [
   {
@@ -75,10 +76,14 @@ function TeamCard({
         onMouseLeave={() => setHovered(false)}
       >
         {/* Photo */}
-        <img
+        <Image
           src={member.img}
           alt={member.name}
-          className="w-full h-full object-cover"
+          fill
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          className="object-cover"
+          quality={85}
+          priority={false}
           style={{
             transform: hovered ? "scale(1.07)" : "scale(1)",
             transition: "transform 1s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
