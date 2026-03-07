@@ -78,7 +78,7 @@ What we love creating together:
     category: "On your wedding day, you shouldn't be a planner - you should be celebrating.  We orchestrate every detail  so you can focus on what matters: enjoying your love with those who matter most. You get to be the bride and groom.  We handle everything else.",
     year: "2022",
     location: "From Planning to Perfection",
-    image: "https://res.cloudinary.com/dxxvbrgie/video/upload/v1772785314/AW_gulabi_p2ceqn.mp4",
+    image: "https://res.cloudinary.com/dxxvbrgie/video/upload/v1772878326/BTS_dsaij5.mp4",
   },
   {
       id: "",
