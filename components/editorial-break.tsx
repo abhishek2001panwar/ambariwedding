@@ -3,6 +3,7 @@
 import { useScrollReveal } from "@/hooks/use-scroll-reveal"
 import { Button } from "./button"
 import { useRouter } from "next/navigation"
+import { OptimizedVideo } from "./optimized-video"
 
 export function EditorialBreak() {
   const router = useRouter()
@@ -19,13 +20,14 @@ export function EditorialBreak() {
             imgVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
           }`}
         >
-          <video
+          <OptimizedVideo
             src="https://res.cloudinary.com/dxxvbrgie/video/upload/v1772820287/brand_ipduie.mp4"
-            className="w-full aspect-[16/10] object-cover  transition-all duration-1000"
+            className="w-full aspect-[16/10] object-cover"
             muted
             playsInline
             loop
             autoPlay
+            lazy={true}
           />
         </div>
         <div

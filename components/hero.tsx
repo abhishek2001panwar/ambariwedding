@@ -4,11 +4,22 @@ import { useEffect, useRef, useState } from "react";
 
 export function Hero() {
   const [visible, setVisible] = useState(false);
+  const [videoLoaded, setVideoLoaded] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
     const timer = setTimeout(() => setVisible(true), 200);
     return () => clearTimeout(timer);
+  }, []);
+
+  useEffect(() => {
+    // Preload video
+    if (videoRef.current) {
+      videoRef.current.addEventListener('loadeddata', () => {
+        setVideoLoaded(true);
+      });
+    }
   }, []);
 
   return (
@@ -18,7 +29,7 @@ export function Hero() {
     >
       {/* Background */}
       <div className="absolute inset-0 z-0">
-        <video
+         <video
           src="https://res.cloudinary.com/dxxvbrgie/video/upload/v1772823965/jayamahal_madap_sr0ll9.mp4"
           autoPlay
           loop
@@ -29,6 +40,7 @@ export function Hero() {
             objectPosition: "center center",
           }}
         />
+       
         {/* Stronger gradient on mobile so text stays legible */}
         <div className="absolute inset-0 bg-foreground/60 md:bg-foreground/50" />
         {/* Extra bottom vignette for text readability on mobile */}
@@ -83,27 +95,22 @@ export function Hero() {
             }`}
           >
             <div
+              className="px-3 py-2 sm:px-4 sm:py-2 md:px-[18px] md:py-2"
               style={{
                 display: "inline-flex",
                 gap: "16px",
                 alignItems: "center",
-                padding: "8px 18px",
                 border: "1px solid rgba(255,255,255,0.12)",
                 borderRadius: "40px",
                 backdropFilter: "blur(8px)",
                 background: "rgba(255,255,255,0.04)",
               }}
             >
-              <span
-                style={{
-                  fontSize: "clamp(7px, 1.5vw, 8px)",
-                  letterSpacing: "0.35em",
-                  textTransform: "uppercase",
-                  color: "rgba(201,169,110,0.7)",
-                }}
-              >
-              Event Planning . Decor . Photography . Cattering
-              </span>
+            <span
+  className="text-[8px] sm:text-[10px] md:text-[12px] tracking-[0.15em] sm:tracking-[0.25em] md:tracking-[0.35em] uppercase text-[#c9a96e]/80 whitespace-nowrap"
+>
+  Event Planning · Decor · Photography · Catering
+</span>
             </div>
           </div>
         </div>

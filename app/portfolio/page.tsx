@@ -867,15 +867,10 @@ export default function Portfolio() {
                 }}
               >
                 <span
-                  style={{
-                    fontSize: "clamp(7px, 1.5vw, 8px)",
-                    letterSpacing: "0.35em",
-                    textTransform: "uppercase",
-                    color: "rgba(201,169,110,0.7)",
-                  }}
-                >
-              Event Planning . Decor . Photography . Cattering
-                </span>
+  className="text-[8px] sm:text-[10px] md:text-[12px] tracking-[0.15em] sm:tracking-[0.25em] md:tracking-[0.35em] uppercase text-[#c9a96e]/80 whitespace-nowrap"
+>
+  Event Planning · Decor · Photography · Catering
+</span>
               </div>
             </div>
           </div>

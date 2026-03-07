@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react"
 import Link from "next/link"
+import Image from "next/image"
 
 const navLinks = [
   { label: "About", href: "/#about" },
@@ -90,7 +91,10 @@ export function Navigation() {
             href="/"
             className="relative z-[60] transition-opacity duration-300 hover:opacity-80"
           >
-            <img className="w-32 h-20 object-contain" src="/logo.png" alt="Logo" />
+            <Image 
+            height={20}
+            width={32}
+            className="w-32 h-20 object-contain" src="/logo.png" alt="Logo" />
           </Link>
 
           {/* Desktop Navigation Links */}
@@ -212,12 +216,12 @@ export function Navigation() {
                   Follow Us
                 </p>
                 <div className="flex gap-4">
-                  <a
+                  <Link
                     href="https://www.instagram.com/ambari_weddings?igsh=MWxtd250Z3NoZGEydg=="
                     className="text-sm text-foreground/70 hover:text-[#c9a96e] transition-colors duration-300"
                   >
                     Instagram
-                  </a>
+                  </Link>
                  
                 </div>
               </div>
