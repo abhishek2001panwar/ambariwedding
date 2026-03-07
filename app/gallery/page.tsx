@@ -30,7 +30,7 @@ const GALLERY_ITEMS: MediaItem[] = [
   },
   {
     type: "video",
-    src: "https://res.cloudinary.com/dxxvbrgie/video/upload/v1772832676/Video_13_qj0tfk.mp4",
+    src: "https://res.cloudinary.com/dxxvbrgie/video/upload/f_auto,q_auto/v1772832676/Video_13_qj0tfk.mp4",
     label: "Haldi",
     orientation: "portrait",
   },
