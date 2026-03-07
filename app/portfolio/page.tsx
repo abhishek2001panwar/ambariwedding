@@ -577,6 +577,7 @@ function HaldiChapter() {
       />
       <BentoTop
         accent={ACCENT}
+        className="mt-4"
         num=""
         label="The Haldi"
         left={{ type: "video",           src: "https://res.cloudinary.com/dxxvbrgie/video/upload/v1772827279/AW_REEL_SHOTS_zqeyub.mp4",
