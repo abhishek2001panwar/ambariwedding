@@ -108,16 +108,18 @@ function ProjectCard({ project, index }: { project: typeof projects[0]; index: n
       onMouseLeave={() => setHovered(false)}
     >
       <div className="overflow-hidden">
-        <video
-          src={project.image}
-          className={`w-full aspect-[4/3] object-cover transition-all duration-[800ms] ease-out ${
-            hovered ? "scale-[1.04]" : "scale-100"
-          }`}
-          autoPlay
-          muted
-          playsInline
-          loop
-        />
+       {project.image ? (
+    <video
+      src={project.image}
+      className={`w-full aspect-[4/3] object-cover transition-all duration-[800ms] ease-out ${
+        hovered ? "scale-[1.04]" : "scale-100"
+      }`}
+      autoPlay
+      muted
+      playsInline
+      loop
+    />
+  ) : null}
       </div>
       <div className="p-6 md:p-8 flex items-start justify-between">
         <div className="flex items-start gap-4">
