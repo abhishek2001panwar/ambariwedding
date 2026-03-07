@@ -48,7 +48,10 @@ export function OptimizedVideo({
           }
         })
       },
-      { rootMargin: "50px" }
+      { 
+        rootMargin: "200px",
+        threshold: 0.05
+      }
     )
 
     if (containerRef.current) {
@@ -70,10 +73,10 @@ export function OptimizedVideo({
     ? src.replace("/upload/", "/upload/q_auto,f_auto/")
     : src
 
-  // Auto-generate poster thumbnail from Cloudinary if not provided
+  //Auto-generate poster thumbnail from Cloudinary if not provided
   const autoPoster = poster || (
     src.includes("cloudinary.com")
-      ? src.replace("/upload/", "/upload/so_0,q_auto,f_auto/").replace(/\.(mp4|mov|webm)$/i, '.jpg')
+      ? src.replace("/upload/", "/upload/so_0,q_auto,f_auto,w_800/").replace(/\.(mp4|mov|webm)$/i, '.jpg')
       : undefined
   )
 
@@ -91,11 +94,17 @@ export function OptimizedVideo({
           muted={muted}
           playsInline={playsInline}
           controls={controls}
-          preload={lazy ? "metadata" : "auto"}
+          preload={lazy ? "none" : "auto"}
           onLoadedData={handleLoadedData}
         />
       ) : (
-        <div className="absolute inset-0 bg-gradient-to-br from-foreground/5 to-foreground/10" />
+        autoPoster && (
+          <img 
+            src={autoPoster} 
+            alt="" 
+            style={{ width: "100%", height: "100%", objectFit: "cover" }}
+          />
+        )
       )}
     </div>
   )

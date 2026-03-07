@@ -117,7 +117,7 @@ function VideoCell({ src, label, orientation }: { src: string; label?: string; o
   const getPosterUrl = (videoUrl: string) => {
     if (!videoUrl.includes('cloudinary.com')) return '';
     return videoUrl
-      .replace('/upload/', '/upload/so_0,q_auto,f_auto/')
+      .replace('/upload/', '/upload/so_0,q_auto,f_auto,w_800/')
       .replace(/\.(mp4|mov|webm)$/i, '.jpg');
   };
 
@@ -125,13 +125,18 @@ function VideoCell({ src, label, orientation }: { src: string; label?: string; o
     const io = new IntersectionObserver(([e]) => {
       if (e.isIntersecting) {
         setVis(true)
-        videoRef.current?.play().catch(() => {})
-        setPlaying(true)
+        setTimeout(() => {
+          videoRef.current?.play().catch(() => {})
+          setPlaying(true)
+        }, 100)
       } else {
         videoRef.current?.pause()
         setPlaying(false)
       }
-    }, { threshold: 0.15 })
+    }, { 
+      threshold: 0.05,
+      rootMargin: "200px"
+    })
     if (wrapRef.current) io.observe(wrapRef.current)
     return () => io.disconnect()
   }, [])
@@ -160,12 +165,12 @@ function VideoCell({ src, label, orientation }: { src: string; label?: string; o
         ref={videoRef}
         src={src}
         poster={getPosterUrl(src)}
-        autoPlay
+        autoPlay={false}
         muted 
         playsInline 
         webkit-playsinline="true"
         loop
-        preload="metadata"
+        preload="none"
         onTimeUpdate={() => {
           const v = videoRef.current
           if (v?.duration) setProgress((v.currentTime / v.duration) * 100)
@@ -429,12 +434,13 @@ function HeroSection() {
      <div className="absolute inset-0 z-0">
         <video
           src="https://res.cloudinary.com/dxxvbrgie/video/upload/q_auto,f_auto/v1772786084/gallery_anmzec.mp4"
+          poster="https://res.cloudinary.com/dxxvbrgie/image/upload/so_0,q_auto,f_auto,w_1200/v1772786084/gallery_anmzec.jpg"
           autoPlay
           loop
           muted
           playsInline
           webkit-playsinline="true"
-          preload="metadata"
+          preload="auto"
           className="absolute w-full h-full object-cover"
           style={{
             objectPosition: "center center",

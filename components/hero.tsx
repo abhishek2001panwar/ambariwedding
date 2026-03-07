@@ -20,12 +20,13 @@ export function Hero() {
       <div className="absolute inset-0 z-0">
          <video
           src="https://res.cloudinary.com/dxxvbrgie/video/upload/q_auto,f_auto/v1772823965/jayamahal_madap_sr0ll9.mp4"
+          poster="https://res.cloudinary.com/dxxvbrgie/image/upload/so_0,q_auto,f_auto,w_1200/v1772823965/jayamahal_madap_sr0ll9.jpg"
           autoPlay
           loop
           muted
           playsInline
           webkit-playsinline="true"
-          preload="metadata"
+          preload="auto"
           className="absolute w-full h-full object-cover"
           style={{
             objectPosition: "center center",

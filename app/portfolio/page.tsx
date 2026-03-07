@@ -105,7 +105,7 @@ export function VideoCell({
     if (!videoUrl.includes('cloudinary.com')) return '';
     // Replace /upload/ with /upload/so_0/ and .mp4/.mov with .jpg to get first frame
     return videoUrl
-      .replace('/upload/', '/upload/so_0,q_auto,f_auto/')
+      .replace('/upload/', '/upload/so_0,q_auto,f_auto,w_800/')
       .replace(/\.(mp4|mov|webm)$/i, '.jpg');
   };
 
@@ -114,14 +114,20 @@ export function VideoCell({
       ([e]) => {
         if (e.isIntersecting) {
           setVis(true);
-          videoRef.current?.play().catch(() => {});
-          setPlaying(true);
+          // Delay play slightly to reduce simultaneous video loading
+          setTimeout(() => {
+            videoRef.current?.play().catch(() => {});
+            setPlaying(true);
+          }, 100);
         } else {
           videoRef.current?.pause();
           setPlaying(false);
         }
       },
-      { threshold: 0.15 },
+      { 
+        threshold: 0.05,
+        rootMargin: "200px"
+      },
     );
     io.observe(wrapRef.current);
     return () => io.disconnect();
@@ -157,12 +163,12 @@ export function VideoCell({
         ref={videoRef}
         src={src}
         poster={getPosterUrl(src)}
-        autoPlay
+        autoPlay={false}
         muted
         playsInline
         webkit-playsinline="true"
         loop
-        preload="metadata"
+        preload="none"
         onTimeUpdate={() => {
           const v = videoRef.current;
           if (v?.duration) setProgress((v.currentTime / v.duration) * 100);
@@ -820,12 +826,13 @@ export default function Portfolio() {
         <div className="absolute inset-0 z-0">
           <video
             src="https://res.cloudinary.com/dxxvbrgie/video/upload/q_auto,f_auto/v1772824099/portfolio_prakruthi_and_sudarshan_1_hajbz8.mp4"
+            poster="https://res.cloudinary.com/dxxvbrgie/image/upload/so_0,q_auto,f_auto,w_1200/v1772824099/portfolio_prakruthi_and_sudarshan_1_hajbz8.jpg"
             autoPlay
             loop
             muted
             playsInline
             webkit-playsinline="true"
-            preload="metadata"
+            preload="auto"
             className={`w-full h-full object-cover transition-transform duration-[2s] ease-out ${
               visible ? "scale-100" : "scale-100"
             }`}
