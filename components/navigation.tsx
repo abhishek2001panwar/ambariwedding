@@ -92,8 +92,8 @@ export function Navigation() {
             className="relative z-[60] transition-opacity duration-300 hover:opacity-80"
           >
             <Image 
-            height={20}
-            width={32}
+            height={80}
+            width={128}
             className="w-32 h-20 object-contain" src="/logo.png" alt="Logo" />
           </Link>
 

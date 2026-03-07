@@ -42,7 +42,7 @@ What we love creating together:
 <br/>● Decor that honors tradition while embracing your personal style`,
     year: "2023",
     location: "When Your Dreams Breathe",
-    image: "https://res.cloudinary.com/dxxvbrgie/video/upload/f_auto,q_auto/v1772819055/bespoke_axboqz.mov",
+    image: "https://res.cloudinary.com/dxxvbrgie/video/upload/v1772871788/Video_of_all_the_recent_luxury_decor_uzhf3y.mp4",
   },
   {
       id: " 04",
