@@ -149,7 +149,13 @@ function VideoCell({ src, label, orientation }: { src: string; label?: string; o
     >
       <video
         ref={videoRef}
-        src={src} muted playsInline loop
+        src={src} 
+        autoPlay
+        muted 
+        playsInline 
+        webkit-playsinline="true"
+        loop
+        preload="metadata"
         onTimeUpdate={() => {
           const v = videoRef.current
           if (v?.duration) setProgress((v.currentTime / v.duration) * 100)
@@ -406,11 +412,13 @@ function HeroSection() {
     <section className="relative h-screen flex flex-col justify-end overflow-hidden">
      <div className="absolute inset-0 z-0">
         <video
-          src="https://res.cloudinary.com/dxxvbrgie/video/upload/v1772786084/gallery_anmzec.mp4"
+          src="https://res.cloudinary.com/dxxvbrgie/video/upload/q_auto,f_auto/v1772786084/gallery_anmzec.mp4"
           autoPlay
           loop
           muted
           playsInline
+          webkit-playsinline="true"
+          preload="auto"
           className="absolute w-full h-full object-cover"
           style={{
             objectPosition: "center center",

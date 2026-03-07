@@ -104,6 +104,9 @@ const project = projects.find(p => p.slug === slug)
           autoPlay
           loop
           muted
+          playsInline
+          webkit-playsinline="true"
+          preload="auto"
         />
       </div>
       <div className="max-w-2xl w-full mx-auto flex flex-col items-center">

@@ -4,22 +4,11 @@ import { useEffect, useRef, useState } from "react";
 
 export function Hero() {
   const [visible, setVisible] = useState(false);
-  const [videoLoaded, setVideoLoaded] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
-  const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
     const timer = setTimeout(() => setVisible(true), 200);
     return () => clearTimeout(timer);
-  }, []);
-
-  useEffect(() => {
-    // Preload video
-    if (videoRef.current) {
-      videoRef.current.addEventListener('loadeddata', () => {
-        setVideoLoaded(true);
-      });
-    }
   }, []);
 
   return (
@@ -30,11 +19,13 @@ export function Hero() {
       {/* Background */}
       <div className="absolute inset-0 z-0">
          <video
-          src="https://res.cloudinary.com/dxxvbrgie/video/upload/v1772823965/jayamahal_madap_sr0ll9.mp4"
+          src="https://res.cloudinary.com/dxxvbrgie/video/upload/q_auto,f_auto/v1772823965/jayamahal_madap_sr0ll9.mp4"
           autoPlay
           loop
           muted
           playsInline
+          webkit-playsinline="true"
+          preload="auto"
           className="absolute w-full h-full object-cover"
           style={{
             objectPosition: "center center",

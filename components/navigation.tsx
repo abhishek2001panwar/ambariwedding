@@ -155,7 +155,7 @@ export function Navigation() {
         />
 
         {/* Menu content */}
-        <div className="relative h-full flex flex-col items-center justify-center px-6">
+        <div className="relative h-full flex flex-col items-center justify-center px-6 pt-32">
           <div className="max-w-2xl w-full">
             {/* Navigation links */}
             <nav className="space-y-1">

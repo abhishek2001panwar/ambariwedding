@@ -5,8 +5,12 @@ import { useEffect, useState } from "react"
 export function PageLoader() {
   const [progress, setProgress] = useState(0)
   const [isLoaded, setIsLoaded] = useState(false)
+  const [isMounted, setIsMounted] = useState(false)
 
   useEffect(() => {
+    // Set mounted to true on client side
+    setIsMounted(true)
+
     // Simulate loading progress
     const interval = setInterval(() => {
       setProgress((prev) => {
@@ -39,7 +43,8 @@ export function PageLoader() {
     }
   }, [])
 
-  if (isLoaded) {
+  // Don't render anything on server side
+  if (!isMounted || isLoaded) {
     return null
   }
 

@@ -143,9 +143,12 @@ export function VideoCell({
       <video
         ref={videoRef}
         src={src}
+        autoPlay
         muted
         playsInline
+        webkit-playsinline="true"
         loop
+        preload="metadata"
         onTimeUpdate={() => {
           const v = videoRef.current;
           if (v?.duration) setProgress((v.currentTime / v.duration) * 100);
@@ -801,10 +804,13 @@ export default function Portfolio() {
         {/* Background */}
         <div className="absolute inset-0 z-0">
           <video
-            src="https://res.cloudinary.com/dxxvbrgie/video/upload/v1772824099/portfolio_prakruthi_and_sudarshan_1_hajbz8.mp4"
+            src="https://res.cloudinary.com/dxxvbrgie/video/upload/q_auto,f_auto/v1772824099/portfolio_prakruthi_and_sudarshan_1_hajbz8.mp4"
             autoPlay
             loop
             muted
+            playsInline
+            webkit-playsinline="true"
+            preload="auto"
             className={`w-full h-full object-cover transition-transform duration-[2s] ease-out ${
               visible ? "scale-100" : "scale-100"
             }`}

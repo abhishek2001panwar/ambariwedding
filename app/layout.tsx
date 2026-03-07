@@ -11,7 +11,6 @@ const inter = Inter({
   subsets: ['latin'], 
   variable: '--font-inter',
   display: 'swap',
-  preload: true,
 })
 
 export const metadata: Metadata = {
@@ -39,12 +38,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={inter.variable}>
-      <head>
-        <link rel="preconnect" href="https://res.cloudinary.com" />
-        <link rel="dns-prefetch" href="https://res.cloudinary.com" />
-        <link rel="preload" as="image" href="/logo.png" />
-      </head>
-      <body className="font-sans antialiased">
+      <body className="font-sans antialiased" suppressHydrationWarning>
         <PageLoader />
         <Navigation />
         {children}
