@@ -48,8 +48,8 @@ ancient traditions of hospitality and joy, we create weddings that honor the pas
 your future together. 
 Your love story becomes unforgettable - and we make sure it feels that way too. 
             </p>
-          <Button onClick={()=>router.push('/about')} variant="outline" className="mt-8">
-            Learn More
+          <Button onClick={()=>router.push('/portfolio')} variant="outline" className="mt-8">
+            Explore More
           </Button>
         </div>
       </div>

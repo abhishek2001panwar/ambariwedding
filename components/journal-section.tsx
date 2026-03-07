@@ -7,7 +7,7 @@ const entries = [
   {
     number: "01",
     title: "Our Approach",
-    body: "We are custodians of celebration, architects of joy. Our team doesn't just coordinate - we consecrate. Every mandap we design, every detail we perfect, every moment we curate carries the sacred responsibility of honoring your union.",
+    body: "We are custodians of celebration, architects of joy. Our team doesn't just coordinate - we consecrate. Every mandap we design, every detail we perfect, every moment we curate carries the sacred responsibility of honoring your union. Heritage never outdated. We blend ancient wisdom with contemporary elegance, ensuring your wedding feels both rooted in tradition and revolutionary in its personal expression. ",
   },
   {
     number: "02",

@@ -77,7 +77,7 @@ function PrincipleCard({
 }
 
 export function ApproachSection() {
-  const { ref, isVisible } = useScrollReveal(0.05)
+  const { ref, isVisible } = useScrollReveal(0.09)
 
   return (
     <section id="whyus" className="px-6 py-28 md:px-12 lg:px-20 md:py-36">

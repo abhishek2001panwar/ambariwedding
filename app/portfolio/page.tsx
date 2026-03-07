@@ -793,7 +793,6 @@ export default function Portfolio() {
 
   return (
     <>
-      <NavDots active={activeDot} />
       <Navigation />
       <section
         ref={ref}
@@ -824,7 +823,7 @@ export default function Portfolio() {
                   : "opacity-0 translate-y-4"
               }`}
             >
-              <p className="text-[10px] md:text-[11px] tracking-[0.3em] uppercase text-background/50">
+              <p className="text-[10px] md:text-[16px] font-bold tracking-[0.3em] uppercase text-background/50">
                 Our Portfolio
               </p>
             </div>
