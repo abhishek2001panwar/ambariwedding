@@ -8,6 +8,12 @@ const testimonials = [
   "Our families are still talking about how beautifully everything honored our traditions while feeling completely personal to us.",
 ]
 
+const videos = [
+  "https://res.cloudinary.com/dxxvbrgie/video/upload/q_auto,f_auto/v1772823167/AW_testimonial_xjjdey.mp4",
+  "/Testimonial_1.mp4",
+  "/Testimonial_2.mp4",
+]
+
 function useInView(options = {}) {
   const ref = useRef(null)
   const [inView, setInView] = useState(false)
@@ -44,21 +50,86 @@ function UnmuteIcon() {
   )
 }
 
-function Feedback() {
-  const [sectionRef, sectionInView] = useInView()
+// Each video card manages its own mute state independently
+function VideoCard({ src, animationStyle }) {
   const [muted, setMuted] = useState(true)
-  const videoContainerRef = useRef(null)
-
-  const getVideoEl = () =>
-    videoContainerRef.current?.querySelector("video") ?? null
+  const containerRef = useRef(null)
 
   const toggleMute = () => {
-    const video = getVideoEl()
+    const video = containerRef.current?.querySelector("video")
     if (video) {
       video.muted = !video.muted
       setMuted(video.muted)
     }
   }
+
+  return (
+    <div
+      style={{
+        ...animationStyle,
+        flex: "1 1 0",
+        minWidth: 0,
+        width: "100%",
+      }}
+    >
+      <div
+        ref={containerRef}
+        className="relative overflow-hidden w-full"
+        style={{
+          aspectRatio: "9/16",
+          borderRadius: "24px",
+          boxShadow: "0 8px 48px 0 rgba(120,100,80,0.18), 0 2px 12px 0 rgba(0,0,0,0.08)",
+        }}
+      >
+        {/* Inset border shimmer */}
+        <div
+          className="absolute inset-0 pointer-events-none z-10"
+          style={{
+            borderRadius: "24px",
+            boxShadow: "inset 0 0 0 1px rgba(255,255,255,0.18)",
+          }}
+        />
+
+        {/* Mute / Unmute button */}
+        <button
+          onClick={toggleMute}
+          aria-label={muted ? "Unmute video" : "Mute video"}
+          className="absolute bottom-4 right-4 z-20 flex items-center justify-center"
+          style={{
+            width: "40px",
+            height: "40px",
+            borderRadius: "50%",
+            background: "rgba(0,0,0,0.38)",
+            backdropFilter: "blur(8px)",
+            border: "1px solid rgba(255,255,255,0.18)",
+            color: "#fff",
+            cursor: "pointer",
+            transition: "background 0.2s ease",
+            boxShadow: "0 2px 12px rgba(0,0,0,0.18)",
+          }}
+          onMouseEnter={e => e.currentTarget.style.background = "rgba(0,0,0,0.58)"}
+          onMouseLeave={e => e.currentTarget.style.background = "rgba(0,0,0,0.38)"}
+        >
+          {muted ? <MuteIcon /> : <UnmuteIcon />}
+        </button>
+
+        <OptimizedVideo
+          src={src}
+          className="absolute inset-0 w-full h-full object-cover block"
+          style={{}}
+          muted
+          playsInline
+          loop
+          autoPlay
+          lazy
+        />
+      </div>
+    </div>
+  )
+}
+
+function Feedback() {
+  const [sectionRef, sectionInView] = useInView()
 
   return (
     <section
@@ -69,8 +140,7 @@ function Feedback() {
       <div
         className="pointer-events-none absolute inset-0"
         style={{
-          background:
-            "radial-gradient(ellipse 70% 60% at 50% 60%, rgba(180,160,140,0.10) 0%, transparent 80%)",
+          background: "radial-gradient(ellipse 70% 60% at 50% 60%, rgba(180,160,140,0.10) 0%, transparent 80%)",
         }}
       />
 
@@ -91,7 +161,6 @@ function Feedback() {
           <h2 className="text-2xl md:text-3xl font-extralight tracking-wide text-foreground">
             Words from the Heart
           </h2>
-          {/* Thin decorative line */}
           <div
             className="mx-auto mt-4 h-px bg-foreground/15"
             style={{
@@ -115,13 +184,11 @@ function Feedback() {
               <div
                 className="relative bg-white/70 rounded-2xl px-6 py-5 text-center"
                 style={{
-                  boxShadow:
-                    "0 2px 24px 0 rgba(160,140,120,0.10), 0 1px 4px 0 rgba(0,0,0,0.04)",
+                  boxShadow: "0 2px 24px 0 rgba(160,140,120,0.10), 0 1px 4px 0 rgba(0,0,0,0.04)",
                   border: "1px solid rgba(180,160,140,0.13)",
                   backdropFilter: "blur(8px)",
                 }}
               >
-                {/* Subtle quote mark */}
                 <span
                   className="absolute top-3 left-5 text-3xl font-serif leading-none select-none"
                   style={{ color: "rgba(180,160,140,0.25)" }}
@@ -136,72 +203,23 @@ function Feedback() {
             </div>
           ))}
         </div>
+      </div>
 
-        {/* Portrait Video */}
-        <div
-          className="w-full flex justify-center"
-          style={{
-            opacity: sectionInView ? 1 : 0,
-            transform: sectionInView ? "translateY(0) scale(1)" : "translateY(40px) scale(0.97)",
-            transition: "opacity 0.9s ease 0.75s, transform 0.9s ease 0.75s",
-          }}
-        >
-          <div
-            ref={videoContainerRef}
-            className="relative overflow-hidden"
-            style={{
-              width: "100%",
-              maxWidth: "380px",
-              borderRadius: "24px",
-              boxShadow:
-                "0 8px 48px 0 rgba(120,100,80,0.18), 0 2px 12px 0 rgba(0,0,0,0.08)",
+      {/* 3 Videos — each with its own independent mute state */}
+      <div
+        className="flex flex-col md:flex-row gap-4 max-w-7xl mx-auto py-5 px-2"
+      >
+        {videos.map((src, idx) => (
+          <VideoCard
+            key={idx}
+            src={src}
+            animationStyle={{
+              opacity: sectionInView ? 1 : 0,
+              transform: sectionInView ? "translateY(0) scale(1)" : "translateY(40px) scale(0.97)",
+              transition: `opacity 0.9s ease ${0.75 + idx * 0.15}s, transform 0.9s ease ${0.75 + idx * 0.15}s`,
             }}
-          >
-            {/* Inset border shimmer */}
-            <div
-              className="absolute inset-0 pointer-events-none z-10"
-              style={{
-                borderRadius: "24px",
-                boxShadow: "inset 0 0 0 1px rgba(255,255,255,0.18)",
-              }}
-            />
-
-            {/* Mute / Unmute button */}
-            <button
-              onClick={toggleMute}
-              aria-label={muted ? "Unmute video" : "Mute video"}
-              className="absolute bottom-4 right-4 z-20 flex items-center justify-center"
-              style={{
-                width: "40px",
-                height: "40px",
-                borderRadius: "50%",
-                background: "rgba(0,0,0,0.38)",
-                backdropFilter: "blur(8px)",
-                border: "1px solid rgba(255,255,255,0.18)",
-                color: "#fff",
-                cursor: "pointer",
-                transition: "background 0.2s ease, transform 0.15s ease",
-                boxShadow: "0 2px 12px rgba(0,0,0,0.18)",
-              }}
-              onMouseEnter={e => e.currentTarget.style.background = "rgba(0,0,0,0.58)"}
-              onMouseLeave={e => e.currentTarget.style.background = "rgba(0,0,0,0.38)"}
-            >
-              {muted ? <MuteIcon /> : <UnmuteIcon />}
-            </button>
-
-            <OptimizedVideo
-              src="https://res.cloudinary.com/dxxvbrgie/video/upload/q_auto,f_auto/v1772823167/AW_testimonial_xjjdey.mp4"
-              className="w-full object-cover block"
-              style={{ height: "560px" }}
-              muted
-              playsInline
-              loop
-              autoPlay
-              lazy
-            />
-          </div>
-        </div>
-
+          />
+        ))}
       </div>
     </section>
   )
