@@ -10,8 +10,8 @@ const testimonials = [
 
 const videos = [
   "https://res.cloudinary.com/dxxvbrgie/video/upload/q_auto,f_auto/v1772823167/AW_testimonial_xjjdey.mp4",
-  "/Testimonial_1.mp4",
-  "/Testimonial_2.mp4",
+  "https://res.cloudinary.com/dxxvbrgie/video/upload/q_auto,f_auto/v1772963410/Testimonial_1_qufeof.mp4",
+  "https://res.cloudinary.com/dxxvbrgie/video/upload/q_auto,f_auto/v1772963406/Testimonial_2_xgn1es.mp4",
 ]
 
 function useInView(options = {}) {
