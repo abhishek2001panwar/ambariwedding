@@ -105,7 +105,7 @@ export function VideoCell({
     if (!videoUrl.includes('cloudinary.com')) return '';
     // Replace /upload/ with /upload/so_0/ and .mp4/.mov with .jpg to get first frame
     return videoUrl
-      .replace('/upload/', '/upload/so_0,q_auto,f_auto,w_800/')
+      .replace('/upload/', '/upload/so_0,q_auto,f_auto,w_720/')
       .replace(/\.(mp4|mov|webm)$/i, '.jpg');
   };
 
