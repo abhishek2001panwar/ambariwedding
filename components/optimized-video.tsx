@@ -41,12 +41,14 @@ export function OptimizedVideo({
     // Lazy load video when it enters viewport
     observerRef.current = new IntersectionObserver(
       (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setShouldLoad(true)
-            observerRef.current?.disconnect()
-          }
-        })
+       entries.forEach((entry) => {
+  if (entry.isIntersecting) {
+    setShouldLoad(true)
+    videoRef.current?.play().catch(() => {})
+  } else {
+    videoRef.current?.pause()
+  }
+})
       },
       { 
         rootMargin: "200px",
@@ -61,6 +63,7 @@ export function OptimizedVideo({
     return () => {
       observerRef.current?.disconnect()
     }
+    
   }, [lazy])
 
   const handleLoadedData = () => {
@@ -69,8 +72,9 @@ export function OptimizedVideo({
   }
 
   // Optimize Cloudinary URL
-  const optimizedSrc = src.includes("cloudinary.com") && !src.includes("q_auto")
-    ? src.replace("/upload/", "/upload/q_auto,f_auto/")
+const optimizedSrc =
+  src.includes("cloudinary.com") && !src.includes("sp_auto")
+    ? src.replace("/upload/", "/upload/q_auto:low,f_auto,w_720/")
     : src
 
   //Auto-generate poster thumbnail from Cloudinary if not provided
@@ -79,6 +83,11 @@ export function OptimizedVideo({
       ? src.replace("/upload/", "/upload/so_0,q_auto,f_auto,w_800/").replace(/\.(mp4|mov|webm)$/i, '.jpg')
       : undefined
   )
+  useEffect(() => {
+  if (videoRef.current && autoPlay) {
+    videoRef.current.play().catch(() => {})
+  }
+}, [shouldLoad])
 
   return (
     <div ref={containerRef} className="relative w-full h-full">
@@ -94,7 +103,7 @@ export function OptimizedVideo({
           muted={muted}
           playsInline={playsInline}
           controls={controls}
-          preload={lazy ? "none" : "auto"}
+preload="metadata"
           onLoadedData={handleLoadedData}
         />
       ) : (
