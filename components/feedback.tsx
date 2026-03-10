@@ -113,7 +113,7 @@ function VideoCard({ src, animationStyle }) {
           {muted ? <MuteIcon /> : <UnmuteIcon />}
         </button>
 
-        <OptimizedVideo
+        <video
           src={src}
           className="absolute inset-0 w-full h-full object-cover block"
           style={{}}
@@ -121,7 +121,7 @@ function VideoCard({ src, animationStyle }) {
           playsInline
           loop
           autoPlay
-          lazy
+         
         />
       </div>
     </div>
