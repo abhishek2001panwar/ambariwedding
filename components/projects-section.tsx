@@ -51,7 +51,7 @@ What we love creating together:
     category: " We don't just book venues, We discover perfect settings that feel destined for your celebration.  From heritage properties that echo with centuries of celebration to contemporary spaces ready for your personal touch, we find places worthy of your story. Because the right venue doesn't just host your wedding - it becomes part of your legacy. ",
     year: "2022",
     location: "Every Space Needs Its Story",
-    image: "https://res.cloudinary.com/dxxvbrgie/video/upload/f_auto,q_auto/v1772818241/venue_bnwozw.mov",
+    image: "https://res.cloudinary.com/dxxvbrgie/video/upload/f_auto,q_auto/v1773140513/IMG_8244_wkpyk0.mov",
   },
   {
       id: " 05",

@@ -537,7 +537,7 @@ function ReceptionChapter() {
         accent={ACCENT}
         num="02"
         label="The Reception"
-                left={{ type: "video", src: "https://res.cloudinary.com/dxxvbrgie/video/upload/f_auto,q_auto/v1772826353/IMG_6093_jptgmt.mov" }}
+                left={{ type: "video", src: "https://res.cloudinary.com/dxxvbrgie/video/upload/v1772786581/Video5_1_hpq4gb.mp4" }}
 
         
         // 
@@ -548,7 +548,7 @@ function ReceptionChapter() {
         }}
         right={{
           type: "video",
-          src: "https://res.cloudinary.com/dxxvbrgie/video/upload/v1772786581/Video5_1_hpq4gb.mp4",
+          src: "https://res.cloudinary.com/dxxvbrgie/video/upload/f_auto,q_auto/v1772826353/IMG_6093_jptgmt.mov ",
           label: "First Dance",
         }}
       />
@@ -604,7 +604,7 @@ function HaldiChapter() {
  alt: "Haldi 1" }}
         center={{
           type: "video",
-          src: "https://res.cloudinary.com/dxxvbrgie/video/upload/v1772785314/AW_gulabi_p2ceqn.mp4",
+          src: "https://res.cloudinary.com/dxxvbrgie/video/upload/v1773141113/IMG_6127_alizp4.mp4",
           label: "Golden Ritual",
         }}
         right={{
@@ -660,7 +660,7 @@ function WeddingChapter() {
           src: "https://res.cloudinary.com/dxxvbrgie/video/upload/v1772825492/Decor_1_fcxiax.mov",
           label: "The Ceremony",
         }}
-        right={{ type: "video", src: "https://res.cloudinary.com/dxxvbrgie/video/upload/v1772825412/Video_12_zou28t.mp4", alt: "Wedding 2" }}
+        right={{ type: "video", src: "https://res.cloudinary.com/dxxvbrgie/video/upload/v1773136897/Video_10_1_nkrbfr.mp4", alt: "Wedding 2" }}
       />
       <Divider />
     </section>

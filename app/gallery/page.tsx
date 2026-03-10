@@ -19,19 +19,19 @@ const GALLERY_ITEMS: MediaItem[] = [
   // Row 1 — Wedding × Reception × Haldi
   {
     type: "video",
-    src: "https://res.cloudinary.com/dxxvbrgie/video/upload/v1772832667/Video_16_iveleu.mp4",
+    src: "https://res.cloudinary.com/dxxvbrgie/video/upload/f_auto,q_auto/v1772832676/Video_13_qj0tfk.mp4",
     label: "The Wedding",
     orientation: "portrait",
   },
   {
     type: "video",
-    src: "https://res.cloudinary.com/dxxvbrgie/video/upload/v1772832669/Video_15_uf3gsl.mp4",
+    src: "https://res.cloudinary.com/dxxvbrgie/video/upload/v1772832676/AW_reel7_mikypz.mp4",
     label: "Reception",
     orientation: "landscape",
   },
   {
     type: "video",
-    src: "https://res.cloudinary.com/dxxvbrgie/video/upload/f_auto,q_auto/v1772832676/Video_13_qj0tfk.mp4",
+    src: "https://res.cloudinary.com/dxxvbrgie/video/upload/v1773139412/couple_entry_dtqu9y.mp4",
     label: "Haldi",
     orientation: "portrait",
   },
@@ -51,30 +51,13 @@ const GALLERY_ITEMS: MediaItem[] = [
   },
   {
     type: "video",
-    src: "https://res.cloudinary.com/dxxvbrgie/video/upload/v1772832676/AW_reel7_mikypz.mp4",
+    src: "https://res.cloudinary.com/dxxvbrgie/video/upload/v1773139615/Video_6_umurkc.mp4",
     label: "Carnival",
-    orientation: "landscape",
+    orientation: "portrait",
   },
 
   // Row 3 — Haldi × Carnival × Sangeet
-  {
-    type: "video",
-    src: "https://res.cloudinary.com/dxxvbrgie/video/upload/v1772832687/Video_10_fscmcq.mp4",
-    label: "Haldi Joy",
-    orientation: "portrait",
-  },
-  {
-    type: "video",
-    src: "https://res.cloudinary.com/dxxvbrgie/video/upload/v1772832691/REEL4_xtbdxq.mp4",
-    label: "Carnival",
-    orientation: "landscape",
-  },
-  {
-    type: "video",
-    src: "https://res.cloudinary.com/dxxvbrgie/video/upload/v1772784322/Video_4_fodf7i.mp4",
-    label: "Sangeet Night",
-    orientation: "portrait",
-  },
+ 
 
  
 ]
