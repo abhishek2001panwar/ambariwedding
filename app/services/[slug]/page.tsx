@@ -158,28 +158,29 @@ export default function ServicePage({
           <div className="flex items-stretch gap-3">
 
             {/* ← Back — goes to previous service if exists, else /services */}
-            <button
-              onClick={() =>
-                prevProject?.slug
-                  ? router.push(`/services/${prevProject.slug}`)
-                  : router.push("/services")
-              }
-              className="group flex items-center gap-3 border border-[#c9a96e]/22 px-10 py-5 hover:bg-[#c9a96e]/5 hover:border-[#c9a96e]/45 transition-all duration-300"
-            >
-              <span className="text-[#c9a96e] text-base group-hover:-translate-x-1.5 transition-transform duration-300">←</span>
-              <div className="flex flex-col items-start gap-1">
-                <span className="text-[9px] tracking-[0.38em] uppercase text-[#c9a96e]/65">
-                  {prevProject?.slug ? "Previous" : "Back"}
-                </span>
-                {prevProject?.slug && (
+            {/* Hide back button if first service */}
+            {currentIndex > 0 && (
+              <button
+                onClick={() =>
+                  prevProject?.slug
+                    ? router.push(`/services/${prevProject.slug}`)
+                    : router.push("/services")
+                }
+                className="group flex items-center gap-3 border border-[#c9a96e]/22 px-10 py-5 hover:bg-[#c9a96e]/5 hover:border-[#c9a96e]/45 transition-all duration-300"
+              >
+                {/* <span className="text-[#c9a96e] text-base group-hover:-translate-x-1.5 transition-transform duration-300">←</span> */}
+                <div className="flex flex-col items-start gap-1">
+                  <span className="text-[9px] tracking-[0.38em] uppercase text-[#c9a96e]/65">
+                    Previous
+                  </span>
                   <span
                     className="text-[14px] font-light text-[#0f0e0c] line-clamp-1"
                   >
-                    {prevProject.title}
+                    {prevProject?.title}
                   </span>
-                )}
-              </div>
-            </button>
+                </div>
+              </button>
+            )}
 
             {/* → Next Service */}
             {nextProject.slug && (
