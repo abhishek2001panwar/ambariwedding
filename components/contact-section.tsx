@@ -233,7 +233,7 @@ export function ContactSection() {
                     style={{ fontSize: 14 }}
                   >
                     <Phone style={{ width: 13, height: 13, color: "#c9a96e", flexShrink: 0 }} />
-                    <span>+91 7892-052739</span>
+                    <span>+91 9663041267</span>
                   </a>
                 </div>
 
