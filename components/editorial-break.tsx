@@ -29,7 +29,7 @@ export function EditorialBreak() {
             autoPlay
           
           /> */}
-          <video  src="https://res.cloudinary.com/dxxvbrgie/video/upload/v1772820287/brand_ipduie.mp4"
+          <video  src="https://hsrtiles.in/wp-content/uploads/2026/04/brand_ipduie.mp4"
             className="w-full aspect-[16/10] object-cover"
             muted
             playsInline

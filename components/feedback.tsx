@@ -9,9 +9,9 @@ const testimonials = [
 ]
 
 const videos = [
-  "https://res.cloudinary.com/dxxvbrgie/video/upload/q_auto,f_auto/v1772823167/AW_testimonial_xjjdey.mp4",
-  "https://res.cloudinary.com/dxxvbrgie/video/upload/v1773233824/Testimonial_1_1_g5dyft.mp4",
-  "https://res.cloudinary.com/dxxvbrgie/video/upload/v1773233818/Testimonial_2_1_xm1x4v.mp4",
+  "https://hsrtiles.in/wp-content/uploads/2026/04/AW_testimonial_xjjdey.webm",
+  "https://hsrtiles.in/wp-content/uploads/2026/04/Testimonial_1_1_g5dyft.mp4",
+  "https://hsrtiles.in/wp-content/uploads/2026/04/Testimonial_2_1_xm1x4v.mp4",
 ]
 
 function useInView(options = {}) {

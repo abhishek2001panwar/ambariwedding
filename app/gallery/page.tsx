@@ -19,19 +19,19 @@ const GALLERY_ITEMS: MediaItem[] = [
   // Row 1 — Wedding × Reception × Haldi
   {
     type: "video",
-    src: "https://res.cloudinary.com/dxxvbrgie/video/upload/f_auto,q_auto/v1772832676/Video_13_qj0tfk.mp4",
+    src: "https://hsrtiles.in/wp-content/uploads/2026/04/Video_13_qj0tfk.webm",
     label: "The Wedding",
     orientation: "portrait",
   },
   {
     type: "video",
-    src: "https://res.cloudinary.com/dxxvbrgie/video/upload/v1772832676/AW_reel7_mikypz.mp4",
+    src: "https://hsrtiles.in/wp-content/uploads/2026/04/AW_reel7_mikypz.mp4",
     label: "Reception",
     orientation: "landscape",
   },
   {
     type: "video",
-    src: "https://res.cloudinary.com/dxxvbrgie/video/upload/v1773139412/couple_entry_dtqu9y.mp4",
+    src: "https://hsrtiles.in/wp-content/uploads/2026/04/couple_entry_dtqu9y.mp4",
     label: "Haldi",
     orientation: "portrait",
   },
@@ -39,19 +39,19 @@ const GALLERY_ITEMS: MediaItem[] = [
   // Row 2 — Sangeet × Wedding × Carnival
   {
     type: "video",
-    src: "https://res.cloudinary.com/dxxvbrgie/video/upload/v1772832676/Video_17_t3rxqn.mp4",
+    src: "https://hsrtiles.in/wp-content/uploads/2026/04/Video_17_t3rxqn.mp4",
     label: "Sangeet",
     orientation: "landscape",
   },
   {
     type: "video",
-    src: "https://res.cloudinary.com/dxxvbrgie/video/upload/v1772832675/Video_9_p7dbzl.mp4",
+    src: "https://hsrtiles.in/wp-content/uploads/2026/04/Video_9_p7dbzl.mp4",
     label: "Sacred Vows",
     orientation: "portrait",
   },
   {
     type: "video",
-    src: "https://res.cloudinary.com/dxxvbrgie/video/upload/v1773139615/Video_6_umurkc.mp4",
+    src: "https://hsrtiles.in/wp-content/uploads/2026/04/Video_6_umurkc.mp4",
     label: "Carnival",
     orientation: "portrait",
   },

@@ -19,7 +19,7 @@ export function Hero() {
       {/* Background */}
       <div className="absolute inset-0 z-0">
          <video
-          src="https://res.cloudinary.com/dxxvbrgie/video/upload/q_auto,f_auto/v1772823965/jayamahal_madap_sr0ll9.mp4"
+          src="https://hsrtiles.in/wp-content/uploads/2026/04/jayamahal_madap_sr0ll9.webm"
           poster="https://res.cloudinary.com/dxxvbrgie/image/upload/so_0,q_auto,f_auto,w_1200/v1772823965/jayamahal_madap_sr0ll9.jpg"
           autoPlay
           loop

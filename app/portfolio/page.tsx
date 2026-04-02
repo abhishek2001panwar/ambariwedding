@@ -503,24 +503,24 @@ function SangeetChapter() {
         label="The Sangeet"
         left={{
           type: "video",
-          src: "https://res.cloudinary.com/dxxvbrgie/video/upload/v1772828010/AW_reel12_ekgxko.mp4",
+          src: "https://hsrtiles.in/wp-content/uploads/2026/04/AW_reel12_ekgxko.mp4",
           alt: "Sangeet 1",
         }}
         center={{
           type: "video",
-          src: "https://res.cloudinary.com/dxxvbrgie/video/upload/v1772784320/awreel14_nekfkm.mp4",
+          src: "https://hsrtiles.in/wp-content/uploads/2026/04/awreel14_nekfkm.mp4",
           label: "Opening Night",
         }}
-        right={{ type: "video", src: "https://res.cloudinary.com/dxxvbrgie/video/upload/v1772784322/Video_4_fodf7i.mp4", alt: "Sangeet 2" }}
+        right={{ type: "video", src: "https://hsrtiles.in/wp-content/uploads/2026/04/Video_4_fodf7i.mp4", alt: "Sangeet 2" }}
       />
       <ExtraVideosRow
         accent={ACCENT}
         videos={[
           {
-            src: "https://res.cloudinary.com/dxxvbrgie/video/upload/v1772784820/sangeet_gqvxzu.mp4",
+            src: "https://hsrtiles.in/wp-content/uploads/2026/04/sangeet_gqvxzu.mp4",
             label: "",
           },
-          { src: "https://res.cloudinary.com/dxxvbrgie/video/upload/v1772784316/video2_rzediw.mp4", label: "Highlights" },
+          { src: "https://hsrtiles.in/wp-content/uploads/2026/04/video2_rzediw.mp4", label: "Highlights" },
         ]}
       />
       <Divider />
@@ -537,18 +537,18 @@ function ReceptionChapter() {
         accent={ACCENT}
         num="02"
         label="The Reception"
-                left={{ type: "video", src: "https://res.cloudinary.com/dxxvbrgie/video/upload/v1772786581/Video5_1_hpq4gb.mp4" }}
+                left={{ type: "video", src: "https://hsrtiles.in/wp-content/uploads/2026/04/Video5_1_hpq4gb.mp4" }}
 
         
         // 
         center={{
           type: "video",
-          src: "https://res.cloudinary.com/dxxvbrgie/video/upload/f_auto,q_auto/v1772826339/IMG_6092_ldvtxc.mov",
+          src: "https://hsrtiles.in/wp-content/uploads/2026/04/IMG_6092_ldvtxc.webm",
           alt: "",
         }}
         right={{
           type: "video",
-          src: "https://res.cloudinary.com/dxxvbrgie/video/upload/f_auto,q_auto/v1772826353/IMG_6093_jptgmt.mov ",
+          src: "https://hsrtiles.in/wp-content/uploads/2026/04/IMG_6093_jptgmt.webm",
           label: "First Dance",
         }}
       />
@@ -559,15 +559,15 @@ function ReceptionChapter() {
         label=""
         left={{
           type: "video",
-          src: "https://res.cloudinary.com/dxxvbrgie/video/upload/v1772784960/purpleReception_fiysts.mp4",
+          src: "https://hsrtiles.in/wp-content/uploads/2026/04/purpleReception_fiysts.mp4",
           label: "Grand Entrance",
         }}
         center={{
           type: "video",
-          src: "https://res.cloudinary.com/dxxvbrgie/video/upload/v1772784958/video_g9s2df.mp4",
+          src: "https://hsrtiles.in/wp-content/uploads/2026/04/video_g9s2df.mp4",
           alt: "Reception",
         }}
-        right={{ type: "video", src: "https://res.cloudinary.com/dxxvbrgie/video/upload/f_auto,q_auto/v1772826341/IMG_6094_hhxm6v.mov" }}
+        right={{ type: "video", src: "https://hsrtiles.in/wp-content/uploads/2026/04/IMG_6094_hhxm6v.webm" }}
       />
       <Divider />
     </section>
@@ -583,15 +583,15 @@ function HaldiChapter() {
         accent={ACCENT}
         num="04"
         label="The Haldi"
-        left={{ type: "video", src: "https://res.cloudinary.com/dxxvbrgie/video/upload/v1772827297/AW_reel13_o2pfcc.mp4", alt: "Haldi 1" }}
+        left={{ type: "video", src: "https://hsrtiles.in/wp-content/uploads/2026/04/AW_reel13_o2pfcc.mp4", alt: "Haldi 1" }}
         center={{
           type: "video",
-          src: "https://res.cloudinary.com/dxxvbrgie/video/upload/v1772785320/awreel_ycjjug.mp4",
+          src: "https://hsrtiles.in/wp-content/uploads/2026/04/awreel_ycjjug.mp4",
           label: "Golden Ritual",
         }}
         right={{
           type: "video",
-          src: "https://res.cloudinary.com/dxxvbrgie/video/upload/v1772827344/AW_reel6_gyksqh.mp4",
+          src: "https://hsrtiles.in/wp-content/uploads/2026/04/AW_reel6_gyksqh.mp4",
           alt: "Haldi 2",
         }}
       />
@@ -600,11 +600,11 @@ function HaldiChapter() {
         className="mt-4"
         num=""
         label="The Haldi"
-        left={{ type: "video",           src: "https://res.cloudinary.com/dxxvbrgie/video/upload/v1772827279/AW_REEL_SHOTS_zqeyub.mp4",
+        left={{ type: "video",           src: "https://hsrtiles.in/wp-content/uploads/2026/04/AW_REEL_SHOTS_zqeyub.mp4",
  alt: "Haldi 1" }}
         center={{
           type: "video",
-          src: "https://res.cloudinary.com/dxxvbrgie/video/upload/v1773141113/IMG_6127_alizp4.mp4",
+          src: "https://hsrtiles.in/wp-content/uploads/2026/04/IMG_6127_alizp4.mp4",
           label: "Golden Ritual",
         }}
         right={{
@@ -630,19 +630,19 @@ function WeddingChapter() {
         accent={ACCENT}
         num="01"
         label="The Wedding"
-        left={{ type: "video", src: "https://res.cloudinary.com/dxxvbrgie/video/upload/v1772785588/vid4_z0t1go.mp4", alt: "Wedding 1" }}
+        left={{ type: "video", src: "https://hsrtiles.in/wp-content/uploads/2026/04/vid4_z0t1go.mp4", alt: "Wedding 1" }}
         center={{
           type: "video",
-          src: "https://res.cloudinary.com/dxxvbrgie/video/upload/v1772785628/vid2_rhxsyc.mp4",
+          src: "https://hsrtiles.in/wp-content/uploads/2026/04/vid2_rhxsyc.mp4",
           label: "The Ceremony",
         }}
-        right={{ type: "video", src: "https://res.cloudinary.com/dxxvbrgie/video/upload/v1772825075/Chettinad_Mantapa_vyypi2.mp4", alt: "Wedding 2" }}
+        right={{ type: "video", src: "https://hsrtiles.in/wp-content/uploads/2026/04/Chettinad_Mantapa_vyypi2.mp4", alt: "Wedding 2" }}
       />
       <ExtraVideosRow
         accent={ACCENT}
         videos={[
-          { src: "https://res.cloudinary.com/dxxvbrgie/video/upload/v1772785599/vid3_yoapir.mp4", label: "Sacred Vows" },
-          { src: "https://res.cloudinary.com/dxxvbrgie/video/upload/v1772825747/_Shradhha_Neelgriv_Wedding_t9vmaj.mp4", label: "Together" },
+          { src: "https://hsrtiles.in/wp-content/uploads/2026/04/vid3_yoapir.mp4", label: "Sacred Vows" },
+          { src: "https://hsrtiles.in/wp-content/uploads/2026/04/Shradhha_Neelgriv_Wedding_t9vmaj.mp4", label: "Together" },
         ]}
       />
       <BentoTop
@@ -652,15 +652,15 @@ function WeddingChapter() {
         label=""
         left={{
           type: "video",
-          src: "https://res.cloudinary.com/dxxvbrgie/video/upload/v1772785612/vid5_cw9wrh.mp4",
+          src: "https://hsrtiles.in/wp-content/uploads/2026/04/vid5_cw9wrh.mp4",
           alt: "Wedding 1",
         }}
         center={{
           type: "video",
-          src: "https://res.cloudinary.com/dxxvbrgie/video/upload/v1772825492/Decor_1_fcxiax.mov",
+          src: "https://hsrtiles.in/wp-content/uploads/2026/04/Decor_1_fcxiax.mov",
           label: "The Ceremony",
         }}
-        right={{ type: "video", src: "https://res.cloudinary.com/dxxvbrgie/video/upload/v1773136897/Video_10_1_nkrbfr.mp4", alt: "Wedding 2" }}
+        right={{ type: "video", src: "https://hsrtiles.in/wp-content/uploads/2026/04/Video_10_1_nkrbfr.mp4", alt: "Wedding 2" }}
       />
       <Divider />
     </section>
@@ -678,25 +678,25 @@ function CarnivalChapter() {
         label="The Carnival"
         left={{
           type: "video",
-          src: "https://res.cloudinary.com/dxxvbrgie/video/upload/v1772828181/AW_reel10_dxrmia.mp4",
+          src: "https://hsrtiles.in/wp-content/uploads/2026/04/AW_reel10_dxrmia.mp4",
           alt: "Carnival 1",
         }}
         center={{
           type: "video",
-          src: "https://res.cloudinary.com/dxxvbrgie/video/upload/v1772785849/AW_reel9_n8lbkj.mp4",
+          src: "https://hsrtiles.in/wp-content/uploads/2026/04/AW_reel9_n8lbkj.mp4",
           label: "Revelry",
         }}
         right={{
           type: "video",
-          src: "https://res.cloudinary.com/dxxvbrgie/video/upload/v1772785883/AMBARIWEDDINGreel_ilmtmt.mp4",
+          src: "https://hsrtiles.in/wp-content/uploads/2026/04/AMBARIWEDDINGreel_ilmtmt.mp4",
           alt: "Carnival 2",
         }}
       />
       <ExtraVideosRow
         accent={ACCENT}
         videos={[
-          { src: "https://res.cloudinary.com/dxxvbrgie/video/upload/v1772785846/AmbariWeddingsPosts_j3sznq.mp4", label: "Sacred Vows" },
-          { src: "https://res.cloudinary.com/dxxvbrgie/video/upload/v1772785852/videolst_innjx5.mp4", label: "Together" },
+          { src: "https://hsrtiles.in/wp-content/uploads/2026/04/AmbariWeddingsPosts_j3sznq.mp4", label: "Sacred Vows" },
+          { src: "https://hsrtiles.in/wp-content/uploads/2026/04/videolst_innjx5.mp4", label: "Together" },
         ]}
       />
     </section>
@@ -712,8 +712,8 @@ function VarapoojaChapter() {
       <ExtraVideosRow
         accent={ACCENT}
         videos={[
-          { src: "https://res.cloudinary.com/dxxvbrgie/video/upload/v1772828771/IMG_6097_xoljnc.mp4", label: "Sacred Vows" },
-          { src: "https://res.cloudinary.com/dxxvbrgie/video/upload/v1772828773/IMG_6098_crvmvh.mp4", label: "Together" },
+          { src: "https://hsrtiles.in/wp-content/uploads/2026/04/IMG_6097_xoljnc.mp4", label: "Sacred Vows" },
+          { src: "https://hsrtiles.in/wp-content/uploads/2026/04/IMG_6098_crvmvh.mp4", label: "Together" },
         ]}
       />
     </section>
@@ -825,7 +825,7 @@ export default function Portfolio() {
         {/* Background */}
         <div className="absolute inset-0 z-0">
           <video
-            src="https://res.cloudinary.com/dxxvbrgie/video/upload/q_auto,f_auto/v1772824099/portfolio_prakruthi_and_sudarshan_1_hajbz8.mp4"
+            src="https://hsrtiles.in/wp-content/uploads/2026/04/portfolio_prakruthi_and_sudarshan_1_hajbz8.webm"
             poster="https://res.cloudinary.com/dxxvbrgie/image/upload/so_0,q_auto,f_auto,w_1200/v1772824099/portfolio_prakruthi_and_sudarshan_1_hajbz8.jpg"
             autoPlay
             loop
