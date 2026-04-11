@@ -4,6 +4,7 @@ import React, { useEffect, useRef, useState, useCallback } from "react";
 import Image from "next/image";
 import GalleryPage from "../gallery/page";
 import { getProxyVideoUrl } from "@/lib/videoProxy";
+import { OptimizedVideo } from "@/components/optimized-video";
 
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -158,7 +159,7 @@ export function VideoCell({
         muted
         playsInline
         loop
-        preload="auto"
+        preload="none"
         onError={() => {}}
         onTimeUpdate={() => {
           const v = videoRef.current;
@@ -815,14 +816,13 @@ export default function Portfolio() {
       >
         {/* Background */}
         <div className="absolute inset-0 z-0">
-          <video
-            src={getProxyVideoUrl("https://hsrtiles.in/wp-content/uploads/2026/04/portfolio_prakruthi_and_sudarshan_1_hajbz8.webm")}
+          <OptimizedVideo
+            src="https://hsrtiles.in/wp-content/uploads/2026/04/portfolio_prakruthi_and_sudarshan_1_hajbz8.webm"
             autoPlay
             loop
             muted
             playsInline
-            preload="auto"
-            onError={() => {}}
+            lazy={false}
             className={`w-full h-full object-cover transition-transform duration-[2s] ease-out ${
               visible ? "scale-100" : "scale-100"
             }`}

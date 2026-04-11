@@ -3,6 +3,7 @@
 import { useRouter } from "next/navigation"
 import { use } from "react"
 import { getProxyVideoUrl } from "@/lib/videoProxy"
+import { OptimizedVideo } from "@/components/optimized-video"
 
 const projects = [
   {
@@ -226,7 +227,7 @@ export default function ServicePage({
               loop
               muted
               playsInline
-              preload="metadata"
+              preload="none"
               onError={() => {}}
             />
           </div>

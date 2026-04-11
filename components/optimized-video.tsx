@@ -46,16 +46,22 @@ export function OptimizedVideo({
         entries.forEach((entry) => {
           const video = videoRef.current;
 
-          if (!video) return;
-
           if (entry.isIntersecting) {
             setShouldLoad(true);
-
-            import("@/utils/videoManager").then(({ playVideo }) => {
-              playVideo(video);
-            });
+            
+            // Only call playVideo if autoPlay is not enabled
+            // autoPlay will handle it automatically when video mounts
+            if (!autoPlay && video) {
+              import("@/utils/videoManager").then(({ playVideo }) => {
+                if (videoRef.current) {
+                  playVideo(videoRef.current);
+                }
+              });
+            }
           } else {
-            video.pause();
+            if (video) {
+              video.pause();
+            }
           }
         });
       },
@@ -72,7 +78,7 @@ export function OptimizedVideo({
     return () => {
       observerRef.current?.disconnect();
     };
-  }, [lazy]);
+  }, [lazy, autoPlay]);
 
   const handleLoadedData = () => {
     setIsLoaded(true);
@@ -102,7 +108,7 @@ export function OptimizedVideo({
   }, [shouldLoad, autoPlay]);
 
   return (
-    <div ref={containerRef} className="relative w-full h-full bg-black/5">
+    <div ref={containerRef} className={`relative w-full h-full ${lazy && !shouldLoad ? 'min-h-[200px] bg-black/5' : 'bg-black/5'}`}>
       {shouldLoad ? (
         <video
           ref={videoRef}
@@ -115,7 +121,7 @@ export function OptimizedVideo({
           muted={muted}
           playsInline={playsInline}
           controls={controls}
-          preload="metadata"
+          preload={lazy ? "none" : "metadata"}
           onLoadedData={handleLoadedData}
           onError={handleError}
           crossOrigin="anonymous"

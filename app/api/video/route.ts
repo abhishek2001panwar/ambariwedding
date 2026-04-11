@@ -49,9 +49,10 @@ export async function GET(request: NextRequest) {
     headers.set('Content-Type', contentType);
     headers.set('Access-Control-Allow-Origin', '*');
     headers.set('Access-Control-Allow-Methods', 'GET, HEAD, OPTIONS');
-    headers.set('Cache-Control', 'public, max-age=604800, immutable'); // 1 week cache
+    headers.set('Cache-Control', 'public, max-age=2592000, immutable'); // 30 days cache
     headers.set('X-Content-Type-Options', 'nosniff');
     headers.set('Accept-Ranges', 'bytes');
+    headers.set('Connection', 'keep-alive');
     
     if (contentLength) {
       headers.set('Content-Length', contentLength);

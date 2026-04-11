@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { getProxyVideoUrl } from "@/lib/videoProxy";
+import { OptimizedVideo } from "./optimized-video";
 
 export function Hero() {
   const [visible, setVisible] = useState(false);
@@ -12,7 +13,7 @@ export function Hero() {
     return () => clearTimeout(timer);
   }, []);
 
-  const heroVideoUrl = getProxyVideoUrl("https://hsrtiles.in/wp-content/uploads/2026/04/jayamahal_madap_sr0ll9.webm");
+  // Removed heroVideoUrl - now handled in OptimizedVideo component
 
   return (
     <section
@@ -21,18 +22,17 @@ export function Hero() {
     >
       {/* Background */}
       <div className="absolute inset-0 z-0">
-         <video
-          src={heroVideoUrl}
+         <OptimizedVideo
+          src="https://hsrtiles.in/wp-content/uploads/2026/04/jayamahal_madap_sr0ll9.webm"
           autoPlay
           loop
           muted
           playsInline
-          preload="auto"
+          lazy={false}
           className="absolute w-full h-full object-cover"
           style={{
             objectPosition: "center center",
           }}
-          onError={() => {}}
         />
        
         {/* Stronger gradient on mobile so text stays legible */}

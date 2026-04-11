@@ -115,15 +115,13 @@ function VideoCard({ src, animationStyle }) {
           {muted ? <MuteIcon /> : <UnmuteIcon />}
         </button>
 
-        <video
-          src={proxiedSrc}
+        <OptimizedVideo
+          src={src}
           className="absolute inset-0 w-full h-full object-cover block"
           muted
           playsInline
           loop
-          autoPlay
-          preload="metadata"
-          onError={() => {}}
+          lazy={true}
         />
       </div>
     </div>

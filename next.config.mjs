@@ -17,7 +17,7 @@ const nextConfig = {
     formats: ['image/avif', 'image/webp'],
     deviceSizes: [640, 750, 828, 1080, 1200, 1920],
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
-    minimumCacheTTL: 60,
+    minimumCacheTTL: 86400, // 24 hours cache
   },
   reactStrictMode: true,
   compress: true,
@@ -33,7 +33,7 @@ const nextConfig = {
         headers: [
           {
             key: 'Cache-Control',
-            value: 'public, max-age=604800, immutable' // 1 week cache for videos
+            value: 'public, max-age=2592000, immutable' // 30 days cache for videos
           },
           {
             key: 'Access-Control-Allow-Origin',
@@ -42,6 +42,19 @@ const nextConfig = {
           {
             key: 'X-Content-Type-Options',
             value: 'nosniff'
+          },
+          {
+            key: 'Accept-Ranges',
+            value: 'bytes'
+          }
+        ]
+      },
+      {
+        source: '/public/video/:path*',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable' // 1 year for public videos
           }
         ]
       },

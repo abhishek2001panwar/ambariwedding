@@ -3,6 +3,8 @@
 import { useEffect, useRef, useState, useCallback } from "react"
 import Image from "next/image"
 import { getProxyVideoUrl } from "@/lib/videoProxy"
+import { Navigation } from "@/components/navigation"
+import { OptimizedVideo } from "@/components/optimized-video"
 
 // ─────────────────────────────────────────────────────────────────────────────
 // TYPES
@@ -146,7 +148,7 @@ function VideoCell({ src, label, orientation }: { src: string; label?: string; o
         muted 
         playsInline
         loop
-        preload="metadata"
+        preload="none"
         onError={() => {}}
         onTimeUpdate={() => {
           const v = videoRef.current
@@ -409,14 +411,13 @@ function HeroSection() {
   return (
     <section className="relative h-screen flex flex-col justify-end overflow-hidden">
      <div className="absolute inset-0 z-0">
-        <video
-          src={getProxyVideoUrl("https://res.cloudinary.com/dxxvbrgie/video/upload/q_auto,f_auto/v1772786084/gallery_anmzec.mp4")}
+        <OptimizedVideo
+          src="https://res.cloudinary.com/dxxvbrgie/video/upload/q_auto,f_auto/v1772786084/gallery_anmzec.mp4"
           autoPlay
           loop
           muted
           playsInline
-          preload="auto"
-          onError={() => {}}
+          lazy={false}
           className="absolute w-full h-full object-cover"
           style={{
             objectPosition: "center center",
