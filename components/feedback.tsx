@@ -1,6 +1,7 @@
 'use client'
 import React, { useEffect, useRef, useState } from "react"
 import { OptimizedVideo } from "./optimized-video"
+import { getProxyVideoUrl } from "@/lib/videoProxy"
 
 const testimonials = [
   "They didn't just plan our wedding. They created our perfect day and made us feel like the most important people in the world.",
@@ -54,6 +55,7 @@ function UnmuteIcon() {
 function VideoCard({ src, animationStyle }) {
   const [muted, setMuted] = useState(true)
   const containerRef = useRef(null)
+  const proxiedSrc = getProxyVideoUrl(src)
 
   const toggleMute = () => {
     const video = containerRef.current?.querySelector("video")
@@ -114,14 +116,14 @@ function VideoCard({ src, animationStyle }) {
         </button>
 
         <video
-          src={src}
+          src={proxiedSrc}
           className="absolute inset-0 w-full h-full object-cover block"
-          style={{}}
           muted
           playsInline
           loop
           autoPlay
-         
+          preload="metadata"
+          onError={() => {}}
         />
       </div>
     </div>

@@ -3,6 +3,7 @@ import { Navigation } from "@/components/navigation";
 import React, { useEffect, useRef, useState, useCallback } from "react";
 import Image from "next/image";
 import GalleryPage from "../gallery/page";
+import { getProxyVideoUrl } from "@/lib/videoProxy";
 
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -100,33 +101,24 @@ export function VideoCell({
   const [progress, setProgress] = useState(0);
   const [vis, setVis] = useState(false);
 
-  // Generate poster thumbnail from Cloudinary video URL
-  const getPosterUrl = (videoUrl) => {
-    if (!videoUrl.includes('cloudinary.com')) return '';
-    // Replace /upload/ with /upload/so_0/ and .mp4/.mov with .jpg to get first frame
-    return videoUrl
-      .replace('/upload/', '/upload/so_0,q_auto,f_auto,w_720/')
-      .replace(/\.(mp4|mov|webm)$/i, '.jpg');
-  };
+
 
   useEffect(() => {
     const io = new IntersectionObserver(
       ([e]) => {
         if (e.isIntersecting) {
           setVis(true);
-          // Delay play slightly to reduce simultaneous video loading
-          setTimeout(() => {
-            videoRef.current?.play().catch(() => {});
-            setPlaying(true);
-          }, 100);
+          // Play immediately when visible (no delay for brand videos)
+          videoRef.current?.play().catch(() => {});
+          setPlaying(true);
         } else {
           videoRef.current?.pause();
           setPlaying(false);
         }
       },
       { 
-        threshold: 0.05,
-        rootMargin: "200px"
+        threshold: 0.01,
+        rootMargin: "400px"
       },
     );
     io.observe(wrapRef.current);
@@ -161,14 +153,13 @@ export function VideoCell({
     >
       <video
         ref={videoRef}
-        src={src}
-        poster={getPosterUrl(src)}
+        src={getProxyVideoUrl(src)}
         autoPlay={false}
         muted
         playsInline
-        webkit-playsinline="true"
         loop
-        preload="none"
+        preload="auto"
+        onError={() => {}}
         onTimeUpdate={() => {
           const v = videoRef.current;
           if (v?.duration) setProgress((v.currentTime / v.duration) * 100);
@@ -825,14 +816,13 @@ export default function Portfolio() {
         {/* Background */}
         <div className="absolute inset-0 z-0">
           <video
-            src="https://hsrtiles.in/wp-content/uploads/2026/04/portfolio_prakruthi_and_sudarshan_1_hajbz8.webm"
-            poster="https://res.cloudinary.com/dxxvbrgie/image/upload/so_0,q_auto,f_auto,w_1200/v1772824099/portfolio_prakruthi_and_sudarshan_1_hajbz8.jpg"
+            src={getProxyVideoUrl("https://hsrtiles.in/wp-content/uploads/2026/04/portfolio_prakruthi_and_sudarshan_1_hajbz8.webm")}
             autoPlay
             loop
             muted
             playsInline
-            webkit-playsinline="true"
             preload="auto"
+            onError={() => {}}
             className={`w-full h-full object-cover transition-transform duration-[2s] ease-out ${
               visible ? "scale-100" : "scale-100"
             }`}

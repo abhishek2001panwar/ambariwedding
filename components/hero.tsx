@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { getProxyVideoUrl } from "@/lib/videoProxy";
 
 export function Hero() {
   const [visible, setVisible] = useState(false);
@@ -11,6 +12,8 @@ export function Hero() {
     return () => clearTimeout(timer);
   }, []);
 
+  const heroVideoUrl = getProxyVideoUrl("https://hsrtiles.in/wp-content/uploads/2026/04/jayamahal_madap_sr0ll9.webm");
+
   return (
     <section
       ref={ref}
@@ -19,18 +22,17 @@ export function Hero() {
       {/* Background */}
       <div className="absolute inset-0 z-0">
          <video
-          src="https://hsrtiles.in/wp-content/uploads/2026/04/jayamahal_madap_sr0ll9.webm"
-          poster="https://res.cloudinary.com/dxxvbrgie/image/upload/so_0,q_auto,f_auto,w_1200/v1772823965/jayamahal_madap_sr0ll9.jpg"
+          src={heroVideoUrl}
           autoPlay
           loop
           muted
           playsInline
-          webkit-playsinline="true"
           preload="auto"
           className="absolute w-full h-full object-cover"
           style={{
             objectPosition: "center center",
           }}
+          onError={() => {}}
         />
        
         {/* Stronger gradient on mobile so text stays legible */}

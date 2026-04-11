@@ -5,6 +5,7 @@ import { ArrowUpRight } from "lucide-react"
 import { useScrollReveal } from "@/hooks/use-scroll-reveal"
 import { Button } from "./button"
 import { useRouter } from "next/navigation"
+import { getProxyVideoUrl } from "@/lib/videoProxy"
 
 const projects = [
   {
@@ -110,7 +111,7 @@ function ProjectCard({ project, index }: { project: typeof projects[0]; index: n
       <div className="overflow-hidden">
        {project.image ? (
     <video
-      src={project.image}
+      src={getProxyVideoUrl(project.image)}
       className={`w-full aspect-[4/3] object-cover transition-all duration-[800ms] ease-out ${
         hovered ? "scale-[1.04]" : "scale-100"
       }`}
@@ -118,6 +119,8 @@ function ProjectCard({ project, index }: { project: typeof projects[0]; index: n
       muted
       playsInline
       loop
+      preload="metadata"
+      onError={() => {}}
     />
   ) : null}
       </div>

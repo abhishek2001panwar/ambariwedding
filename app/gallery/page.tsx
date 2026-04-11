@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState, useCallback } from "react"
 import Image from "next/image"
+import { getProxyVideoUrl } from "@/lib/videoProxy"
 
 // ─────────────────────────────────────────────────────────────────────────────
 // TYPES
@@ -96,13 +97,7 @@ function VideoCell({ src, label, orientation }: { src: string; label?: string; o
   const [vis,      setVis]      = useState(false)
   const [hov,      setHov]      = useState(false)
 
-  // Generate poster thumbnail from Cloudinary video URL
-  const getPosterUrl = (videoUrl: string) => {
-    if (!videoUrl.includes('cloudinary.com')) return '';
-    return videoUrl
-      .replace('/upload/', '/upload/so_0,q_auto,f_auto,w_800/')
-      .replace(/\.(mp4|mov|webm)$/i, '.jpg');
-  };
+
 
   useEffect(() => {
     const io = new IntersectionObserver(([e]) => {
@@ -146,14 +141,13 @@ function VideoCell({ src, label, orientation }: { src: string; label?: string; o
     >
       <video
         ref={videoRef}
-        src={src}
-        poster={getPosterUrl(src)}
+        src={getProxyVideoUrl(src)}
         autoPlay={false}
         muted 
-        playsInline 
-        webkit-playsinline="true"
+        playsInline
         loop
-        preload="none"
+        preload="metadata"
+        onError={() => {}}
         onTimeUpdate={() => {
           const v = videoRef.current
           if (v?.duration) setProgress((v.currentTime / v.duration) * 100)
@@ -416,14 +410,13 @@ function HeroSection() {
     <section className="relative h-screen flex flex-col justify-end overflow-hidden">
      <div className="absolute inset-0 z-0">
         <video
-          src="https://res.cloudinary.com/dxxvbrgie/video/upload/q_auto,f_auto/v1772786084/gallery_anmzec.mp4"
-          poster="https://res.cloudinary.com/dxxvbrgie/image/upload/so_0,q_auto,f_auto,w_1200/v1772786084/gallery_anmzec.jpg"
+          src={getProxyVideoUrl("https://res.cloudinary.com/dxxvbrgie/video/upload/q_auto,f_auto/v1772786084/gallery_anmzec.mp4")}
           autoPlay
           loop
           muted
           playsInline
-          webkit-playsinline="true"
           preload="auto"
+          onError={() => {}}
           className="absolute w-full h-full object-cover"
           style={{
             objectPosition: "center center",

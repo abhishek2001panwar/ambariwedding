@@ -59,7 +59,7 @@ export function ContactSection() {
       setFormData({ name: "", email: "", phone: "", message: "" })
       setTimeout(() => setSubmitStatus("idle"), 5000)
     } catch (error) {
-      console.error("Error submitting form:", error)
+      // Error silently handled
       setSubmitStatus("error"); setTimeout(() => setSubmitStatus("idle"), 3000)
     } finally { setIsSubmitting(false) }
   }

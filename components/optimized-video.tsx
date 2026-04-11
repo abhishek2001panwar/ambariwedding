@@ -1,10 +1,10 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { getProxyVideoUrl } from "@/lib/videoProxy";
 
 interface OptimizedVideoProps {
   src: string;
-  poster?: string;
   className?: string;
   style?: React.CSSProperties;
   autoPlay?: boolean;
@@ -14,11 +14,11 @@ interface OptimizedVideoProps {
   controls?: boolean;
   lazy?: boolean;
   onLoad?: () => void;
+  fallbackSrc?: string;
 }
 
 export function OptimizedVideo({
   src,
-  poster,
   className = "",
   style,
   autoPlay = false,
@@ -28,9 +28,11 @@ export function OptimizedVideo({
   controls = false,
   lazy = true,
   onLoad,
+  fallbackSrc,
 }: OptimizedVideoProps) {
   const [isLoaded, setIsLoaded] = useState(false);
   const [shouldLoad, setShouldLoad] = useState(!lazy);
+  const [error, setError] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const observerRef = useRef<IntersectionObserver | null>(null);
@@ -39,29 +41,29 @@ export function OptimizedVideo({
     if (!lazy) return;
 
     // Lazy load video when it enters viewport
-  observerRef.current = new IntersectionObserver(
-  (entries) => {
-    entries.forEach((entry) => {
-      const video = videoRef.current
+    observerRef.current = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          const video = videoRef.current;
 
-      if (!video) return
+          if (!video) return;
 
-      if (entry.isIntersecting) {
-        setShouldLoad(true)
+          if (entry.isIntersecting) {
+            setShouldLoad(true);
 
-        import("@/utils/videoManager").then(({ playVideo }) => {
-          playVideo(video)
-        })
-      } else {
-        video.pause()
+            import("@/utils/videoManager").then(({ playVideo }) => {
+              playVideo(video);
+            });
+          } else {
+            video.pause();
+          }
+        });
+      },
+      {
+        rootMargin: "300px",
+        threshold: 0.1,
       }
-    })
-  },
-  {
-    rootMargin: "150px",
-    threshold: 0.4,
-  }
-)
+    );
 
     if (containerRef.current) {
       observerRef.current.observe(containerRef.current);
@@ -74,55 +76,55 @@ export function OptimizedVideo({
 
   const handleLoadedData = () => {
     setIsLoaded(true);
+    setError(false);
     onLoad?.();
   };
 
+  const handleError = () => {
+    setError(true);
+  };
+
+  // Use proxy for external videos to bypass CORS
+  const videoUrl = getProxyVideoUrl(src);
+
   // Optimize Cloudinary URL
   const optimizedSrc =
-    src.includes("cloudinary.com") && !src.includes("sp_auto")
-      ? src.replace("/upload/", "/upload/q_auto:low,f_auto,w_720/")
-      : src;
+    src.includes("cloudinary.com") && !src.includes("q_auto")
+      ? getProxyVideoUrl(src.replace("/upload/", "/upload/q_auto:low,f_auto,w_720/"))
+      : videoUrl;
 
-  //Auto-generate poster thumbnail from Cloudinary if not provided
-  const autoPoster =
-    poster ||
-    (src.includes("cloudinary.com")
-      ? src
-          .replace("/upload/", "/upload/so_0,q_auto,f_auto,w_800/")
-          .replace(/\.(mp4|mov|webm)$/i, ".jpg")
-      : undefined);
+
+
   useEffect(() => {
-    if (videoRef.current && autoPlay) {
+    if (videoRef.current && autoPlay && shouldLoad) {
       videoRef.current.play().catch(() => {});
     }
-  }, [shouldLoad]);
+  }, [shouldLoad, autoPlay]);
 
   return (
-    <div ref={containerRef} className="relative w-full h-full">
+    <div ref={containerRef} className="relative w-full h-full bg-black/5">
       {shouldLoad ? (
-       <video
-  ref={videoRef}
-  src={optimizedSrc}
-  poster={autoPoster}
-  className={`transition-opacity duration-1000 ${isLoaded ? "opacity-100" : "opacity-0"} ${className}`}
-  style={style}
-  autoPlay
-  loop={loop}
-  muted
-  playsInline
-  controls={controls}
-  preload="metadata"
-  onLoadedData={handleLoadedData}
-/>
-      ) : (
-        autoPoster && (
-          <img
-            src={autoPoster}
-            alt=""
-            style={{ width: "100%", height: "100%", objectFit: "cover" }}
-          />
-        )
-      )}
+        <video
+          ref={videoRef}
+          className={`transition-opacity duration-1000 ${
+            isLoaded ? "opacity-100" : "opacity-0"
+          } ${className}`}
+          style={style}
+          autoPlay={autoPlay}
+          loop={loop}
+          muted={muted}
+          playsInline={playsInline}
+          controls={controls}
+          preload="metadata"
+          onLoadedData={handleLoadedData}
+          onError={handleError}
+          crossOrigin="anonymous"
+        >
+          <source src={optimizedSrc} type="video/mp4" />
+          {fallbackSrc && <source src={fallbackSrc} type="video/webm" />}
+          Your browser does not support the video tag.
+        </video>
+      ) : null}
     </div>
   );
 }

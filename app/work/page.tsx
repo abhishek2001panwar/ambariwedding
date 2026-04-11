@@ -1,6 +1,7 @@
 import React from 'react'
 import {ProjectsSection} from '../../components/projects-section'
-function page() {
+
+function Page() {
   return (
     <div>
       <ProjectsSection/>
@@ -8,4 +9,4 @@ function page() {
   )
 }
 
-export default page
+export default Page

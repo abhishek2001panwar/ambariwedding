@@ -2,6 +2,7 @@
 
 import { useRouter } from "next/navigation"
 import { use } from "react"
+import { getProxyVideoUrl } from "@/lib/videoProxy"
 
 const projects = [
   {
@@ -219,13 +220,14 @@ export default function ServicePage({
         <div className="w-full lg:w-[42%] xl:w-[40%] flex-shrink-0 order-1 lg:order-2 lg:sticky lg:top-10">
           <div className="rounded-xl overflow-hidden shadow-[0_40px_100px_rgba(15,14,12,0.16)] border border-[#c9a96e]/10">
             <video
-              src={project.image}
+              src={getProxyVideoUrl(project.image)}
               className="w-full h-[62vw] sm:h-[52vw] lg:h-[82vh] object-cover block"
               autoPlay
               loop
               muted
               playsInline
               preload="metadata"
+              onError={() => {}}
             />
           </div>
           {/* Caption below video */}

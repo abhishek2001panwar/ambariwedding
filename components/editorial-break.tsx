@@ -20,22 +20,15 @@ export function EditorialBreak() {
             imgVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
           }`}
         >
-          {/* <OptimizedVideo
-            src="https://res.cloudinary.com/dxxvbrgie/video/upload/v1772820287/brand_ipduie.mp4"
+          <OptimizedVideo
+            src="https://hsrtiles.in/wp-content/uploads/2026/04/brand_ipduie.mp4"
             className="w-full aspect-[16/10] object-cover"
             muted
             playsInline
             loop
             autoPlay
-          
-          /> */}
-          <video  src="https://hsrtiles.in/wp-content/uploads/2026/04/brand_ipduie.mp4"
-            className="w-full aspect-[16/10] object-cover"
-            muted
-            playsInline
-            loop
-            autoPlay>
-            </video>
+            lazy={false}
+          />
         </div>
         <div
           ref={quoteRef}
