@@ -95,7 +95,7 @@ export function OptimizedVideo({
 
   // Optimize Cloudinary URL
   const optimizedSrc =
-    src.includes("cloudinary.com") && !src.includes("q_auto")
+    src.includes("cloudinary.com",) && !src.includes("q_auto")
       ? getProxyVideoUrl(src.replace("/upload/", "/upload/q_auto:low,f_auto,w_720/"))
       : videoUrl;
 

@@ -22,7 +22,7 @@ export function Hero() {
     >
       {/* Background */}
       <div className="absolute inset-0 z-0">
-         <OptimizedVideo
+         {/* <OptimizedVideo
           src="https://hsrtiles.in/wp-content/uploads/2026/04/jayamahal_madap_sr0ll9.webm"
           autoPlay
           loop
@@ -33,8 +33,19 @@ export function Hero() {
           style={{
             objectPosition: "center center",
           }}
-        />
-       
+        /> */}
+
+        <video
+        src='https://ik.imagekit.io/ifxwwa7l1h/jayamahal_madap_sr0ll9.webm'
+        autoPlay
+        loop
+        muted
+        playsInline
+        className="absolute w-full h-full object-cover"
+        style={{
+          objectPosition: "center center",
+        }}
+      />
         {/* Stronger gradient on mobile so text stays legible */}
         <div className="absolute inset-0 bg-foreground/60 md:bg-foreground/50" />
         {/* Extra bottom vignette for text readability on mobile */}
