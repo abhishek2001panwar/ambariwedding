@@ -412,12 +412,13 @@ function HeroSection() {
     <section className="relative h-screen flex flex-col justify-end overflow-hidden">
      <div className="absolute inset-0 z-0">
         <OptimizedVideo
-          src="https://res.cloudinary.com/dxxvbrgie/video/upload/q_auto,f_auto/v1772786084/gallery_anmzec.mp4"
+          src="https://ik.imagekit.io/d9tsatbk5/gallery_anmzec.mp4?tr=q-65,h-720,f-auto"
           autoPlay
           loop
           muted
           playsInline
           lazy={false}
+          preload="auto"
           className="absolute w-full h-full object-cover"
           style={{
             objectPosition: "center center",

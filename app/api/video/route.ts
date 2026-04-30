@@ -12,7 +12,7 @@ export async function GET(request: NextRequest) {
     const decodedUrl = decodeURIComponent(videoUrl);
 
     // Security: Only allow videos from whitelisted domains
-    const allowedDomains = ['hsrtiles.in', 'res.cloudinary.com'];
+    const allowedDomains = ['hsrtiles.in', 'ik.imagekit.io'];
     const isAllowed = allowedDomains.some(domain => decodedUrl.includes(domain));
     
     if (!isAllowed) {

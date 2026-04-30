@@ -13,7 +13,7 @@ const projects = [
     category: "We don't offer packages,  We create experiences just for you.  Each service flows from one core belief:  intention over expense,  meaning over magnificence.  Because honestly?  Your love story isn't like anyone else's.  Why should your wedding be? ",
     year: "2024",
     location: "Your Special Treatment ",
-    image: "https://res.cloudinary.com/dxxvbrgie/video/upload/f_auto,q_auto/v1772817490/Ambari_Wedding_csqsly.mov",
+    image: "https://ik.imagekit.io/d9tsatbk5/Ambari_Wedding_csqsly.mov",
   },
   {
     id: "02",
@@ -22,7 +22,7 @@ const projects = [
     category: "Everything Perfect Here's what sets us apart: We have our own production house. While others coordinate vendors, we create magic in-house. From concept to completion, every element flows through our skilled artisans' hands. No miscommunication. No quality compromises. No vendor conflicts. Just seamless creation where your vision transforms into reality through our complete control of the process. Because when you own the entire journey, perfection isn't just possible - it's promised.",
     year: "2023",
     location: "Everything Under One Roof",
-    image: "https://res.cloudinary.com/dxxvbrgie/video/upload/v1772817797/AW_rreel_tmm2ja.mp4",
+    image: "https://ik.imagekit.io/d9tsatbk5/AW_rreel_tmm2ja.mp4",
   },
   {
     id: "03",
@@ -31,7 +31,7 @@ const projects = [
     category: `Your vision becomes our mission. From intimate mandaps that whisper your love story to grand celebrations that announce your union to the world, we design spaces where magic feels natural.<br/><br/>What we love creating together:<br/>● Royal mandap design inspired by your journey - not just beautiful, but meaningful<br/>● Floral arrangements that tell your story, not just fill space<br/>● Lighting that transforms spaces into sanctuaries where you belong<br/>● Decor that honors tradition while embracing your personal style`,
     year: "2023",
     location: "When Your Dreams Breathe",
-    image: "https://res.cloudinary.com/dxxvbrgie/video/upload/v1772871788/Video_of_all_the_recent_luxury_decor_uzhf3y.mp4",
+    image: "https://ik.imagekit.io/d9tsatbk5/Video_of_all_the_recent_luxury_decor_uzhf3y.mp4",
   },
   {
     id: "04",
@@ -40,7 +40,7 @@ const projects = [
     category: " We don't just book venues, We discover perfect settings that feel destined for your celebration.  From heritage properties that echo with centuries of celebration to contemporary spaces ready for your personal touch, we find places worthy of your story. Because the right venue doesn't just host your wedding - it becomes part of your legacy. ",
     year: "2022",
     location: "Every Space Needs Its Story",
-    image: "https://res.cloudinary.com/dxxvbrgie/video/upload/f_auto,q_auto/v1773140513/IMG_8244_wkpyk0.mov",
+    image: "https://ik.imagekit.io/d9tsatbk5/IMG_8244_wkpyk0.mov",
   },
   {
     id: "05",
@@ -49,7 +49,7 @@ const projects = [
     category: "Your love story deserves to be told beautifully. We capture not just moments, but emotions - the quiet glances, the joyful tears, the laughter that fills the air. Because years from now, these images will be how you remember feeling like the most important people in the world.",
     year: "2023",
     location: "Capturing Your Forever ",
-    image: "https://res.cloudinary.com/dxxvbrgie/video/upload/v1772829968/IMG_6100_ahofvk.mp4",
+    image: "https://ik.imagekit.io/d9tsatbk5/IMG_6100_ahofvk.mp4",
   },
   {
     id: "06",
@@ -58,7 +58,7 @@ const projects = [
     category: "Food is love made visible. Our curated menus blend traditional recipes with contemporary flair, ensuring every bite carries the warmth of home and the excitement of new beginnings. Your guests won't just remember how beautiful everything looked - they'll remember how loved they felt. ",
     year: "2022",
     location: "Feasts That Tell Your Story ",
-    image: "https://res.cloudinary.com/dxxvbrgie/video/upload/f_auto,q_auto/v1772818693/culinary_sxmwrd.mov",
+    image: "https://ik.imagekit.io/d9tsatbk5/culinary_sxmwrd.mov",
   },
   {
     id: "07",
@@ -67,7 +67,7 @@ const projects = [
     category: "On your wedding day, you shouldn't be a planner - you should be celebrating.  We orchestrate every detail  so you can focus on what matters: enjoying your love with those who matter most. You get to be the bride and groom.  We handle everything else.",
     year: "2022",
     location: "From Planning to Perfection",
-    image: "https://res.cloudinary.com/dxxvbrgie/video/upload/v1772878326/BTS_dsaij5.mp4",
+    image: "https://ik.imagekit.io/d9tsatbk5/BTS_dsaij5.mp4",
   },
   {
     id: "",

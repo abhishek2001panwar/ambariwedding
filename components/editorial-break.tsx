@@ -21,7 +21,7 @@ export function EditorialBreak() {
           }`}
         >
           <OptimizedVideo
-            src="https://hsrtiles.in/wp-content/uploads/2026/04/brand_ipduie.mp4"
+            src="https://ik.imagekit.io/d9tsatbk5/brand_ipduie.mp4"
             className="w-full aspect-[16/10] object-cover"
             muted
             playsInline

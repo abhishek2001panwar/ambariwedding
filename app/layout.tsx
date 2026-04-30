@@ -41,7 +41,7 @@ export default function RootLayout({
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link rel="dns-prefetch" href="https://res.cloudinary.com" />
+        <link rel="dns-prefetch" href="https://ik.imagekit.io" />
       </head>
       <body className="font-sans antialiased" suppressHydrationWarning>
         <PageLoader />

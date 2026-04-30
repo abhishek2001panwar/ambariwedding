@@ -16,6 +16,11 @@ export function getProxyVideoUrl(externalUrl: string): string {
     return externalUrl;
   }
 
+  // ImageKit is CORS-enabled and a CDN - use directly without proxy
+  if (externalUrl.includes('ik.imagekit.io')) {
+    return externalUrl;
+  }
+
   // Convert external URL to proxy URL
   const encodedUrl = encodeURIComponent(externalUrl);
   return `/api/video?url=${encodedUrl}`;
