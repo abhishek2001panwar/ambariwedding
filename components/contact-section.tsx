@@ -235,6 +235,13 @@ export function ContactSection() {
                     <Phone style={{ width: 13, height: 13, color: "#c9a96e", flexShrink: 0 }} />
                     <span>+91 9663041267</span>
                   </a>
+                   <a href="tel:+917892052739"
+                    className="inline-flex items-center gap-2 text-foreground/60 hover:text-foreground transition-colors duration-300"
+                    style={{ fontSize: 14 }}
+                  >
+                    <Phone style={{ width: 13, height: 13, color: "#c9a96e", flexShrink: 0 }} />
+                    <span>+91 7892052739</span>
+                  </a>
                 </div>
 
                 <div className="flex items-start gap-2 text-foreground/60" style={{ fontSize: 14 }}>
