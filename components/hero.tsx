@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { getProxyVideoUrl } from "@/lib/videoProxy";
 import { OptimizedVideo } from "./optimized-video";
+import Link from "next/link";
 
 export function Hero() {
   const [visible, setVisible] = useState(false);
@@ -22,7 +23,7 @@ export function Hero() {
     >
       {/* Background */}
       <div className="absolute inset-0 z-0">
-         {/* <OptimizedVideo
+        {/* <OptimizedVideo
           src="https://hsrtiles.in/wp-content/uploads/2026/04/jayamahal_madap_sr0ll9.webm"
           autoPlay
           loop
@@ -36,16 +37,16 @@ export function Hero() {
         /> */}
 
         <video
-        src='https://ik.imagekit.io/ifxwwa7l1h/jayamahal_madap_sr0ll9.webm'
-        autoPlay
-        loop
-        muted
-        playsInline
-        className="absolute w-full h-full object-cover"
-        style={{
-          objectPosition: "center center",
-        }}
-      />
+          src="https://ik.imagekit.io/ifxwwa7l1h/jayamahal_madap_sr0ll9.webm"
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="absolute w-full h-full object-cover"
+          style={{
+            objectPosition: "center center",
+          }}
+        />
         {/* Stronger gradient on mobile so text stays legible */}
         <div className="absolute inset-0 bg-foreground/60 md:bg-foreground/50" />
         {/* Extra bottom vignette for text readability on mobile */}
@@ -99,37 +100,27 @@ export function Hero() {
               visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
             }`}
           >
-            <div
-              className="px-3 py-2 sm:px-4 sm:py-2 md:px-[18px] md:py-2"
-              style={{
-                display: "inline-flex",
-                gap: "16px",
-                alignItems: "center",
-                border: "1px solid rgba(255,255,255,0.12)",
-                borderRadius: "40px",
-                backdropFilter: "blur(8px)",
-                background: "rgba(255,255,255,0.04)",
-              }}
-            >
-            <span
-  className="text-[8px] sm:text-[10px] md:text-[12px] tracking-[0.15em] sm:tracking-[0.25em] md:tracking-[0.35em] uppercase text-[#c9a96e]/80 whitespace-nowrap"
->
-  Event Planning · Decor · Photography · Catering
-</span>
+            <p className="mb-3 text-[10px] sm:text-[11px] md:text-[12px] font-medium uppercase tracking-[0.25em] text-[#c9a96e]/80">
+              We offer two services
+            </p>
+            <div className="flex flex-wrap items-center gap-3 sm:gap-4">
+              <Link
+                href="/event-planning"
+                className="inline-flex items-center justify-center rounded-full border border-white/15 bg-white/5 px-4 py-2.5 text-[10px] sm:text-[11px] md:text-[12px] font-medium uppercase tracking-[0.2em] text-background/90 backdrop-blur-md transition hover:bg-white/10"
+              >
+                Event planning & management
+              </Link>
+              <Link
+                href="/wedding-decor"
+                className="inline-flex items-center justify-center rounded-full border border-white/15 bg-white/5 px-4 py-2.5 text-[10px] sm:text-[11px] md:text-[12px] font-medium uppercase tracking-[0.2em] text-background/90 backdrop-blur-md transition hover:bg-white/10"
+              >
+                Wedding decor production
+              </Link>
             </div>
           </div>
         </div>
 
-        <div
-          className={`mt-10 md:mt-16 flex items-center gap-6 transition-all duration-1000 delay-1000 ${
-            visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-          }`}
-        >
-          <div className="w-10 md:w-12 h-px bg-background/30" />
-          <span className="text-[10px] md:text-[11px] tracking-[0.2em] uppercase text-background/40">
-            Scroll to explore
-          </span>
-        </div>
+
       </div>
     </section>
   );
