@@ -217,9 +217,7 @@ export default function Page() {
         <div className="rounded-3xl bg-white p-10 shadow-sm">
           <Heart className="h-10 w-10 text-[#c18b52]" />
 
-          <h1 className="mt-6 text-2xl">
-            A Welcome from Our Founder
-          </h1>
+          <h1 className="mt-6 text-2xl">A Welcome from Our Founder</h1>
 
           <p className="mt-6 text-lg leading-8 text-neutral-600 font-light">
             Thank you for considering Ambari Weddings to be a part of your
@@ -245,9 +243,7 @@ export default function Page() {
                   className="rounded-3xl border border-[#ece3d8] bg-[#fcfaf7] p-8 shadow-sm"
                 >
                   <Icon className="h-10 w-10 text-[#c18b52]" />
-                  <h1 className="mt-5 text-2xl">
-                    {service.title}
-                  </h1>
+                  <h1 className="mt-5 text-2xl">{service.title}</h1>
                   <p className="mt-4 font-light text-lg leading-8 text-neutral-600">
                     {service.blurb}
                   </p>
@@ -272,14 +268,18 @@ export default function Page() {
                   <Camera className="h-6 w-6 text-[#c18b52]" />
                   <h1 className="text-xl">House of Bliss</h1>
                 </div>
-                <p className="mt-3 text-neutral-600 font-light">Photography & Films</p>
+                <p className="mt-3 text-neutral-600 font-light">
+                  Photography & Films
+                </p>
               </div>
               <div className="rounded-2xl border border-[#e8dfd6] bg-white p-6">
                 <div className="flex items-center gap-3">
                   <Sparkles className="h-6 w-6 text-[#c18b52]" />
                   <h1 className="text-xl">SSSS Catering</h1>
                 </div>
-                <p className="mt-3 text-neutral-600 font-light">Catering & Hospitality</p>
+                <p className="mt-3 text-neutral-600 font-light">
+                  Catering & Hospitality
+                </p>
               </div>
             </div>
           </div>
@@ -300,9 +300,7 @@ export default function Page() {
           <div className="mt-16 grid gap-12 grid-cols-1 lg:grid-cols-2">
             <div className="rounded-3xl bg-white p-10 shadow-lg">
               <div className="mb-6">
-                <h1 className="text-3xl">
-                  Phase 1: Wedding Planning
-                </h1>
+                <h1 className="text-3xl">Phase 1: Wedding Planning</h1>
                 <p className="mt-3 max-w-xl text-base leading-7 text-neutral-600 font-light">
                   We lay the foundation for a well-organized celebration by
                   taking care of every detail before the wedding day.
@@ -320,9 +318,7 @@ export default function Page() {
 
             <div className="rounded-3xl bg-white p-10 shadow-lg">
               <div className="mb-6">
-                <h1 className="text-3xl">
-                  Phase 2: Wedding Management
-                </h1>
+                <h1 className="text-3xl">Phase 2: Wedding Management</h1>
                 <p className="mt-3 max-w-xl text-base leading-7 text-neutral-600 font-light">
                   On your wedding days, our team ensures every detail is
                   executed seamlessly so you and your family can simply enjoy
@@ -361,7 +357,9 @@ export default function Page() {
                     {group.items.map((item) => (
                       <div key={item} className="flex items-start gap-3">
                         <CheckCircle2 className="mt-1 h-5 w-5 text-[#c18b52]" />
-                        <span className="text-neutral-700 font-light">{item}</span>
+                        <span className="text-neutral-700 font-light">
+                          {item}
+                        </span>
                       </div>
                     ))}
                   </div>
@@ -390,9 +388,7 @@ export default function Page() {
                   key={section.title}
                   className="rounded-2xl border border-[#e8dfd6] bg-white p-6 shadow-sm"
                 >
-                  <h1 className="text-xl  text-neutral-900">
-                    {section.title}
-                  </h1>
+                  <h1 className="text-xl  text-neutral-900">{section.title}</h1>
                   <div className="mt-5 space-y-3">
                     {section.items.map((item) => (
                       <div key={item} className="flex gap-3">
@@ -422,10 +418,9 @@ export default function Page() {
               <h1 className=" text-3xl">
                 Emergency Planning & Last-Minute Changes
               </h1>
-
             </div>
-             <h2 className="mt-5 text-md">Our Approach to the Unexpected</h2>
-           
+            <h2 className="mt-5 text-md">Our Approach to the Unexpected</h2>
+
             <p className="mt-2 text-lg font-light leading-8 text-neutral-600">
               No matter how well a wedding is planned, unexpected situations and
               last-minute changes can sometimes arise. At Ambari Weddings, our
@@ -437,35 +432,35 @@ export default function Page() {
               <div className="rounded-2xl bg-[#fcfaf7] p-6">
                 <h1 className="text-xl ">How We Handle It</h1>
                 <div className="mt-4 space-y-3 text-neutral-700">
-                  <div className="flex gap-3 font-light">
-                    <CheckCircle2 className="mt-1 h-5 w-5 text-green-600" />
+                  <div className="flex items-start gap-3 font-light">
+                    <CheckCircle2 className="mt-1 h-5 w-5 shrink-0 text-green-600" />
                     <span>
                       Continuous coordination with all vendors and venue teams.
                     </span>
                   </div>
-                  <div className="flex gap-3 font-light">
-                    <CheckCircle2 className="mt-1 h-5 w-5 text-green-600" />
+                  <div className="flex items-start gap-3 font-light">
+                    <CheckCircle2 className="mt-1 h-5 w-5 shrink-0 text-green-600" />
                     <span>
                       Dedicated on-ground team to monitor timelines and event
-                      flow.
+                      flow.{" "}
                     </span>
                   </div>
-                  <div className="flex gap-3 font-light">
-                    <CheckCircle2 className="mt-1 h-5 w-5 text-green-600" />
+                  <div className="flex items-start gap-3 font-light">
+                    <CheckCircle2 className="mt-1 h-5 w-5 shrink-0 text-green-600" />
                     <span>
                       Immediate response to last-minute changes and guest
-                      requests.
+                      requests.{" "}
                     </span>
                   </div>
-                  <div className="flex gap-3 font-light ">
-                    <CheckCircle2 className="mt-1 h-5 w-5 text-green-600" />
+                  <div className="flex items-start gap-3 font-light">
+                    <CheckCircle2 className="mt-1 h-5 w-5 shrink-0 text-green-600" />
                     <span>
                       Quick decision-making in consultation with the client or
                       designated family representative.
                     </span>
                   </div>
-                  <div className="flex gap-3 font-light">
-                    <CheckCircle2 className="mt-1 h-5 w-5 text-green-600" />
+                  <div className="flex items-start gap-3 font-light">
+                    <CheckCircle2 className="mt-1 h-5 w-5 shrink-0 text-green-600" />
                     <span>
                       Practical solutions to minimize disruptions and maintain
                       the guest experience.
@@ -510,9 +505,9 @@ export default function Page() {
             </p>
             <div className="space-y-5">
               {terms.map((term) => (
-                <div className="flex gap-3" key={term}>
-                  <CheckCircle2 className="mt-1 h-5 w-5 text-green-600" />
-                  <p className="text-neutral-700 font-light">{term}</p>
+                <div className="flex items-start gap-3" key={term}>
+                  <CheckCircle2 className="mt-1 h-5 w-5 shrink-0 text-green-600" />
+                  <p className="font-light text-neutral-700">{term}</p>
                 </div>
               ))}
             </div>
