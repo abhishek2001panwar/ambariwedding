@@ -309,7 +309,7 @@ export default function Page() {
               <div className="space-y-4">
                 {planning.map((item) => (
                   <div className="flex gap-3" key={item}>
-                    <CheckCircle2 className="mt-1 h-5 w-5 text-green-600" />
+                    <CheckCircle2 className="mt-1 h-5 w-5 shrink-0 text-green-600" />
                     <span className="font-light">{item}</span>
                   </div>
                 ))}
@@ -356,7 +356,7 @@ export default function Page() {
                   <div className="mt-5 space-y-3">
                     {group.items.map((item) => (
                       <div key={item} className="flex items-start gap-3">
-                        <CheckCircle2 className="mt-1 h-5 w-5 text-[#c18b52]" />
+                        <CheckCircle2 className="mt-1 h-5 w-5 shrink-0 text-[#c18b52]" />
                         <span className="text-neutral-700 font-light">
                           {item}
                         </span>
@@ -412,10 +412,10 @@ export default function Page() {
 
       <section className="bg-white py-10">
         <div className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-12">
-          <div className="rounded-3xl border border-[#ece3d8] p-12">
+          <div className="rounded-3xl border border-[#ece3d8] p-4 md:p-12">
             <div className="flex items-center gap-4">
-              <ShieldCheck className="h-8 w-8 text-[#c18b52]" />
-              <h1 className=" text-3xl">
+              <ShieldCheck className="h-8 w-8 shrink-0 text-[#c18b52]" />
+              <h1 className="text-xl md:text-3xl">
                 Emergency Planning & Last-Minute Changes
               </h1>
             </div>
@@ -493,10 +493,10 @@ export default function Page() {
 
       <section className="py-10">
         <div className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-12">
-          <div className="rounded-3xl border border-[#ece3d8] p-12">
+          <div className="rounded-3xl border border-[#ece3d8] p-5 md:p-12">
             <div className="mb-3 flex items-center gap-4">
-              <FileText className="h-7 w-7 text-[#c18b52]" />
-              <h1 className=" text-3xl">Terms & Conditions</h1>
+              <FileText className="h-7 w-7 shrink-0 text-[#c18b52]" />
+              <h1 className=" md:text-3xl">Terms & Conditions</h1>
             </div>
 
             <p className="text-neutral-800 mb-5 font-light ">
