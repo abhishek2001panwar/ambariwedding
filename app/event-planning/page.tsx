@@ -391,8 +391,8 @@ export default function Page() {
                   <h1 className="text-xl  text-neutral-900">{section.title}</h1>
                   <div className="mt-5 space-y-3">
                     {section.items.map((item) => (
-                      <div key={item} className="flex gap-3">
-                        <ArrowRight className="mt-1 h-5 w-5 text-red-500" />
+                      <div key={item} className="flex items-start gap-3 ">
+                        <ArrowRight className="mt-1 h-5 w-5 shrink-0 text-red-500 " />
                         <span className="text-neutral-700">{item}</span>
                       </div>
                     ))}
