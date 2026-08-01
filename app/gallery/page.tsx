@@ -3,7 +3,6 @@
 import { useEffect, useRef, useState, useCallback } from "react"
 import Image from "next/image"
 import { getProxyVideoUrl } from "@/lib/videoProxy"
-import { Navigation } from "@/components/navigation"
 import { OptimizedVideo } from "@/components/optimized-video"
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -15,17 +14,11 @@ type MediaItem =
   | { type: "photo"; src: string; alt?: string; orientation?: "portrait" | "landscape" }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// GALLERY DATA
+// ALL GALLERY DATA
 // ─────────────────────────────────────────────────────────────────────────────
 
-const GALLERY_ITEMS: MediaItem[] = [
-  // Row 1 — Wedding × Reception × Haldi
-  {
-    type: "video",
-    src: "https://hsrtiles.in/wp-content/uploads/2026/04/Video_13_qj0tfk.webm",
-    label: "The Wedding",
-    orientation: "portrait",
-  },
+const ALL_GALLERY_ITEMS: MediaItem[] = [
+  // LANDSCAPE ITEMS
   {
     type: "video",
     src: "https://hsrtiles.in/wp-content/uploads/2026/04/AW_reel7_mikypz.mp4",
@@ -34,17 +27,35 @@ const GALLERY_ITEMS: MediaItem[] = [
   },
   {
     type: "video",
-    src: "https://hsrtiles.in/wp-content/uploads/2026/04/couple_entry_dtqu9y.mp4",
-    label: "Haldi",
-    orientation: "portrait",
-  },
-
-  // Row 2 — Sangeet × Wedding × Carnival
-  {
-    type: "video",
     src: "https://hsrtiles.in/wp-content/uploads/2026/04/Video_17_t3rxqn.mp4",
     label: "Sangeet",
     orientation: "landscape",
+  },
+  {
+    type: "video",
+    src: "https://hsrtiles.in/wp-content/uploads/2026/08/IMG_7517.mp4",
+    label: "Grand Celebration",
+    orientation: "landscape",
+  },
+  {
+    type: "video",
+    src: "https://hsrtiles.in/wp-content/uploads/2026/08/IMG_7516.mp4",
+    label: "Night Lights",
+    orientation: "landscape",
+  },
+
+  // PORTRAIT ITEMS
+  {
+    type: "video",
+    src: "https://hsrtiles.in/wp-content/uploads/2026/04/Video_13_qj0tfk.webm",
+    label: "The Wedding",
+    orientation: "portrait",
+  },
+  {
+    type: "video",
+    src: "https://hsrtiles.in/wp-content/uploads/2026/04/couple_entry_dtqu9y.mp4",
+    label: "Haldi",
+    orientation: "portrait",
   },
   {
     type: "video",
@@ -58,29 +69,55 @@ const GALLERY_ITEMS: MediaItem[] = [
     label: "Carnival",
     orientation: "portrait",
   },
-
-  // Row 3 — Haldi × Carnival × Sangeet
- 
-
- 
+  {
+    type: "video",
+    src: "https://hsrtiles.in/wp-content/uploads/2026/08/Video-19.mp4",
+    label: "Phere Moments",
+    orientation: "portrait",
+  },
+  {
+    type: "video",
+    src: "https://hsrtiles.in/wp-content/uploads/2026/08/Video-18.mp4",
+    label: "Royal Entry",
+    orientation: "portrait",
+  },
+  {
+    type: "video",
+    src: "https://hsrtiles.in/wp-content/uploads/2026/08/Video-17-1.mp4",
+    label: "Rituals & Joy",
+    orientation: "portrait",
+  },
+  {
+    type: "video",
+    src: "https://hsrtiles.in/wp-content/uploads/2026/08/Video-16.mp4",
+    label: "Mehendi Beats",
+    orientation: "portrait",
+  },
+  {
+    type: "video",
+    src: "https://hsrtiles.in/wp-content/uploads/2026/08/South-Indian-Traditional.mp4",
+    label: "Warm Smiles",
+    orientation: "portrait",
+  },
+  {
+    type: "video",
+    src: "https://hsrtiles.in/wp-content/uploads/2026/08/Ambari.mp4",
+    label: "Floral Shower",
+    orientation: "portrait",
+  },
+  {
+    type: "video",
+    src: "https://hsrtiles.in/wp-content/uploads/2026/08/Amba.mp4",
+    label: "Bridal Glow",
+    orientation: "portrait",
+  },
+  {
+    type: "video",
+    src: "https://hsrtiles.in/wp-content/uploads/2026/08/Amb.mp4",
+    label: "Festive Vibes",
+    orientation: "portrait",
+  },
 ]
-
-// ─────────────────────────────────────────────────────────────────────────────
-// BREAKPOINT HOOK
-// ─────────────────────────────────────────────────────────────────────────────
-function useBreakpoint() {
-  const [bp, setBp] = useState<"mobile" | "tablet" | "desktop">("desktop")
-  useEffect(() => {
-    const check = () => {
-      const w = window.innerWidth
-      setBp(w < 640 ? "mobile" : w < 1024 ? "tablet" : "desktop")
-    }
-    check()
-    window.addEventListener("resize", check)
-    return () => window.removeEventListener("resize", check)
-  }, [])
-  return bp
-}
 
 // ─────────────────────────────────────────────────────────────────────────────
 // ICONS
@@ -98,8 +135,6 @@ function VideoCell({ src, label, orientation }: { src: string; label?: string; o
   const [progress, setProgress] = useState(0)
   const [vis,      setVis]      = useState(false)
   const [hov,      setHov]      = useState(false)
-
-
 
   useEffect(() => {
     const io = new IntersectionObserver(([e]) => {
@@ -134,7 +169,7 @@ function VideoCell({ src, label, orientation }: { src: string; label?: string; o
       onMouseEnter={() => setHov(true)}
       onMouseLeave={() => setHov(false)}
       style={{
-        position: "relative", borderRadius: "4px", overflow: "hidden",
+        position: "relative", borderRadius: "8px", overflow: "hidden",
         background: "#1a1410", width: "100%", height: "100%",
         opacity: vis ? 1 : 0,
         transform: vis ? "translateY(0) scale(1)" : "translateY(20px) scale(0.98)",
@@ -156,7 +191,7 @@ function VideoCell({ src, label, orientation }: { src: string; label?: string; o
         }}
         style={{
           width: "100%", height: "100%", objectFit: "cover",
-          objectPosition: orientation === "portrait" ? "center top" : "center center",
+          objectPosition: "center center",
           display: "block",
           transform: hov ? "scale(1.03)" : "scale(1)",
           transition: "transform 0.8s ease",
@@ -167,20 +202,23 @@ function VideoCell({ src, label, orientation }: { src: string; label?: string; o
         background: "linear-gradient(to top, rgba(8,5,3,0.75) 0%, rgba(8,5,3,0.1) 45%, transparent 70%)",
         pointerEvents: "none",
       }}/>
+
+     
+
       <div style={{
         position: "absolute", bottom: 0, left: 0, right: 0,
-        padding: "12px 14px",
-        display: "flex", alignItems: "center", gap: "9px",
+        padding: "14px 16px",
+        display: "flex", alignItems: "center", gap: "10px", zIndex: 10
       }}>
         <button onClick={toggle} style={{
-          width: "26px", height: "26px", borderRadius: "50%", flexShrink: 0,
+          width: "28px", height: "28px", borderRadius: "50%", flexShrink: 0,
           border: "1px solid rgba(255,255,255,0.4)",
           background: "rgba(255,255,255,0.07)", backdropFilter: "blur(10px)",
           cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center",
         }}>
           {playing ? <PauseIcon /> : <PlayIcon />}
         </button>
-       
+        
         <div style={{
           flex: 1, height: "1px",
           background: "rgba(255,255,255,0.12)", borderRadius: "1px", overflow: "hidden",
@@ -215,7 +253,7 @@ function PhotoCell({ src, alt, orientation }: { src: string; alt?: string; orien
       onMouseEnter={() => setHov(true)}
       onMouseLeave={() => setHov(false)}
       style={{
-        position: "relative", borderRadius: "4px", overflow: "hidden",
+        position: "relative", borderRadius: "8px", overflow: "hidden",
         background: "#e8e2da", width: "100%", height: "100%",
         opacity: vis ? 1 : 0,
         transform: vis ? "translateY(0) scale(1)" : "translateY(20px) scale(0.98)",
@@ -233,7 +271,7 @@ function PhotoCell({ src, alt, orientation }: { src: string; alt?: string; orien
           quality={85}
           loading="lazy"
           style={{
-            objectPosition: orientation === "portrait" ? "center top" : "center center",
+            objectPosition: "center center",
             transform: hov ? "scale(1.05)" : "scale(1)",
             transition: "transform 0.8s ease",
           }}
@@ -257,70 +295,11 @@ function MediaCell({ item }: { item: MediaItem }) {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// BENTO ROW — responsive layout per breakpoint
-// ─────────────────────────────────────────────────────────────────────────────
-function BentoRow({
-  items,
-  rowIndex,
-  bp,
-}: {
-  items: MediaItem[]
-  rowIndex: number
-  bp: "mobile" | "tablet" | "desktop"
-}) {
-  const [a, b, c] = items
-
-  // ── MOBILE: single column, each cell natural height ──────────────────────
-  if (bp === "mobile") {
-    return (
-      <div style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
-        {[a, b, c].filter(Boolean).map((item, i) => (
-          <div key={i} style={{ height: item.orientation === "portrait" ? "280px" : "200px" }}>
-            <MediaCell item={item} />
-          </div>
-        ))}
-      </div>
-    )
-  }
-
-  // ── TABLET: center spans full width top; flanks side-by-side below ───────
-  if (bp === "tablet") {
-    return (
-      <div style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
-        {b && (
-          <div style={{ height: "320px" }}>
-            <MediaCell item={b} />
-          </div>
-        )}
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "6px" }}>
-          {a && <div style={{ height: "240px" }}><MediaCell item={a} /></div>}
-          {c && <div style={{ height: "240px" }}><MediaCell item={c} /></div>}
-        </div>
-      </div>
-    )
-  }
-
-  // ── DESKTOP: alternating bento patterns ──────────────────────────────────
-  const isPatternA = rowIndex % 2 === 0
-  const cols   = isPatternA ? "0.72fr 1.56fr 0.72fr" : "1.28fr 0.94fr 1.28fr"
-  const height = isPatternA ? "480px" : "360px"
-
-  return (
-    <div style={{ display: "grid", gridTemplateColumns: cols, gap: "6px", height }}>
-      {[a, b, c].filter(Boolean).map((item, i) => (
-        <MediaCell key={i} item={item} />
-      ))}
-    </div>
-  )
-}
-
-// ─────────────────────────────────────────────────────────────────────────────
 // GALLERY SECTION
 // ─────────────────────────────────────────────────────────────────────────────
 function GallerySection() {
   const headerRef = useRef<HTMLDivElement>(null)
   const [headerVis, setHeaderVis] = useState(false)
-  const bp = useBreakpoint()
 
   useEffect(() => {
     const io = new IntersectionObserver(
@@ -331,67 +310,90 @@ function GallerySection() {
     return () => io.disconnect()
   }, [])
 
-  const rows: MediaItem[][] = []
-  for (let i = 0; i < GALLERY_ITEMS.length; i += 3) {
-    rows.push(GALLERY_ITEMS.slice(i, i + 3))
-  }
+  // Separate Landscape & Portrait Videos
+  const landscapeItems = ALL_GALLERY_ITEMS.filter((item) => item.orientation === "landscape")
+  const portraitItems  = ALL_GALLERY_ITEMS.filter((item) => item.orientation === "portrait")
 
   return (
     <section style={{
       background: "#0d0b09",
-      padding: "clamp(48px, 8vw, 120px) clamp(16px, 5vw, 60px)",
+      padding: "clamp(48px, 8vw, 120px) clamp(16px, 4vw, 48px)",
     }}>
-      <div style={{ maxWidth: "1400px", margin: "0 auto" }}>
+      {/* Header */}
+      <div
+        ref={headerRef}
+        style={{
+          textAlign: "center",
+          marginBottom: "clamp(40px, 6vw, 80px)",
+          opacity: headerVis ? 1 : 0,
+          transform: headerVis ? "translateY(0)" : "translateY(20px)",
+          transition: "opacity 1s ease, transform 1s ease",
+        }}
+      >
+        <p style={{
+          fontSize: "10px", letterSpacing: "0.55em", textTransform: "uppercase",
+          color: "#c9a96e", fontWeight: 300, marginBottom: "16px",
+        }}>
+          Our Gallery
+        </p>
+        <h2 style={{
+          fontSize: "clamp(28px, 5.5vw, 72px)",
+          fontWeight: 300, color: "#f5f0e8",
+          lineHeight: 0.95, letterSpacing: "-0.03em",
+          margin: "0 0 16px",
+        }}>
+          Every frame,{" "}
+          <em style={{ color: "#c9a96e", fontStyle: "italic" }}>a story</em>
+        </h2>
+      </div>
 
-        {/* Header */}
-        <div
-          ref={headerRef}
-          style={{
-            textAlign: "center",
-            marginBottom: "clamp(32px, 5vw, 80px)",
-            opacity: headerVis ? 1 : 0,
-            transform: headerVis ? "translateY(0)" : "translateY(20px)",
-            transition: "opacity 1s ease, transform 1s ease",
-          }}
-        >
-          <p style={{
-            fontSize: "9px", letterSpacing: "0.55em", textTransform: "uppercase",
-            color: "#c9a96e", fontWeight: 300, marginBottom: "16px",
-          }}>
-            Our Gallery
-          </p>
-          <h2 style={{
-            fontSize: "clamp(28px, 5.5vw, 72px)",
-            fontWeight: 300, color: "#f5f0e8",
-            lineHeight: 0.95, letterSpacing: "-0.03em",
-            margin: "0 0 16px",
-          }}>
-            Every frame,{" "}
-            <em style={{ color: "#c9a96e", fontStyle: "italic" }}>a story</em>
-          </h2>
-          
+      {/* 1. LANDSCAPE SECTION — MAX-W-8XL */}
+      <div className="max-w-[1920px] mx-auto mb-20 md:mb-32">
+        <div className="mb-6 flex items-center gap-4 opacity-70">
+          <span className="text-[10px] tracking-[0.3em] uppercase text-[#c9a96e]">
+            Cinematic Highlights
+          </span>
+          <div className="flex-1 h-px bg-[#c9a96e]/20" />
         </div>
 
-        {/* Grid rows */}
-        <div style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
-          {rows.map((rowItems, i) => (
-            <BentoRow key={i} items={rowItems} rowIndex={i} bp={bp} />
+        {/* Landscape Grid (Full Widescreen 16/9) */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+          {landscapeItems.map((item, index) => (
+            <div key={index} className="w-full aspect-[16/9] min-h-[260px] sm:min-h-[380px]">
+              <MediaCell item={item} />
+            </div>
           ))}
         </div>
+      </div>
 
-        {/* Footer rule */}
-        <div style={{
-          marginTop: "clamp(32px, 5vw, 80px)",
-          display: "flex", alignItems: "center", gap: "20px", opacity: 0.15,
-        }}>
-          <div style={{ flex: 1, height: "1px", background: "#c9a96e" }}/>
-          <svg viewBox="0 0 200 16" style={{ width: "80px" }} fill="none">
-            <circle cx="100" cy="8" r="3" fill="#c9a96e"/>
-            <circle cx="88" cy="8" r="1.5" fill="#c9a96e"/>
-            <circle cx="112" cy="8" r="1.5" fill="#c9a96e"/>
-          </svg>
-          <div style={{ flex: 1, height: "1px", background: "#c9a96e" }}/>
+      {/* 2. PORTRAIT SECTION — 2 PER ROW */}
+      <div className="max-w-7xl mx-auto">
+        <div className="mb-6 flex items-center gap-4 opacity-70">
+          <span className="text-[10px] tracking-[0.3em] uppercase text-[#c9a96e]">
+            Portrait Reels (2 Per Row)
+          </span>
+          <div className="flex-1 h-px bg-[#c9a96e]/20" />
         </div>
+
+        {/* Portrait Grid (2 Each / 9:16 Aspect Ratio) */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-8">
+          {portraitItems.map((item, index) => (
+            <div key={index} className="w-full aspect-[9/10] max-h-[800px]">
+              <MediaCell item={item} />
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Footer Divider */}
+      <div className="max-w-7xl mx-auto mt-20 md:mt-32 flex items-center gap-5 opacity-15">
+        <div className="flex-1 h-px bg-[#c9a96e]" />
+        <svg viewBox="0 0 200 16" className="w-20" fill="none">
+          <circle cx="100" cy="8" r="3" fill="#c9a96e" />
+          <circle cx="88" cy="8" r="1.5" fill="#c9a96e" />
+          <circle cx="112" cy="8" r="1.5" fill="#c9a96e" />
+        </svg>
+        <div className="flex-1 h-px bg-[#c9a96e]" />
       </div>
     </section>
   )
@@ -410,7 +412,7 @@ function HeroSection() {
 
   return (
     <section className="relative h-screen flex flex-col justify-end overflow-hidden">
-     <div className="absolute inset-0 z-0">
+      <div className="absolute inset-0 z-0">
         <OptimizedVideo
           src="https://ik.imagekit.io/d9tsatbk5/gallery_anmzec.mp4?tr=q-65,h-720,f-auto"
           autoPlay
@@ -424,9 +426,8 @@ function HeroSection() {
             objectPosition: "center center",
           }}
         />
-        {/* Stronger gradient on mobile so text stays legible */}
+        {/* Dark overlay gradients */}
         <div className="absolute inset-0 bg-foreground/60 md:bg-foreground/50" />
-        {/* Extra bottom vignette for text readability on mobile */}
         <div
           className="absolute inset-0 md:hidden"
           style={{
