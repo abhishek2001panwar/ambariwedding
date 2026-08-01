@@ -105,12 +105,12 @@ const ALL_GALLERY_ITEMS: MediaItem[] = [
     label: "Floral Shower",
     orientation: "portrait",
   },
-  {
-    type: "video",
-    src: "https://hsrtiles.in/wp-content/uploads/2026/08/Amba.mp4",
-    label: "Bridal Glow",
-    orientation: "portrait",
-  },
+  // {
+  //   type: "video",
+  //   src: "https://hsrtiles.in/wp-content/uploads/2026/08/Amba.mp4",
+  //   label: "Bridal Glow",
+  //   orientation: "portrait",
+  // },
   {
     type: "video",
     src: "https://hsrtiles.in/wp-content/uploads/2026/08/Amb.mp4",
