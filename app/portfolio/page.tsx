@@ -5,6 +5,8 @@ import Image from "next/image";
 import GalleryPage from "../gallery/page";
 import { getProxyVideoUrl } from "@/lib/videoProxy";
 import { OptimizedVideo } from "@/components/optimized-video";
+import { ReceptionImages } from "@/components/ReceptionImages"; // adjust path as needed
+import { WeddingImages } from "@/components/WeddingImages";     // adjust path as needed
 
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -915,7 +917,9 @@ export default function Portfolio() {
           }}
         >
           <WeddingChapter />
+          <WeddingImages />
           <ReceptionChapter />
+          <ReceptionImages/>
           <SangeetChapter />
           <HaldiChapter />
           <VarapoojaChapter />
