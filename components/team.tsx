@@ -18,7 +18,7 @@ const teamMembers = [
     img: "/team3.png",
     index: "02",
     description:
-      "With years of industry experience, she's the one who ensures seamless coordination from planning to perfection. Her deep understanding of cultural authenticity allows her to honor every sacred tradition with reverence while creating celebrations where guests become family. Seven years of I've got this energy, making sure your wedding runs so smoothly you forget there were ever any moving parts.",
+      "With years of industry experience, he's the one who ensures seamless coordination from planning to perfection. His  deep understanding of cultural authenticity allows him to honor every sacred tradition with reverence while creating celebrations where guests become family. Seven years of I've got this energy, making sure your wedding runs so smoothly you forget there were ever any moving parts.",
   },
   {
     name: "Dikshit Kumar",
