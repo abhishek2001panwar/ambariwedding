@@ -29,29 +29,29 @@ const teamMembers = [
   //     "The artisan behind our exceptional design and production. He transforms ordinary spaces into sanctuaries through masterful mandap creation, lighting design, and décor that tells your story - ensuring every element is crafted, not bought. If you've ever walked into a wedding and thought How did they create something so magical? it was probably someone like Rahul.",
   // },
    {
-    name: "Chandan",
-    designation: " Production Manager ",
-    img: "",
-    index: "03",
-    description:
-      "The artisan behind our exceptional design and production. He transforms ordinary spaces into sanctuaries through masterful mandap creation, lighting design, and décor that tells your story - ensuring every element is crafted, not bought. If you've ever walked into a wedding and thought How did they create something so magical? it was probably someone like Rahul.",
-  },
-   {
-    name: "Shrish",
-    designation: "Event Manager",
-    img: "",
-    index: "04",
-    description:
-      "The artisan behind our exceptional design and production. He transforms ordinary spaces into sanctuaries through masterful mandap creation, lighting design, and décor that tells your story - ensuring every element is crafted, not bought. If you've ever walked into a wedding and thought How did they create something so magical? it was probably someone like Rahul.",
-  },
-   {
-    name: "Arjun",
-    designation: "Designer ",
-    img: "",
-    index: "05",
-    description:
-      "The artisan behind our exceptional design and production. He transforms ordinary spaces into sanctuaries through masterful mandap creation, lighting design, and décor that tells your story - ensuring every element is crafted, not bought. If you've ever walked into a wedding and thought How did they create something so magical? it was probably someone like Rahul.",
-  },
+  name: "Chandan",
+  designation: "Production Manager",
+  img: "",
+  index: "03",
+  description:
+    "The force behind every flawless execution. Chandan brings creative visions to life through meticulous production planning, vendor coordination, and on-ground management. From the smallest details to the grandest installations, he ensures every element comes together seamlessly, turning wedding concepts into extraordinary experiences.",
+},
+{
+  name: "Shrish",
+  designation: "Event Manager",
+  img: "",
+  index: "04",
+  description:
+    "The mind behind seamless celebrations. Shrish orchestrates every moment with precision, overseeing event coordination, timelines, and guest experiences. With an eye for detail and a passion for perfection, he ensures every celebration flows effortlessly, allowing couples and their families to be fully present in their special moments.",
+},
+{
+  name: "Arjun",
+  designation: "Designer",
+  img: "",
+  index: "05",
+  description:
+    "The creative vision behind unforgettable wedding aesthetics. Arjun transforms ideas and inspirations into beautifully curated wedding environments through thoughtful concepts, elegant styling, and distinctive visual details. From breathtaking mandap designs to immersive décor and sophisticated colour palettes, he creates spaces that reflect each couple's story with timeless elegance.",
+},
 ];
 
 // ── Scroll-reveal hook ──────────────────────────────────────────────────────
