@@ -20,11 +20,35 @@ const teamMembers = [
     description:
       "With years of industry experience, he's the one who ensures seamless coordination from planning to perfection. His  deep understanding of cultural authenticity allows him to honor every sacred tradition with reverence while creating celebrations where guests become family. Seven years of I've got this energy, making sure your wedding runs so smoothly you forget there were ever any moving parts.",
   },
-  {
-    name: "Dikshit Kumar",
-    designation: " The Creative Force ",
-    img: "/team2.png",
+  // {
+  //   name: "Dikshit Kumar",
+  //   designation: " The Creative Force ",
+  //   img: "/team2.png",
+  //   index: "03",
+  //   description:
+  //     "The artisan behind our exceptional design and production. He transforms ordinary spaces into sanctuaries through masterful mandap creation, lighting design, and décor that tells your story - ensuring every element is crafted, not bought. If you've ever walked into a wedding and thought How did they create something so magical? it was probably someone like Rahul.",
+  // },
+   {
+    name: "Chandan",
+    designation: " Production Manager ",
+    img: "",
     index: "03",
+    description:
+      "The artisan behind our exceptional design and production. He transforms ordinary spaces into sanctuaries through masterful mandap creation, lighting design, and décor that tells your story - ensuring every element is crafted, not bought. If you've ever walked into a wedding and thought How did they create something so magical? it was probably someone like Rahul.",
+  },
+   {
+    name: "Shrish",
+    designation: "Event Manager",
+    img: "",
+    index: "04",
+    description:
+      "The artisan behind our exceptional design and production. He transforms ordinary spaces into sanctuaries through masterful mandap creation, lighting design, and décor that tells your story - ensuring every element is crafted, not bought. If you've ever walked into a wedding and thought How did they create something so magical? it was probably someone like Rahul.",
+  },
+   {
+    name: "Arjun",
+    designation: "Designer ",
+    img: "",
+    index: "05",
     description:
       "The artisan behind our exceptional design and production. He transforms ordinary spaces into sanctuaries through masterful mandap creation, lighting design, and décor that tells your story - ensuring every element is crafted, not bought. If you've ever walked into a wedding and thought How did they create something so magical? it was probably someone like Rahul.",
   },
