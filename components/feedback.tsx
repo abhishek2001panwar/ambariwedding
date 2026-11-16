@@ -16,23 +16,31 @@ const videos = [
   "https://hsrtiles.in/wp-content/uploads/2026/11/IMG_6413-2.mp4",
 ]
 
-function useInView(options = {}) {
-  const ref = useRef(null)
+function useInView<T extends HTMLElement = HTMLElement>(
+  options: IntersectionObserverInit = {}
+): [React.RefObject<T | null>, boolean] {
+  const ref = useRef<T | null>(null)
   const [inView, setInView] = useState(false)
+
   useEffect(() => {
+    const node = ref.current
+    if (!node) return
+
     const observer = new IntersectionObserver(([entry]) => {
       if (entry.isIntersecting) {
         setInView(true)
         observer.disconnect()
       }
     }, { threshold: 0.15, ...options })
-    if (ref.current) observer.observe(ref.current)
+
+    observer.observe(node)
     return () => observer.disconnect()
-  }, [])
+  }, [options])
+
   return [ref, inView]
 }
 
-function VideoCard({ src, animationStyle }) {
+function VideoCard({ src, animationStyle }: { src: string; animationStyle: React.CSSProperties }) {
   const proxiedSrc = getProxyVideoUrl(src)
 
   return (
