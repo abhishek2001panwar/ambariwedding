@@ -16,7 +16,7 @@ const projects = [
     category: "We don't offer packages,  We create experiences just for you.  Each service flows from one core belief:  intention over expense,  meaning over magnificence.  Because honestly?  Your love story isn't like anyone else's.  Why should your wedding be? ",
     year: "2024",
     location: "Your Special Treatment ",
-    image: "https://ik.imagekit.io/d9tsatbk5/Ambari_Wedding_csqsly.webm",
+    image: "https://hsrtiles.in/wp-content/uploads/2026/04/Ambari_Wedding_csqsly.webm",
   },
   {
     id: " 02",
